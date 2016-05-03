@@ -78,8 +78,14 @@ nav {
         padding: 1em 0 0 1em;
     }
 /*******************BOARD*******************/
-.board {
+.game_board {
     position: relative;
     width: 95vw;
     height: 95vh;
+    #background-color: yellow;
 }
+
+.cell{width: 2em; #background-color: lightgreen; border: 1px solid white; height: 2em; display: inline-block; margin: 0; padding: 0;
+}
+.ex {#background-color: orange;}
+.ow {#background-color: blue;}
