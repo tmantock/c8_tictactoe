@@ -127,37 +127,44 @@ var playerTwoClick = false;
 var playerTwoConfirmedClick = true;
 
 function ticTacBoardClick (element) {
-
+//variable to get the data-confirmed attribute of the element that has been clicked
     var confirmedAttribute = $(element).attr('data-confirmed');
-
+//Series of conditionals to determine what value to place in the divs
     if (playerOneClick == null && playerOneConfirmedClick == true) {
+        //If it has a class of O and the confirmedAttribute is false then change the element
         if($(element).hasClass('classO') && confirmedAttribute == 'false') {
             $(element).addClass('classX').attr('data-confirmed','true');
             console.log('Player One made the wise choice');
             console.log(confirmedAttribute);
             return;
         }
+        //If it has a class of O and the confirmedAttribute is true then don't change the element
         else if ($(element).hasClass('classO') && confirmedAttribute == 'true') {
             console.log('Player one has made the wrong choice.');
             console.log(confirmedAttribute);
             return;
         }
+            //else change the class of the empty div
         else {
             $(element).addClass('classX').attr('data-confirmed','true');
             console.log('Player one has clicked ' + this);
             console.log(confirmedAttribute);
         }
+        //disallow playerOnes turn
         playerOneClick = true;
+        //Allow player two to click
         playerTwoClick = null;
     }
 
     else if (playerOneClick == null && playerOneConfirmedClick == false) {
+        //Disallow playerOne from changing the class of the div
         if ($(element).hasClass('classO') && confirmedAttribute == 'false') {
             console.log('Player One made the wrong choice');
             console.log(confirmedAttribute);
             return;
         }
         else {
+            //Allow the false 'X' to be placed
             $(element).addClass('classX').attr('data-confirmed','false');
             console.log('Player one has clicked ' + this);
             console.log(confirmedAttribute);
@@ -167,32 +174,39 @@ function ticTacBoardClick (element) {
     }
 
     else if (playerTwoClick == null && playerTwoConfirmedClick == true) {
+        //If it has a class of X and the confirmedAttribute is false then change the element
         if($(element).hasClass('classX') && confirmedAttribute == 'false') {
             $(element).addClass('classO').attr('data-confirmed','true');
             console.log('Player Two made the wise choice');
             console.log(confirmedAttribute);
             return;
         }
+        //If it has a class of O and the confirmedAttribute is true then don't change the element
         else if ($(element).hasClass('classX') && confirmedAttribute == 'true') {
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             return;
         }
+            //else change the elements as necessary
         else {
         $(element).addClass('classO').attr('data-confirmed','true');
             console.log('Player two has clicked ' + this);
             console.log(confirmedAttribute);
         }
+        //allow playerOne's turn
         playerOneClick = null;
+        //disallow playerTwo
         playerTwoClick = true;
     }
 
     else if (playerTwoClick == null && playerTwoConfirmedClick == false) {
+        //Disallow PlayerTwo form changing the div's values
         if($(element).hasClass('classX') && confirmedAttribute == 'true') {
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             return;
         }
+            //Allow player Two to place the false O
         else {
         $(element).addClass('classO').attr('data-confirmed','false');
         console.log('Player two has clicked ' + this);
