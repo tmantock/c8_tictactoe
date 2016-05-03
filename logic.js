@@ -7,20 +7,6 @@ var matches_needed_for_win = 5;
 
 
 
-function change_tile_type(clicked_tile){
-    var type_to_add = null;
-    if(player1_turn){
-        type_to_add = 'x';
-    }
-    else{
-        type_to_add = 'o';
-    }
-    //include check here for boolean to check for true or false entries
-    if(clicked_tile.get_type() == null){
-    $(clicked_tile).attr('data-type' , type_to_add);
-    }
-
-}
 
 global_array = [];
 for (var i = 0; i < 10; i++){
