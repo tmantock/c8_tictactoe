@@ -18,6 +18,7 @@ for (var i = 0; i < 10; i++){
     }
     global_array.push(temp_arr);
 }
+console.log(global_array);
 //the length of global_array is the # of columns we have (width)
 var width = global_array.length;
 //the length of global_array[0] is the # of rows we have (height)
@@ -41,11 +42,21 @@ function global_to_local(){
     return stringified_object;
 }
 
-var temp_jawn = window.localStorage.getItem('globals');
-// console.log(temp_jawn);
-var object_from_local = $.parseJSON(temp_jawn);
-console.log(object_from_local);
-
+function local_to_global(){
+    var temp_jawn = window.localStorage.getItem('globals');
+    var object_from_local = $.parseJSON(temp_jawn);
+    console.log('object from local ' , object_from_local);
+    for (var i = 0; i < width; i++) {
+        for (var j = 0; j < height; j++) {
+            var temp_key = '' + i + j;
+            global_array[i][j] = object_from_local[temp_key];
+            console.log(global_array[i][j]);
+        }
+    }
+    console.log('finished local to global transfer');
+}
+local_to_global();
+console.log(global_array);
 
 
 //function win_check_row: takes in the y position of the row we want to check and determines if there is a victory based on the elements in that row
