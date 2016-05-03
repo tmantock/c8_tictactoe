@@ -8,7 +8,7 @@ var matches_needed_for_win = 5;
 
 
 
-global_array = [];
+global_array = []; //temporary testing global array
 for (var i = 0; i < 10; i++){
     var temp_arr = [];
     for (var j = 0; j < 10; j++){
@@ -21,7 +21,7 @@ for (var i = 0; i < 10; i++){
 
 console.log(global_array[0][1].type);
 global_array[1][2].type = null;
-console.log(win_check_downward_diagonal(0, 0));
+console.log(win_check_downward_diagonal(0, 0)); //testing some functions
 
 
 //the length of global_array is the # of columns we have (width)
