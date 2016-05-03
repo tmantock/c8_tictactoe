@@ -29,101 +29,113 @@ $(document).ready(function () {
 
 });
 
-var gameTile;
-var gameRow;
+
 
 //
 
 function dynamicGameAssignment () {
-
-
-    if (userGameBoardInput == '3') {
-         gameTile = $('<div>').attr({
-             onclick: 'getTileValue',
-            data: 'null'}).css({
-            'border':'1px solid black',
-            'height':'100%',
-            'width':'33%',
-             'display': 'inline-block'
-        });
-
-         gameRow = $('<div>').css({
-            'border':'1px solid black',
-            'height': '33%',
-            'width':'100%'
-        });
-    }
-
-    else if (userGameBoardInput == '10') {
-         gameTile = $('<div>').attr({
-             onclick: 'getTileValue',
-             data: 'null'}).css({
-            'border':'1px solid black',
-            'height':'100%',
-            'width':'10%',
-            'display': 'inline-block'
-        });
-
-         gameRow = $('<div>').css({
-            'border':'1px solid black',
-            'height': '10%',
-            'width':'100%'
-        });
-    }
-
-    else if (userGameBoardInput == '15') {
-         gameTile = $('<div>').attr({
-             onclick: 'getTileValue',
-             data: 'null'}).css({
-            'border':'1px solid black',
-            'height':'100%',
-            'width':'7%',
-            'display': 'inline-block'
-        });
-
-         gameRow = $('<div>').css({
-            'border':'1px solid black',
-            'height': '7%',
-            'width':'100%'
-        });
-    }
-
-    else if (userGameBoardInput == '20') {
-         gameTile = $('<div>').attr({
-             onclick: 'getTileValue',
-             data: 'null'}).css({
-            'border':'1px solid black',
-            'height':'100%',
-            'width':'5%',
-            'display': 'inline-block'
-        });
-
-         gameRow = $('<div>').css({
-            'border':'1px solid black',
-            'height': '5%',
-            'width':'100%'
-        });
-
-    }
-
-    tileCreation();
-    console.log(gameTile);
-}
-
-function test () {
-    var tile = gameTile;
-}
-
-var realTile = new test();
-
-function tileCreation () {
     for(i=0;i<userGameInputNumber;i++) {
-        $(".gameBoard").append(gameRow.clone());
-        console.log('I am i ' + i);
+        var gameTile;
+        var gameRow;
+
+        if (userGameBoardInput == '3') {
+            gameTile = $('<div>').attr({
+                onclick: 'getTileValue',
+                data: 'null'
+            }).css({
+                'border': '1px solid black',
+                'height': '100%',
+                'width': '33%',
+                'display': 'inline-block'
+            });
+
+            gameRow = $('<div>').css({
+                'border': '1px solid black',
+                'height': '33%',
+                'width': '100%'
+            });
+        }
+
+        else if (userGameBoardInput == '10') {
+            gameTile = $('<div>').attr({
+                onclick: 'getTileValue',
+                data: 'null'
+            }).css({
+                'border': '1px solid black',
+                'height': '100%',
+                'width': '10%',
+                'display': 'inline-block'
+            });
+
+            gameRow = $('<div>').css({
+                'border': '1px solid black',
+                'height': '10%',
+                'width': '100%'
+            });
+        }
+
+        else if (userGameBoardInput == '15') {
+            gameTile = $('<div>').attr({
+                onclick: 'getTileValue',
+                data: 'null'
+            }).css({
+                'border': '1px solid black',
+                'height': '100%',
+                'width': '7%',
+                'display': 'inline-block'
+            });
+
+            gameRow = $('<div>').css({
+                'border': '1px solid black',
+                'height': '7%',
+                'width': '100%'
+            });
+        }
+
+        else if (userGameBoardInput == '20') {
+            gameTile = $('<div>').attr({
+                onclick: 'getTileValue',
+                data: 'null'
+            }).css({
+                'border': '1px solid black',
+                'height': '100%',
+                'width': '5%',
+                'display': 'inline-block'
+            });
+
+            gameRow = $('<div>').css({
+                'border': '1px solid black',
+                'height': '5%',
+                'width': '100%'
+            });
+
+        }
+        console.log(gameTile);
         for(e=0;e<userGameInputNumber;e++) {
             console.log('I am e ' + e);
             $(gameRow).append(gameTile.clone());
             console.log(this+' I am tile.');
         }
+        $(".gameBoard").append(gameRow.clone());
+        // console.log('I am i ' + i);
     }
 }
+
+
+// function test () {
+//     var tile = gameTile;
+// }
+
+// var realTile = new test();
+
+// function tileCreation () {
+//     for(i=0;i<userGameInputNumber;i++) {
+//         $(".gameBoard").append(gameRow.clone());
+//         console.log('I am i ' + i);
+//         for(e=0;e<userGameInputNumber;e++) {
+//             console.log('I am e ' + e);
+//             $(gameRow).append(gameTile.clone());
+//             console.log(this+' I am tile.');
+//         }
+//     }
+// }
