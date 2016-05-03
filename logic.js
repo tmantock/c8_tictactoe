@@ -2,11 +2,11 @@
  * Created by thomascase on 5/3/16.
  */
 
-$('.tile').on('click', function(){
-    
-});
 
 var matches_needed_for_win = 5;
+
+
+
 
 global_array = [];
 for (var i = 0; i < 10; i++){
@@ -21,7 +21,7 @@ for (var i = 0; i < 10; i++){
 
 console.log(global_array[0][1].type);
 global_array[1][2].type = null;
-console.log(win_check_column(1));
+console.log(win_check_downward_diagonal(0, 0));
 
 
 //the length of global_array is the # of columns we have (width)
@@ -89,11 +89,13 @@ function win_check_column(col_index){
 }
 
 function win_check_upward_diagonal(current_col, current_row) {
-    var temp_type = global_array[col_start][current_row].type;
+    console.log('upward diag');
+    var temp_type = global_array[current_col][current_row].type;
     var consecutive_objects = 1;
     current_col++;
     current_row--;
     while (current_col < global_array.length && current_row < global_array[0].length) {//makes sure we never exceed our bounds while checking for matches
+        console.log('looping at', current_col, current_row)
         if (temp_type == global_array[current_col][current_row].type){
             if (temp_type == null) {
                 //this block ensures that we only increment the consecutive_matches variable if the tiles actually contain a players symbol
@@ -113,4 +115,32 @@ function win_check_upward_diagonal(current_col, current_row) {
         current_col++;
         current_row--;
     }
+}
+
+function win_check_downward_diagonal(current_col, current_row) {
+    var temp_type = global_array[current_col][current_row].type;
+    var consecutive_objects = 1;
+    current_col++;
+    current_row++;
+    while (current_col < global_array.length && current_row < global_array[0].length) {//makes sure we never exceed our bounds while checking for matches
+        if (temp_type == global_array[current_col][current_row].type){
+            if (temp_type == null) {
+                //this block ensures that we only increment the consecutive_matches variable if the tiles actually contain a players symbol
+            }
+            else {
+                consecutive_objects++;
+                console.log(consecutive_objects);
+                if (consecutive_objects == matches_needed_for_win) {
+                    return true;
+                }
+            }
+        }
+        else{
+            temp_type = global_array[current_col][current_row];
+            consecutive_objects = 1;
+        }
+        current_col++;
+        current_row++;
+    }
+    return false;
 }
