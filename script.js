@@ -93,7 +93,7 @@ $(document).ready(function(){
     }////x
 
     //TODO width and height of cell
-    var cell_width = 78/num_of_rows+'vh';
+    var cell_width = 80/num_of_rows+'vh';
 
     $('.cell').css({"width": cell_width,"height": cell_width});
 
