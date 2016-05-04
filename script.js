@@ -1,4 +1,31 @@
 /**  Created by Qzxtzrtz on 5/3/2016. */
+
+// $(function() {
+//     localStorage["storeKey"] = JSON.stringify($(".game_board").html());
+// });
+// //TODO on the page you want the contents displayed:
+//
+//     $(function() {
+//         if (localStorage["storeKey"] != null) {
+//             var contentsOfOldDiv = JSON.parse(localStorage["storeKey"]);
+//             $(".game_board").html(contentsOfOldDiv);
+//         }
+//     });
+$(function() {
+    localStorage["storeKey"] = JSON.stringify($(".players").html());
+});
+//TODO on the page you want the contents displayed:
+
+$(function() {
+    if (localStorage["storeKey"] != null) {
+        var contentsOfOldDiv = JSON.parse(localStorage["storeKey"]);
+        console.log('contentsOfOldDiv', contentsOfOldDiv);
+        $(".players").html(contentsOfOldDiv);
+    }
+});
+
+
+
 //***************************** GLOBAL VARIABLES  *******************************//
 
 var player1_name_value;
