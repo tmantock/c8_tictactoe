@@ -38,11 +38,12 @@ function dynamicGameAssignment () {
                 class: 'null',
                 data_confirmed: null
             }).css({
-                'border': '1px solid black',
+                'border': '1px solid white',
                 'box-sizing': 'border-box',
                 'height': '100%',
                 'width': '33.3%',
-                'display': 'inline-block'
+                'display': 'inline-block',
+                'z-index':'+2'
             });
             //set gameRow variable to a new DOM element
             gameRow = $('<div>').css({
@@ -58,11 +59,12 @@ function dynamicGameAssignment () {
                 class: 'null',
                 data_confirmed: null
             }).css({
-                'border': '1px solid black',
+                'border': '1px solid white',
                 'box-sizing': 'border-box',
                 'height': '100%',
                 'width': '10%',
-                'display': 'inline-block'
+                'display': 'inline-block',
+                'z-index':'+2'
             });
 
             gameRow = $('<div>').css({
@@ -78,11 +80,12 @@ function dynamicGameAssignment () {
                 class: 'null',
                 data_confirmed: null
             }).css({
-                'border': '1px solid black',
+                'border': '1px solid white',
                 'box-sizing': 'border-box',
                 'height': '100%',
                 'width': '6.66%',
-                'display': 'inline-block'
+                'display': 'inline-block',
+                'z-index':'+2'
             });
 
             gameRow = $('<div>').css({
@@ -98,11 +101,12 @@ function dynamicGameAssignment () {
                 class: 'null',
                 data_confirmed: null
             }).css({
-                'border': '1px solid black',
+                'border': '1px solid white',
                 'box-sizing': 'border-box',
                 'height': '100%',
                 'width': '5%',
-                'display': 'inline-block'
+                'display': 'inline-block',
+                'z-index':'+2'
             });
 
             gameRow = $('<div>').css({
@@ -121,7 +125,7 @@ function dynamicGameAssignment () {
             columnCounter++;
         }
         //Append the newly created rown to the gameBoard
-        $(".gameBoard").append(gameRow.clone());
+        $(".gameArea").append(gameRow.clone());
         //increment the rowCounter
         rowCounter++;
 
@@ -326,7 +330,7 @@ function boardPush () {
     }
     //declare local variable for the each function which will grab each div div div element
     var counter = 0;
-    var gamePiece = $('.gameBoard div div').each(function () {
+    var gamePiece = $('.gameArea div div').each(function () {
         //declare object variable
         var tempTile = {};
         //grab and assign attributes to the object
@@ -613,4 +617,4 @@ function check_all_win_conditions(){
     }
     return result;
 }
-
+//
