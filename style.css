@@ -134,8 +134,20 @@ body{
     outline: 1px solid lightseagreen;
     height:80%;
     width:100%;
+    z-index: +1;
 
 }
+/*Tile Classes*/
+.classX {
+    background: blue;
+}
+
+.classO {
+    background: red;
+}
+
+/*End tile Classes*/
+
 .xWing{
     width: 10%;
     height: 20%;
