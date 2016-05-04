@@ -154,8 +154,8 @@ $(document).ready(function(){
                                 console.log("last clicked row: ",last_clicked.row );
                                 console.log("last clicked col: ",last_clicked.col );
                                 check_the_win (last_clicked.row , last_clicked.col);
-                                stored_data = store_essential_data();
-                                console.log("store_data is now : ", stored_data );
+                                store_essential_data();
+                                console.log("store_data is now : ", store_essential_data() );
                             }///////if the div hasn't been clicked before
                             else {
                                toggle_and_get_current_symbol();
@@ -216,7 +216,23 @@ $(document).ready(function(){
         });//end RESET
 
         //TODO LOCAL STORAGE RESTORE
-        store_essential_data ();
+    var last_data = local_storage_restore();
+    console.log(last_data);
+    // restore_last_game_board(last_data);
+        function restore_last_game_board (last_data) {
+            ///////////if local storage is not empty
+            if (last_data!="") {
+                $(".game_board").html(last_data.game_board);
+                player1_name_value = last_data.player1_name_value;
+                player2_name_value= last_data.player2_name_value;
+                player_symbol= last_data.player_symbol;
+                num_of_rows= last_data.num_of_rows;
+                num_of_cells_to_win= last_data.num_of_cells_to_win;
+                grid_array=last_data.grid_array;
+                last_clicked= last_data.last_clicked;
+                game_won= last_data.game_won;
+            }
+        }
 });//TODO **** end document ready
 
     function game_won_modal()
