@@ -113,7 +113,7 @@ nav {
     .game_board {
         /*border: 1px solid yellow;*/
         position: absolute;
-        bottom: 0;
+        bottom: 2vh;
         left: 50%;
         transform: translateX(-50%);
         width: 80vh;
