@@ -41,6 +41,8 @@ function global_to_local(){
         }
     }
     var stringified_object = JSON.stringify(object_to_store);
+    
+    
     return stringified_object;
 }
 
