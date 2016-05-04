@@ -123,6 +123,8 @@ var playerOneConfirmedClick = true;
 var playerTwoClick = false;
 var playerTwoConfirmedClick = true;
 
+//
+
 function ticTacBoardClick (element) {
 //variable to get the data-confirmed attribute of the element that has been clicked
     var confirmedAttribute = $(element).attr('data-confirmed');
