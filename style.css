@@ -1,5 +1,9 @@
-* {box-sizing: border-box; font-family: "Permanent Marker";}
-/*body {    background-image: url(images/chalkboard.jpg);*/
+* {
+    box-sizing: border-box;
+    font-family: "Permanent Marker";
+}
+
+body {    background: url(images/chalkboard.jpg) no-repeat;}
     /*background-size: cover;*/
     /*background-repeat: repeat;}*/
 .wrapper {
@@ -15,15 +19,15 @@
 /******************* NAV SECTION *******************/
 nav {
     position: relative;
-    height: 5vh;
+    height: 9vh;
     }
-    h1 {
+    h3 {
         text-align: center;
         color: white;
-        font-size: 250%;
+        font-size: 200%;
         margin: 0 auto;
     }
-    h1 span {color: red}
+    h3 span {color: red}
     a {
         color: yellow;
         font-size: 1.5em;
@@ -52,13 +56,24 @@ nav {
         font-size: 1.4em;
     }
     input {
-        color: black;
+        color: white;
+        border-radius: 2px;
+        border:0px;
+        box-shadow: 2px 2px 8px black inset;
+        background-color: #404040;
     }
+input[type="submit"] {
+    color: black;
+    box-shadow: 2px 2px 8px black;
+    background-color: 	white;
+}
     select {
         color: black;
     }
-    h4 {
-        display: inline-block;
+    h5 {
+        /*!*display: inline-block;*!*/
+        -webkit-margin-before: 2em;
+        -webkit-margin-after: 0;
     }
 /******************* PLAYERS SECTION *******************/
     .players {
@@ -75,7 +90,7 @@ nav {
         padding: 0;
         position: absolute;
         left: 50%;
-        transform: translateX(-150%);
+        transform: translateX(-170%);
         bottom: 0;
     }
     .vs {
@@ -91,7 +106,7 @@ nav {
         position: absolute;
         padding: 0;
         left: 50%;
-        transform: translateX(50%);
+        transform: translateX(70%);
     }
 
     div.players > div.vs > span:nth-child(2) {color: lawngreen;}
