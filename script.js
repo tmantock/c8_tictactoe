@@ -4,7 +4,7 @@
 var player1_name_value;
 var player2_name_value;
 var num_of_rows = 3;
-var num_of_cells_to_win = 3;
+var num_of_cells_to_win;
 var player_symbol = 'ex';
 var grid_array = [];
 var last_clicked;
@@ -139,7 +139,19 @@ $(document).ready(function(){
     }
 });//end document ready
 //TODO RESET BUTTON
-//call game_board_creation();
+        $(".reset-button").click(function() {
+            player_symbol = 'ex';
+            grid_array = [];
+            $('#player1-name-value').show();
+            $('#player1-name-submit').show();
+            $('#player2-name-value').show();
+            $('#player2-name-submit').show();
+            $('.row-number').show();
+            $('.matches-number').show();
+            $(".game_board").show();
+            create_grid_array();
+            game_board_creation();
+        });//end RESET
 //TODO ***************************** PEARL SECTION  *******************************//
 
 // var grid_array = [

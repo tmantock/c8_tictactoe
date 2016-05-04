@@ -31,12 +31,8 @@ nav {
         top: 1em;
         right: 2em;
     }
-    /*.settings {*/
-        /*width: 95%;*/
-        /*height: 5em;*/
-        /*margin: 0 auto;*/
-        /*font-size: 1.4em;*/
-        /*color: white;}*/
+    .reset-button {position: absolute; right: 5vw; top: 2.5vh;}
+
     .row-number {
         display: block;
         #padding: .3em;
