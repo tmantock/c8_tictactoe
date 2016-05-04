@@ -4,7 +4,7 @@
 var player1_name_value;
 var player2_name_value;
 var num_of_rows=3;
-var num_of_cells_to_win;
+var num_of_cells_to_win=3;
 var player_symbol = 'ex';
 var grid_array = [];
 
@@ -59,8 +59,9 @@ $(document).ready(function(){
 //         }//end capture function
 
 //TODO 4. using jquery to dynamically create game board based on user input
-    //
-    /////dynamic creation
+    ////creating the array grid
+    create_grid_array();
+    /////dynamic creation of game board
     for(var x = 0;x <= num_of_rows-1; x++){
         for(var y = 0;y <= num_of_rows-1; y++) {
             var new_obj =
@@ -70,8 +71,13 @@ $(document).ready(function(){
                 html: $("<div class='cell'></div>"),
                 click_handler: function(){
                     var symbol = toggle_and_get_current_symbol();
-                    this.html.addClass('clicked '+symbol);
-
+                    grid_array[this.row][this.col]=symbol;
+                    if(!this.html.hasClass("clicked")) {
+                        this.html.addClass('clicked ' + symbol);
+                    }///////if the div hasn't been clicked before
+                    else {
+                       toggle_and_get_current_symbol();
+                    }
                 }//click handler
             };///new obj
             make_click(new_obj);
@@ -80,7 +86,7 @@ $(document).ready(function(){
     }////x
 
     //TODO width and height of cell
-    var cell_width = 95/num_of_rows+'vh';
+    var cell_width = 78/num_of_rows+'vh';
 
     $('.cell').css({"width": cell_width,"height": cell_width});
 
@@ -264,7 +270,7 @@ function diagonal_check_right_to_left(row,col) {
 /////click handler needs to specify the last click
 
 //TODO ***************************** AMINA SECTION  *******************************//
-var array_num = function () {
+var create_grid_array = function () {
 
     for (var i = 0; i < num_of_rows; i++ ) {
         var inside_array = [];
@@ -274,7 +280,11 @@ var array_num = function () {
         grid_array.push(inside_array);
     }
     console.log(grid_array);
-};
+};//////////end of create grid array
+
+
+
+
 
 
 
