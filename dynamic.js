@@ -8,13 +8,121 @@ var userGameInputNumber = parseInt(userGameBoardInput);
 
 var width = 0;
 var height = 0;
+var global_array = [];
+
+function board_from_local_storage(){
+    console.log('starting');
+    var board_size = window.localStorage.getItem('user_game_input_number');
+    console.log(board_size);
+    for(i=0;i<board_size;i++) {
+        for(var j = 0; j < board_size; j++){
+            //local variable for game tiles declared
+            var gameTile;
+            //local variable for game rows declared
+            //local variable for column counter declared for getting the position of an element
+            var columnCounter = 0;
+            //Series of declarations for determining which size to use for the rows and the columns
+            if (board_size == 3) {
+                //set gameTile variable to a new DOM element
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: global_array[j][i].data,
+                    class: global_array[j][i].class,
+                    data_confirmed: global_array[j][i].data_confirmed
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '33.33333333333333333333333333%',
+                    'width': '33.3%',
+                    'display': 'inline-block',
+                    'z-index':'+2',
+                    'padding': '0',
+                    'margin': '0'
+                });
+                $('.gameArea').append(gameTile);
+                console.log('appended a tile supposedly');
+            }
+
+
+            else if (board_size == 10) {
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '100%',
+                    'width': '10%',
+                    'display': 'inline-block',
+                    'z-index':'+2'
+                });
+
+                gameRow = $('<div>').css({
+                    'height': '10%',
+                    'width': '100%'
+                });
+            }
+
+            else if (board_size == 15) {
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '100%',
+                    'width': '6.66%',
+                    'display': 'inline-block',
+                    'z-index':'+2'
+                });
+
+                gameRow = $('<div>').css({
+                    'height': '6.66%',
+                    'width': '100%'
+                });
+            }
+
+            else if (board_size == 20) {
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '100%',
+                    'width': '5%',
+                    'display': 'inline-block',
+                    'z-index':'+2'
+                });
+
+                gameRow = $('<div>').css({
+                    'height': '5%',
+                    'width': '100%'
+                });
+            }
+            //Append the newly created rown to the gameBoard
+            //increment the rowCounter
+            // rowCounter++;
+
+        }
+    }
+}
 
 $(document).ready(function () {
+    boardPush();
     //we will need something here to check whether or not there is saved data
     //function to load in information from the global array is here and assign them to the appropriate
-    console.log(local_to_global());
-    dynamicGameAssignment();
-
+    local_to_global();
+    console.log(global_array);
+    board_from_local_storage();
+    // dynamicGameAssignment();
+    console.log(global_array);
 });
 //function declared for dynamically creating tic tac rows and columns
 function dynamicGameAssignment () {
@@ -331,7 +439,7 @@ function boardPush () {
     }
     //declare local variable for the each function which will grab each div div div element
     var counter = 0;
-    var gamePiece = $('.gameArea div div').each(function () {
+    var gamePiece = $('.gameArea div').each(function () {
         //declare object variable
         var tempTile = {};
         //grab and assign attributes to the object
@@ -347,6 +455,7 @@ function boardPush () {
     // console.log(global_array);
     width = global_array.length;
     height = global_array[0].length;
+    console.log('global inside boardpush' , global_array);
 }
 
 function end_turn(){
@@ -356,8 +465,6 @@ function end_turn(){
     }
     global_to_local();//puts everything in global_array into local storage as an object;
 }
-
-var global_array = [];
 
 //Begin Test for click change function of global variable
 function trueClick () {
@@ -439,14 +546,15 @@ function global_to_local(){
     console.log('resulting object: ' , object_to_store);
     var stringified_object = JSON.stringify(object_to_store);
     window.localStorage.setItem('globals', stringified_object);
+    window.localStorage.setItem('user_game_input_number', userGameInputNumber);
 }
 
 function local_to_global(){
     var temp_jawn = window.localStorage.getItem('globals');
     var object_from_local = $.parseJSON(temp_jawn);
     // console.log('object from local ' , object_from_local);
-    for (var i = 0; i < width; i++) {
-        for (var j = 0; j < height; j++) {
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
             var temp_key = '' + i + j;
             global_array[i][j] = object_from_local[temp_key];
             console.log('new global obj: ' , global_array[i][j]);
