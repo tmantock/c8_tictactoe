@@ -105,3 +105,16 @@ var player_symbol = 'ex';
 
 
 //***************************** AMINA SECTION  *******************************//
+var array_num = function () {
+    var num_of_rows = 6;
+    var grid_array = [];
+    for (var i = 0; i < num_of_rows; i++ ) {
+        var inside_array = [];
+        for (var j = 0; j < num_of_rows; j++) {
+            inside_array.push(0);
+        }
+        grid_array.push(inside_array);
+    }
+    console.log(grid_array);
+};
+
