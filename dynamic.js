@@ -125,7 +125,7 @@ function dynamicGameAssignment () {
             columnCounter++;
         }
         //Append the newly created rown to the gameBoard
-        $(".game-area").append(gameRow.clone());
+        $(".gameArea").append(gameRow.clone());
         //increment the rowCounter
         rowCounter++;
 
@@ -330,7 +330,7 @@ function boardPush () {
     }
     //declare local variable for the each function which will grab each div div div element
     var counter = 0;
-    var gamePiece = $('.gameBoard div div').each(function () {
+    var gamePiece = $('.gameArea div div').each(function () {
         //declare object variable
         var tempTile = {};
         //grab and assign attributes to the object

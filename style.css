@@ -128,7 +128,7 @@ body{
 
     justify-content:space-between;
 }
-.game-area{
+.gameArea{
     justify-content:center;
     align-items:center;
     outline: 1px solid lightseagreen;
