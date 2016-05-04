@@ -31,7 +31,7 @@ nav {
         top: 1em;
         right: 2em;
     }
-    .reset-button {position: absolute; right: 5vw; top: 2.5vh;}
+    .reset-button {position: absolute; right: 5vw; top: 2.5vh; background-color: transparent; color: yellow; font-size: 1.5em;}
 
     .row-number {
         display: block;
@@ -92,8 +92,8 @@ nav {
         transform: translateX(50%);
     }
 
-    div.players > div.vs > span:nth-child(1) {color: lawngreen;}
-    div.players > div.vs > span:nth-child(2) {color: red;}
+    div.players > div.vs > span:nth-child(2) {color: lawngreen;}
+    div.players > div.vs > span:nth-child(1) {color: red;}
     div.player.player1.appended {font-size: 3em; color: lawngreen;}
     div.player.player1.appended > span {font-size: .5em; color: lawngreen;}
     div.player.player2.appended {font-size: 3em; color: red;}
@@ -124,3 +124,35 @@ nav {
         background-size: contain;}
     .ow {background: url(images/o.png) no-repeat;
         background-size: contain;}
+
+/************** WIN MODAL ******************/
+
+
+.modal-dialog {border: 1px solid red;
+    min-width: 1300px !important;
+}
+.modal-title,
+.modal-dialog-description-para,
+.modal-dialog-description-para > ul > li {
+    color: green;
+    text-align: center;
+    margin: auto;
+}
+.modal-body {background-image: url(images/chalkboard.jpg);
+    background-size: cover;}
+.modal-body > ul {
+    color: green;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.modal-close-button,
+.modal-body img {
+    display: block;
+    margin: auto;
+}
+#player-wins-modal .modal-body {
+    min-height: 70vh;
+}
+

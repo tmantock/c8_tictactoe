@@ -4,7 +4,7 @@
 var player1_name_value;
 var player2_name_value;
 var num_of_rows = 3;
-var num_of_cells_to_win;
+var num_of_cells_to_win = 3;
 var player_symbol = 'ex';
 var grid_array = [];
 var last_clicked;
@@ -60,7 +60,7 @@ $(document).ready(function(){
     $("#number_of_rows-submit").click(function (){
             //capture num_of_rows store as var num_of_rows
             num_of_rows = $('.number_of_rows').val();
-                console.log('num_of_rows = ' + num_of_rows);
+                console.log('var num_of_rows is now: '+num_of_rows);
             $('.row-number').hide();
             num_of_rows = parseInt(num_of_rows);
             //call gameboard creation
@@ -72,7 +72,7 @@ $(document).ready(function(){
     $("#number_of_matches-submit").click(function (){
             //capture num_of_cells_to_win store as var
             num_of_cells_to_win = $('.number_of_matches').val();
-                console.log('number_of_matches = ' + num_of_cells_to_win);
+                console.log('num_of_cells_to_win = ' + num_of_cells_to_win);
             $('.matches-number').hide();
             num_of_cells_to_win = parseInt(num_of_cells_to_win);
         });//end capture function
@@ -137,21 +137,35 @@ $(document).ready(function(){
         }
         return player_symbol;
     }
-});//end document ready
+
 //TODO RESET BUTTON
         $(".reset-button").click(function() {
+            console.log('Begin Reset');
             player_symbol = 'ex';
             grid_array = [];
-            $('#player1-name-value').show();
-            $('#player1-name-submit').show();
-            $('#player2-name-value').show();
-            $('#player2-name-submit').show();
+            console.log("grid_array is now: "+grid_array);
+            num_of_rows = 3;
+            num_of_cells_to_win = 3;
+            $(".cell").removeClass('clicked');
+            $(".cell").removeClass('ex');
+            $(".cell").removeClass('ow');
             $('.row-number').show();
+            console.log('var num_of_rows is now: '+num_of_rows);
+            last_clicked;
             $('.matches-number').show();
             $(".game_board").show();
-            create_grid_array();
-            game_board_creation();
+
+            //create_grid_array();
+            //game_board_creation();
         });//end RESET
+});//end document ready
+
+function game_won_modal()
+{
+    //display modal showing who won
+    $("#player-wins-modal").modal('show');
+}
+
 //TODO ***************************** PEARL SECTION  *******************************//
 
 // var grid_array = [
@@ -194,6 +208,7 @@ function check_the_win (row, col) {
         }
     }else {
         $(".game_board").hide();
+
     }
 }//check the win
 //////////check if there is a match in row
