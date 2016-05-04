@@ -5,6 +5,7 @@ body{
     height:100vh;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 
@@ -84,6 +85,7 @@ body{
     background-image: url("https://cdn0.vox-cdn.com/thumbor/EX8M7ujZiWshhBifJkFQMeZc5Ow=/1468x0:3268x1200/1280x854/cdn0.vox-cdn.com/uploads/chorus_image/image/48393289/star_wars_the_force_awakens_rey-3840x1200.0.0.jpg");
     background-repeat:no-repeat;
     background-size: 500px 975px;
+    position: relative;
 }
 
 .turnRight{
@@ -276,6 +278,45 @@ body{
     to {
         left:55%;
     }
+}
+
+.battleship {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    float: right;
+}
+
+.destroyer {
+    animation: bounce;
+    animation-iteration-count: infinite;
+    animation-duration: 20.2s;
+    animation-delay: 0;
+}
+
+@keyframes bounce {
+    from, to  {
+        bottom: 0;
+        animation-timing-function: ease-out;
+    }
+    50% {
+        bottom: 250px;
+        animation-timing-function: ease-in;
+    }
+}
+
+.traveler {
+    animation: travel;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 20.2s;
+    animation-delay: 0s;
+}
+
+@keyframes travel {
+    from { left: 0;     }
+    to   { left: 100%; }
 }
 
 

@@ -14,6 +14,8 @@ $(document).ready(function () {
     //function to load in information from the global array is here and assign them to the appropriate
     dynamicGameAssignment();
 
+    shipCreator();
+
 });
 //function declared for dynamically creating tic tac rows and columns
 function dynamicGameAssignment () {
@@ -118,14 +120,14 @@ function dynamicGameAssignment () {
         //Nested for loop for moving through the row
         for(e=0;e<userGameInputNumber;e++) {
             //append the gameTiles to the gameRow with attributes for getting the position
-            $(gameRow).append(gameTile.clone().attr({
+            $(gameRow).append(gameTile.attr({
                 'data-column': columnCounter,
                 'data-row': rowCounter}));
             //increment the columnCounter
             columnCounter++;
         }
         //Append the newly created rown to the gameBoard
-        $(".gameArea").append(gameRow.clone());
+        $(".gameArea").append(gameRow);
         //increment the rowCounter
         rowCounter++;
 
@@ -305,6 +307,8 @@ function ticTacBoardClick (element) {
             playerOneClick = true;
             playerTwoClick = false;
         }
+        playerOneConfirmedClick = 'false';
+        playerTwoConfirmedClick = 'false';
 
     }
     var elementInformation = {};
@@ -363,27 +367,10 @@ function trueClick () {
     playerOneConfirmedClick = 'true';
 }
 
-//Begin shipScroll function animation
-
-//Experimental Javascript animation
-//function shipScroll () {
-//    var ele = $('.destroyer');
-//        ele.animate({
-//            bottom: '+=600px'
-//        },15000,function () {
-//            ele.animate({
-//                bottom: '-=600px'
-//            },15000);
-//        });
-//    setTimeout(function () {
-//        shipScroll();
-//    },100);
-//}
-
 function randomPosition(){
 
-    var h = $('.battleship').height() - 50;
-    var w = $('.battleship').width() - 10;
+    var h = $('.right_side').height() - 50;
+    var w = $('.right_side').width() - 10;
 
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
@@ -413,7 +400,7 @@ function shipCreator () {
             'animation-delay': new_time + 's'
         }).addClass('traveler').attr('onclick','trueClick()');
         $(shipContainer).append(ship.clone());
-        $('.battleship').append(shipContainer.clone());
+        $('.right_side').append(shipContainer.clone());
 
     }
 
