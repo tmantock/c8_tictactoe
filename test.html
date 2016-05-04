@@ -24,13 +24,62 @@
         .cardFront {
             background: gray;
         }
+
+        .testClick {
+            width: 10px;
+            height: 10px;
+            background: black;
+            position: absolute;
+            right: 10%;
+            top: 10%;
+        }
+
+        .battleship {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            float: right;
+        }
+
+        .destroyer {
+            animation: bounce;
+            animation-iteration-count: infinite;
+            animation-duration: 20.2s;
+            animation-delay: 0;
+        }
+
+        @keyframes bounce {
+            from, to  {
+                bottom: 0;
+                animation-timing-function: ease-out;
+            }
+            50% {
+                bottom: 250px;
+                animation-timing-function: ease-in;
+            }
+        }
+
+        .traveler {
+            animation: travel;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-duration: 20.2s;
+            animation-delay: 0s;
+        }
+
+        @keyframes travel {
+            from { left: 0;     }
+            to   { left: 100%; }
+        }
     </style>
 </head>
 <body>
 
-<div class = "gameBoard">
+    <div class = "gameBoard"></div>
 
-</div>
-
+    <div class = "battleship">
+        <div class = "destroyer"></div>
+    </div>
 </body>
 </html>

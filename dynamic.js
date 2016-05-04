@@ -10,6 +10,7 @@ $(document).ready(function () {
     //we will need something here to check whether or not there is saved data
     //function to load in information from the global array is here and assign them to the appropriate
     dynamicGameAssignment();
+
 });
 //function declared for dynamically creating tic tac rows and columns
 function dynamicGameAssignment () {
@@ -29,7 +30,9 @@ function dynamicGameAssignment () {
             //set gameTile variable to a new DOM element
             gameTile = $('<div>').attr({
                 onclick: 'ticTacBoardClick(this)',
-                data: 'null'
+                data: 'null',
+                class: null,
+                data_confirmed: null
             }).css({
                 'border': '1px solid black',
                 'box-sizing': 'border-box',
@@ -47,7 +50,9 @@ function dynamicGameAssignment () {
         else if (userGameBoardInput == '10') {
             gameTile = $('<div>').attr({
                 onclick: 'ticTacBoardClick(this)',
-                data: 'null'
+                data: 'null',
+                class: null,
+                data_confirmed: null
             }).css({
                 'border': '1px solid black',
                 'box-sizing': 'border-box',
@@ -65,7 +70,9 @@ function dynamicGameAssignment () {
         else if (userGameBoardInput == '15') {
             gameTile = $('<div>').attr({
                 onclick: 'ticTacBoardClick(this)',
-                data: 'null'
+                data: 'null',
+                class: null,
+                data_confirmed: null
             }).css({
                 'border': '1px solid black',
                 'box-sizing': 'border-box',
@@ -84,7 +91,8 @@ function dynamicGameAssignment () {
             gameTile = $('<div>').attr({
                 onclick: 'ticTacBoardClick(this)',
                 data: 'null',
-                data_position:[columnCounter,rowCounter]
+                class: null,
+                data_confirmed: null
             }).css({
                 'border': '1px solid black',
                 'box-sizing': 'border-box',
@@ -122,41 +130,52 @@ function dynamicGameAssignment () {
 /////////////Begin Click Handler//////////////
 
 var playerOneClick = null;
-var playerOneConfirmedClick = true;
+//variable set to false by default. Assumed to be a false click until set to true by true click.
+var playerOneConfirmedClick = 'false';
 var playerTwoClick = false;
-var playerTwoConfirmedClick = true;
+//variable set to false by default. Assumed to be a false click until set to true by true click.
+var playerTwoConfirmedClick = 'false';
 var chooseAgain;
-//
 
 function ticTacBoardClick (element) {
 //variable to get the data-confirmed attribute of the element that has been clicked
-    var confirmedAttribute = $(element).attr('data-confirmed');
+    var confirmedAttribute = $(element).attr('data_confirmed');
     //variable for grabbing class and attributes of the element
-    var elementInformation = $(element).attr('data-confirmed','data-column','data-row','class');
+    var elementInformation = $(element).attr('data_confirmed','data-column','data-row','class');
 
 
 //Series of conditionals to determine what value to place in the divs
-    if (playerOneClick == null && playerOneConfirmedClick == true) {
+    if (playerOneClick == null && playerOneConfirmedClick == 'true') {
         //If it has a class of O and the confirmedAttribute is false then change the element
         if($(element).hasClass('classO') && confirmedAttribute == 'false') {
-            $(element).addClass('classX').attr('data-confirmed','true');
+            $(element).attr({
+                data_confirmed: playerOneConfirmedClick,
+                class: 'classX'
+            });
             console.log('Player One made the wise choice');
             console.log(confirmedAttribute);
             //disallow playerOnes turn
             playerOneClick = true;
             //Allow player two to click
             playerTwoClick = null;
-            return;
         }
         //If it has a class of O and the confirmedAttribute is true then don't change the element
         else if ($(element).hasClass('classO') && confirmedAttribute == 'true') {
+            $(element).attr({
+                data_confirmed:'true'
+            });
             console.log('Player one has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
+            playerOneClick = null;
+            playerTwoClick = true;
         }
             //else change the class of the empty div
         else {
-            $(element).addClass('classX').attr('data-confirmed','true');
+            $(element).attr({
+                data_confirmed: playerOneConfirmedClick,
+                class: 'classX'
+            });
             console.log('Player one has clicked ' + this);
             console.log(confirmedAttribute);
             //disallow playerOnes turn
@@ -167,17 +186,35 @@ function ticTacBoardClick (element) {
 
     }
 
-    else if (playerOneClick == null && playerOneConfirmedClick == false) {
+    else if (playerOneClick == null && playerOneConfirmedClick == 'false') {
         //Disallow playerOne from changing the class of the div
         if ($(element).hasClass('classO') && confirmedAttribute == 'false') {
+            $(element).attr({
+                data_confirmed: 'false'
+            });
             console.log('Player One made the wrong choice');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
+            playerOneClick = null;
+            playerTwoClick = true;
             return;
+        }
+        else if ($(element).hasClass('classO') && confirmedAttribute == 'true') {
+            $(element).attr({
+                data_confirmed: 'true'
+            });
+            console.log('Player One made the wrong choice');
+            console.log(confirmedAttribute);
+            chooseAgain = alert('Choose Again!');
+            playerOneClick = null;
+            playerTwoClick = true;
         }
         else {
             //Allow the false 'X' to be placed
-            $(element).addClass('classX').attr('data-confirmed','false');
+            $(element).attr({
+                data_confirmed: playerOneConfirmedClick,
+                class: 'classX'
+            });
             console.log('Player one has clicked ' + this);
             console.log(confirmedAttribute);
             playerOneClick = true;
@@ -186,27 +223,37 @@ function ticTacBoardClick (element) {
 
     }
 
-    else if (playerTwoClick == null && playerTwoConfirmedClick == true) {
+    else if (playerTwoClick == null && playerTwoConfirmedClick == 'true') {
         //If it has a class of X and the confirmedAttribute is false then change the element
         if($(element).hasClass('classX') && confirmedAttribute == 'false') {
-            $(element).addClass('classO').attr('data-confirmed','true');
+            $(element).attr({
+                data_confirmed: playerTwoConfirmedClick,
+                class: 'classO'
+            });
             console.log('Player Two made the wise choice');
             console.log(confirmedAttribute);
             //allow playerOne's turn
             playerOneClick = null;
             //disallow playerTwo
             playerTwoClick = true;
-            return;
         }
         //If it has a class of O and the confirmedAttribute is true then don't change the element
         else if ($(element).hasClass('classX') && confirmedAttribute == 'true') {
+            $(element).attr({
+                data_confirmed: 'true'
+            });
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
+            playerOneClick = true;
+            playerTwoClick = null;
         }
             //else change the elements as necessary
         else {
-        $(element).addClass('classO').attr('data-confirmed','true');
+            $(element).attr({
+                data_confirmed:playerTwoConfirmedClick,
+                class: 'classO'
+            });
             console.log('Player two has clicked ' + this);
             console.log(confirmedAttribute);
             //allow playerOne's turn
@@ -216,19 +263,37 @@ function ticTacBoardClick (element) {
         }
 
     }
+        //
 
-    else if (playerTwoClick == null && playerTwoConfirmedClick == false) {
+    else if (playerTwoClick == null && playerTwoConfirmedClick == 'false') {
         //Disallow PlayerTwo form changing the div's values
         if($(element).hasClass('classX') && confirmedAttribute == 'true') {
+            $(element).attr({
+                data_confirmed: 'true'
+            });
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            return;
+            playerOneClick = true;
+            playerTwoClick = null;
         }
-            //Allow player Two to place the false O
+
+        else if ($(element).hasClass('classX') && confirmedAttribute == 'false') {
+            $(element).attr({
+                data_confirmed: 'false'
+            });
+            console.log('Player two has made the wrong choice.');
+            console.log(confirmedAttribute);
+            chooseAgain = alert('Choose Again!');
+            playerOneClick = true;
+            playerTwoClick = null;
+        }
         else {
-        $(element).addClass('classO').attr('data-confirmed','false');
-        console.log('Player two has clicked ' + this);
+            $(element).attr({
+                data_confirmed: playerTwoConfirmedClick,
+                class: 'classO'
+            });
+            console.log('Player two has clicked ' + this);
             playerOneClick = null;
             playerTwoClick = true;
         }
@@ -246,16 +311,19 @@ function ticTacBoardClick (element) {
     console.log(elementInformation);
     gameArray = [];
     boardPush();
+
+    playerOneConfirmedClick = 'false';
+    playerTwoConfirmedClick = 'false';
 }
 //declare function for pushing div objects into the global array
 function boardPush () {
     //declare local variable for the each function which will grab each div div div element
-    var gamePiece = $('div div div').each(function () {
+    var gamePiece = $('.gameBoard div div').each(function () {
         //declare object variable
         var tempTile = {};
         //grab and assign attributes to the object
         tempTile.class = $(this).attr('class');
-        tempTile.confirmed = $(this).attr('data-confirmed');
+        tempTile.confirmed = $(this).attr('data_confirmed');
         tempTile.column = $(this).attr('data-column');
         tempTile.row = $(this).attr('data-row');
         //push object into the array
@@ -265,4 +333,66 @@ function boardPush () {
 }
 
 var gameArray = [];
+
+//Begin Test for click change function of global variable
+function trueClick () {
+    playerOneConfirmedClick = 'true';
+}
+
+//Begin shipScroll function animation
+
+//Experimental Javascript animation
+//function shipScroll () {
+//    var ele = $('.destroyer');
+//        ele.animate({
+//            bottom: '+=600px'
+//        },15000,function () {
+//            ele.animate({
+//                bottom: '-=600px'
+//            },15000);
+//        });
+//    setTimeout(function () {
+//        shipScroll();
+//    },100);
+//}
+
+function randomPosition(){
+
+    var h = $('.battleship').height() - 50;
+    var w = $('.battleship').width() - 10;
+
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+
+    return [nh,nw];
+
+}
+
+function shipCreator () {
+    var new_time = 0;
+    for(i=0;i<userGameInputNumber;i++) {
+        new_time += .5;
+        var newPosition = randomPosition();
+        var ship = $('<div>').css({
+            'position':'relative',
+            'height':'15px',
+            'width':'15px',
+            'background':'black',
+            'animation-delay': new_time + 's'
+        }).addClass('destroyer');
+        var shipContainer = $('<div>').css({
+            'position':'absolute',
+            'height':'16px',
+            'width':'16px',
+            'bottom': newPosition[0],
+            'right': newPosition[1],
+            'animation-delay': new_time + 's'
+        }).addClass('traveler').attr('onclick','trueClick()');
+        $(shipContainer).append(ship.clone());
+        $('.battleship').append(shipContainer.clone());
+
+    }
+
+}
+//
 
