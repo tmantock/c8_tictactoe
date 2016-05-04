@@ -1,8 +1,8 @@
 //***************************** GLOBAL VARIABLES  *******************************//
 var player1_name_value;
 var player2_name_value;
-var num_of_rows = 9;
-var num_of_cells_to_win = 6;
+var num_of_rows=3;
+var num_of_cells_to_win;
 var player_symbol = 'ex';
 
 //***************************** MICAH SECTION  *******************************//
@@ -19,6 +19,8 @@ var player_symbol = 'ex';
             $('#player1-name-value').hide();
             $('#player1-name-submit').hide();
             var local_player1_name_value = player1_name_value;
+            $('.player.player1').addClass('appended');
+            $('.player.player1.appended').append(local_player1_name_value);
             //local_player1_name_value.appendTo('player player2');
         });//end click
 
