@@ -225,7 +225,7 @@ function ticTacBoardClick (element) {
         //If it has a class of X and the confirmedAttribute is false then change the element
         if($(element).hasClass('classX') && confirmedAttribute == 'false') {
             $(element).attr({
-                data_confirmed: 'true',
+                data_confirmed: playerTwoConfirmedClick,
                 class: 'classO'
             });
             console.log('Player Two made the wise choice');
@@ -249,7 +249,7 @@ function ticTacBoardClick (element) {
             //else change the elements as necessary
         else {
             $(element).attr({
-                data_confirmed:'true',
+                data_confirmed:playerTwoConfirmedClick,
                 class: 'classO'
             });
             console.log('Player two has clicked ' + this);
@@ -275,7 +275,7 @@ function ticTacBoardClick (element) {
             playerOneClick = true;
             playerTwoClick = null;
         }
-            //Allow player Two to place the false O
+
         else if ($(element).hasClass('classX') && confirmedAttribute == 'false') {
             $(element).attr({
                 data_confirmed: 'false'
@@ -288,7 +288,7 @@ function ticTacBoardClick (element) {
         }
         else {
             $(element).attr({
-                data_confirmed:'true',
+                data_confirmed: playerTwoConfirmedClick,
                 class: 'classO'
             });
             console.log('Player two has clicked ' + this);
@@ -307,7 +307,7 @@ function ticTacBoardClick (element) {
 //declare function for pushing div objects into the global array
 function boardPush () {
     //declare local variable for the each function which will grab each div div div element
-    var gamePiece = $('div div div').each(function () {
+    var gamePiece = $('.gameBoard div div').each(function () {
         //declare object variable
         var tempTile = {};
         //grab and assign attributes to the object
@@ -324,7 +324,7 @@ function boardPush () {
 var gameArray = [];
 
 //Begin Test for click change function of global variable
-function falseClick () {
+function trueClick () {
     playerOneConfirmedClick = 'true';
 }
 
@@ -348,7 +348,7 @@ function shipScroll () {
 function randomPosition(){
 
     var h = $('.battleship').height() - 50;
-    var w = $('.battleship').width() - 50;
+    var w = $('.battleship').width() - 10;
 
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
@@ -358,23 +358,25 @@ function randomPosition(){
 }
 
 function shipCreator () {
+    var new_time = 0;
     for(i=0;i<userGameInputNumber;i++) {
+        new_time += .5;
         var newPosition = randomPosition();
-        var ship = $('<div>').addClass('destroyer').css({
+        var ship = $('<div>').css({
+            'position':'relative',
+            'height':'15px',
+            'width':'15px',
+            'background':'black',
+            'animation-delay': new_time + 's'
+        }).addClass('destroyer');
+        var shipContainer = $('<div>').css({
             'position':'absolute',
-            'height':'5px',
-            'width':'5px',
+            'height':'16px',
+            'width':'16px',
             'bottom': newPosition[0],
             'right': newPosition[1],
-            'background':'black'
-        });
-        var shipContainer = $('<div>').addClass('traveler').css({
-            'position':'absolute',
-            'height':'6px',
-            'width':'6px',
-            'bottom': newPosition[0],
-            'right': newPosition[1],
-        });
+            'animation-delay': new_time + 's'
+        }).addClass('traveler').attr('onclick','trueClick()');
         $(shipContainer).append(ship.clone());
         $('.battleship').append(shipContainer.clone());
 

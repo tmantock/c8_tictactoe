@@ -39,12 +39,14 @@
             width: 500px;
             height: 500px;
             position: relative;
+            float: right;
         }
 
         .destroyer {
             animation: bounce;
             animation-iteration-count: infinite;
-            animation-duration: 10.2s;
+            animation-duration: 20.2s;
+            animation-delay: 0;
         }
 
         @keyframes bounce {
@@ -53,7 +55,7 @@
                 animation-timing-function: ease-out;
             }
             50% {
-                bottom: 420px;
+                bottom: 250px;
                 animation-timing-function: ease-in;
             }
         }
@@ -63,12 +65,13 @@
             animation-timing-function: linear;
             animation-iteration-count: infinite;
             animation-direction: alternate;
-            animation-duration: 4.8s;
+            animation-duration: 20.2s;
+            animation-delay: 0s;
         }
 
         @keyframes travel {
             from { left: 0;     }
-            to   { left: 500px; }
+            to   { left: 100%; }
         }
     </style>
 </head>
@@ -78,7 +81,6 @@
 
     <div class = "battleship">
         <div class = "destroyer"></div>
-        <div class = "testClick" onclick = "falseClick ()"></div>
     </div>
 </body>
 </html>
