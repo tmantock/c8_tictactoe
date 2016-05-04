@@ -330,20 +330,20 @@ function trueClick () {
 
 //Begin shipScroll function animation
 
-
-function shipScroll () {
-    var ele = $('.destroyer');
-        ele.animate({
-            bottom: '+=600px'
-        },15000,function () {
-            ele.animate({
-                bottom: '-=600px'
-            },15000);
-        });
-    setTimeout(function () {
-        shipScroll();
-    },100);
-}
+//Experimental Javascript animation
+//function shipScroll () {
+//    var ele = $('.destroyer');
+//        ele.animate({
+//            bottom: '+=600px'
+//        },15000,function () {
+//            ele.animate({
+//                bottom: '-=600px'
+//            },15000);
+//        });
+//    setTimeout(function () {
+//        shipScroll();
+//    },100);
+//}
 
 function randomPosition(){
 
