@@ -11,22 +11,30 @@
 //             $(".game_board").html(contentsOfOldDiv);
 //         }
 //     });
-$(function() {
-    localStorage["storeKey"] = JSON.stringify($(".players").html());
-});
+//**************************  LOCAL STORAGE   *******************************/
+function local_storage_capture()
+{
+    $(function () {
+        localStorage["storeKey"] = JSON.stringify(stored_data);
+    });
+}//end local_storage_capture
+
 //TODO on the page you want the contents displayed:
 
-$(function() {
-    if (localStorage["storeKey"] != null) {
-        var contentsOfOldDiv = JSON.parse(localStorage["storeKey"]);
-        console.log('contentsOfOldDiv', contentsOfOldDiv);
-        $(".players").html(contentsOfOldDiv);
-    }
-});
+function local_storage_restore() {
+    $(function () {
+        if (localStorage["storeKey"] != null) {
+            contents_last_game = JSON.parse(localStorage["storeKey"]);
+            console.log('contents_last_game', contents_last_game);
+            $(".game_board").html(contents_last_game);
+        }
+    });
+}//end local_storage_restore
+
 
 //////storing data
-function store_essencial_data () {
-    var data= {
+function store_essential_data () {
+    stored_data = {
         game_board: $(".game_board").html(),
         player1_name_value: player1_name_value,
         player2_name_value: player2_name_value,
@@ -37,10 +45,9 @@ function store_essencial_data () {
         last_clicked: last_clicked,
         game_won: game_won
     };
-    return data;
+    local_storage_capture();
+    return stored_data;
 }
-
-
 
 //***************************** GLOBAL VARIABLES  *******************************//
 
@@ -53,180 +60,183 @@ var grid_array = [];
 var last_clicked;
 var game_won = false;
 var stored_data;
+var contents_last_game;
 //***************************** MICAH SECTION  *******************************//
-//TODO 1. players will enter name into input field + click submit, click function will hide the player's name and append a larger name with glowing animation to indicate player's turn.
-// CLICK HANDLER FOR PLAYER NAME SUBMIT BUTTON
 
+
+//TODO **** begin document ready
 $(document).ready(function(){
-    //Player1-name-value capture
-    $("#player1-name-submit").click(function(){
-        //capture plyr name store as var
-        player1_name_value = $('#player1-name-value').val();
-            console.log('var player1_name_value = ' + player1_name_value);
-        // hide player input fields, append player name
-        $('#player1-name-value').hide();
-        $('#player1-name-submit').hide();
-        var local_player1_name_value = player1_name_value;
-        $('.player.player1').addClass('appended');
-        $('.player.player1.appended').append(local_player1_name_value);
-        animate_name();
-    });//end click
+        //TODO 1. players will enter name into input field + click submit, click function will
+            // hide the player's name and append a larger name with glowing animation to indicate player's turn.
+            //Player1-name-value capture
+        $("#player1-name-submit").click(function(){
+            //capture plyr name store as var
+            player1_name_value = $('#player1-name-value').val();
+                console.log('var player1_name_value = ' + player1_name_value);
+            // hide player input fields, append player name
+            $('#player1-name-value').hide();
+            $('#player1-name-submit').hide();
+            var local_player1_name_value = player1_name_value;
+            $('.player.player1').addClass('appended');
+            $('.player.player1.appended').append(local_player1_name_value);
+            animate_name();
+        });//end click
 
-    //Player2-name-value capture
-    $("#player2-name-submit").click(function(){
-        //capture plyr nam store as var
-        player2_name_value = $('#player2-name-value').val();
-            console.log('var player2_name_value = ' + player2_name_value);
-        $('#player2-name-value').hide();
-        $('#player2-name-submit').hide();
-        var local_player2_name_value = player2_name_value;
-        $('.player.player2').addClass('appended');
-        $('.player.player2.appended').append(local_player2_name_value);
-        animate_name();
-    });//end click
+        //Player2-name-value capture
+        $("#player2-name-submit").click(function(){
+            //capture plyr nam store as var
+            player2_name_value = $('#player2-name-value').val();
+                console.log('var player2_name_value = ' + player2_name_value);
+            $('#player2-name-value').hide();
+            $('#player2-name-submit').hide();
+            var local_player2_name_value = player2_name_value;
+            $('.player.player2').addClass('appended');
+            $('.player.player2.appended').append(local_player2_name_value);
+            animate_name();
+        });//end click
 
-    // Player name animation function
-    function animate_name () {
-        if(player_symbol === 'ex') {
-        $('.player1').addClass('animate');
-        $('.player2').removeClass('animate');
-        }//end if
-        else {
-            $('.player2').addClass('animate');
-            $('.player1').removeClass('animate');
-        }//end else
-    }//end of animate_name function
-
-    // GAME WON animation function
-    function animate_winner_name () {
-        if(player_symbol === 'ex') {
-            $('.player2').addClass('animate');
-            $('.player1').removeClass('animate');
-        }//end if
-        else {
+        // Player name animation function
+        function animate_name () {
+            if(player_symbol === 'ex') {
             $('.player1').addClass('animate');
             $('.player2').removeClass('animate');
-        }//end else
-    }//end of animate_name function
+            }//end if
+            else {
+                $('.player2').addClass('animate');
+                $('.player1').removeClass('animate');
+            }//end else
+        }//end of animate_name function
+
+        // GAME WON animation function
+        function animate_winner_name () {
+            if(player_symbol === 'ex') {
+                $('.player2').addClass('animate');
+                $('.player1').removeClass('animate');
+            }//end if
+            else {
+                $('.player1').addClass('animate');
+                $('.player2').removeClass('animate');
+            }//end else
+        }//end of animate_name function
 
 
-// TODO 2. using jquery to capture and store as variables the number of rows and columns for the board
-//     TODO disable inputs after select!! IMPORTANT , need RESET BUTTON
-        // capture num_of_rows
-    $("#number_of_rows-submit").click(function (){
-            //capture num_of_rows store as var num_of_rows
-            num_of_rows = $('.number_of_rows').val();
-                console.log('var num_of_rows is now: '+num_of_rows);
-            $('.row-number').hide();
-            num_of_rows = parseInt(num_of_rows);
-            //call game board creation
+        // TODO 2. using jquery to capture and store as variables the number of rows and columns for the board
+           // capture num_of_rows
+        $("#number_of_rows-submit").click(function (){
+                //capture num_of_rows store as var num_of_rows
+                num_of_rows = $('.number_of_rows').val();
+                    console.log('var num_of_rows is now: '+num_of_rows);
+                $('.row-number').hide();
+                num_of_rows = parseInt(num_of_rows);
+                //call game board creation
+                $(".game_board").empty();
+                grid_array = [];
+                create_grid_array();
+                game_board_creation();
+            });//end capture function
+
+        // TODO 3. using jquery to capture and store as variable the number of matches the player chooses, this will be the win condition parameter.
+            // capture num_of_cells_to_win
+        $("#number_of_matches-submit").click(function (){
+                //capture num_of_cells_to_win store as var
+                num_of_cells_to_win = $('.number_of_matches').val();
+                    console.log('num_of_cells_to_win = ' + num_of_cells_to_win);
+                $('.matches-number').hide();
+                num_of_cells_to_win = parseInt(num_of_cells_to_win);
             $(".game_board").empty();
-            grid_array = [];
-            create_grid_array();
-            game_board_creation();
-        });//end capture function
+                grid_array = [];
+                create_grid_array();
+                game_board_creation();
+            });//end capture function
 
-// TODO 3. using jquery to capture and store as variable the number of matches the player chooses, this will be the win condition parameter.
-        // capture num_of_cells_to_win
-    $("#number_of_matches-submit").click(function (){
-            //capture num_of_cells_to_win store as var
-            num_of_cells_to_win = $('.number_of_matches').val();
-                console.log('num_of_cells_to_win = ' + num_of_cells_to_win);
-            $('.matches-number').hide();
-            num_of_cells_to_win = parseInt(num_of_cells_to_win);
-        $(".game_board").empty();
-            grid_array = [];
-            create_grid_array();
-            game_board_creation();
-        });//end capture function
+        // TODO 4. using jquery to dynamically create game board based on user input
+           //creating the array grid
+        create_grid_array();
+        console.log("grid array at first: ",grid_array);
+        /////dynamic creation of game board
+        game_board_creation();
+        function game_board_creation (){
+            for(var x = 0;x <= num_of_rows-1; x++){
+                for(var y = 0;y <= num_of_rows-1; y++) {
+                    var new_obj =
+                    {
+                        row : x,
+                        col : y,
+                        html: $("<div class='cell'></div>"),
+                        click_handler: function(){
+                            var symbol = toggle_and_get_current_symbol();
+                            grid_array[this.row][this.col]=symbol;
+                            if(!this.html.hasClass("clicked")) {
+                                this.html.addClass('clicked ' + symbol);
+                                console.log("last_clicked",last_clicked);
+                                console.log("grid array: ",grid_array);
+                                console.log("last clicked row: ",last_clicked.row );
+                                console.log("last clicked col: ",last_clicked.col );
+                                check_the_win (last_clicked.row , last_clicked.col);
+                                stored_data = store_essential_data();
+                                console.log("store_data is now : ", stored_data );
+                            }///////if the div hasn't been clicked before
+                            else {
+                               toggle_and_get_current_symbol();
+                            }/// end of else
+                            animate_name ();
+                        }//click handler
+                    };///new obj
+                    make_click(new_obj);
+                    $(".game_board").append(new_obj.html);
+                }////y
+            }////x
 
-// TODO 4. using jquery to dynamically create game board based on user input
-//     //creating the array grid
-    create_grid_array();
-    console.log("grid array at first: ",grid_array);
-    /////dynamic creation of game board
-    game_board_creation();
-    function game_board_creation (){
-        for(var x = 0;x <= num_of_rows-1; x++){
-            for(var y = 0;y <= num_of_rows-1; y++) {
-                var new_obj =
-                {
-                    row : x,
-                    col : y,
-                    html: $("<div class='cell'></div>"),
-                    click_handler: function(){
-                        var symbol = toggle_and_get_current_symbol();
-                        grid_array[this.row][this.col]=symbol;
-                        if(!this.html.hasClass("clicked")) {
-                            this.html.addClass('clicked ' + symbol);
-                            console.log("last_clicked",last_clicked);
-                            console.log("grid array: ",grid_array);
-                            console.log("last clicked row: ",last_clicked.row );
-                            console.log("last clicked col: ",last_clicked.col );
-                            check_the_win (last_clicked.row , last_clicked.col);
-                            stored_data=store_essencial_data();
-                            console.log("data: ",stored_data );
+            // width and height of cell
+            var cell_width = 80/num_of_rows+'vh';
+            $('.cell').css({"width": cell_width,"height": cell_width});
+        }//end function game_board_creation
 
-                        }///////if the div hasn't been clicked before
-                        else {
-                           toggle_and_get_current_symbol();
-                        }/// end of else
-                        animate_name ();
-                    }//click handler
-                };///new obj
-                make_click(new_obj);
-                $(".game_board").append(new_obj.html);
-            }////y
-        }////x
+        function make_click(the_object)
+        {
+                the_object.html.click(function(){
+                    console.log('object that was triggered',the_object);
+                    if (game_won === false) {
+                        last_clicked = the_object;
+                        the_object.click_handler();
+                    }//end if
+                    });//end .click function
+        }//end make_click
 
-        // width and height of cell
-        var cell_width = 80/num_of_rows+'vh';
-        $('.cell').css({"width": cell_width,"height": cell_width});
-    }//end function game_board_creation
+        function toggle_and_get_current_symbol(){
+            if(player_symbol=='ex'){
+                player_symbol = 'ow';
+            }
+            else{
+                player_symbol = 'ex';
+            }
+            return player_symbol;
+        } //end toggle_and_
 
-    function make_click(the_object)
-    {
-            the_object.html.click(function(){
-                console.log('object that was triggered',the_object);
-                if (game_won === false) {
-                    last_clicked = the_object;
-                    the_object.click_handler();
-                }//end if
-                });//end .click function
-
-    }//end make_click
-
-    function toggle_and_get_current_symbol(){
-        if(player_symbol=='ex'){
-            player_symbol = 'ow';
-        }
-        else{
+        //TODO RESET BUTTON
+        $(".reset-button").click(function() {
+            console.log('Begin Reset');
             player_symbol = 'ex';
-        }
-        return player_symbol;
-    } //end toggle_and_
+            grid_array = [];
+            console.log("grid_array is now: "+grid_array);
+            num_of_rows = 3;
+            num_of_cells_to_win = 3;
+            $(".cell").removeClass('clicked');
+            $(".cell").removeClass('ex');
+            $(".cell").removeClass('ow');
+            $('.row-number').show();
+            console.log('var num_of_rows is now: '+num_of_rows);
+            last_clicked;
+            $('.matches-number').show();
+            $(".game_board").show();
 
-//TODO RESET BUTTON
-    $(".reset-button").click(function() {
-        console.log('Begin Reset');
-        player_symbol = 'ex';
-        grid_array = [];
-        console.log("grid_array is now: "+grid_array);
-        num_of_rows = 3;
-        num_of_cells_to_win = 3;
-        $(".cell").removeClass('clicked');
-        $(".cell").removeClass('ex');
-        $(".cell").removeClass('ow');
-        $('.row-number').show();
-        console.log('var num_of_rows is now: '+num_of_rows);
-        last_clicked;
-        $('.matches-number').show();
-        $(".game_board").show();
+            //create_grid_array();
+            //game_board_creation();
+        });//end RESET
 
-        //create_grid_array();
-        //game_board_creation();
-    });//end RESET
-});//end document ready
+        //TODO LOCAL STORAGE RESTORE
+        //window.onload = local_storage_restore();
+});//TODO **** end document ready
 
     function game_won_modal()
     {
@@ -234,24 +244,7 @@ $(document).ready(function(){
         $("#player-wins-modal").modal('show');
     }
 
-
 //TODO ***************************** PEARL SECTION  *******************************//
-
-// var grid_array = [
-//     [0,"ex",0,0,"ow"],
-//     [0,"ex",0,"ow","ex"],
-//     [0,"ow","ow",0,"oh"],
-//     [0,"ex","ow","ex","ow"],
-//     [0,"ow",0,0,0]
-// ];
-// var num_of_rows = 5;
-// var num_of_cells_to_win = 3;
-// var last_click = {
-//     col : 2,
-//     row : 2
-// };
-// console.log("row: ",last_click.row," col: ",last_click.col);
-
 
 function check_the_win (row, col) {
     var row_win = check_row(row);
@@ -328,7 +321,6 @@ function check_col(col) {
         return false;
     }
 }/////////end of check col
-
 /////////////// check for diagonal match from left to right
 function diagonal_check_left_to_right(row,col) {
     var counter_top = 1;
@@ -369,9 +361,7 @@ function diagonal_check_left_to_right(row,col) {
         return false;
     }
 }//////end of diagonal_check_left_to_right
-
 //////check for diagonal match from right to left
-
 function diagonal_check_right_to_left(row,col) {
     var counter_top = 1;
     var counter_down = 0;
@@ -412,12 +402,10 @@ function diagonal_check_right_to_left(row,col) {
     }
 
 }////end
-
 /////click handler needs to specify the last click
 
 //TODO ***************************** AMINA SECTION  *******************************//
 var create_grid_array = function () {
-
     for (var i = 0; i < num_of_rows; i++ ) {
         var inside_array = [];
         for (var j = 0; j < num_of_rows; j++) {
