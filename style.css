@@ -1,5 +1,7 @@
 * {box-sizing: border-box; font-family: "Permanent Marker";}
-
+/*body {    background-image: url(images/chalkboard.jpg);*/
+    /*background-size: cover;*/
+    /*background-repeat: repeat;}*/
 .wrapper {
     font-size: initial;
     position: relative;
@@ -31,7 +33,7 @@ nav {
         top: 1em;
         right: 2em;
     }
-    .reset-button {position: absolute; right: 5vw; top: 2.5vh; background-color: transparent; color: yellow; font-size: 1.5em;}
+    .reset-button {position: absolute; right: 5vw; top: 2.5vh; background-color: transparent; color: yellow; font-size: 1.5em; display: none;}
 
     .row-number {
         display: block;
@@ -117,6 +119,7 @@ nav {
         height: 80vh;
         margin: 0 auto;
         font-size: 0;
+        #transition-duration: 5s;
     }
 
     .cell{width: 2em; #background-color: lightgreen; border: 1px solid white;height: 2em; display: inline-block; margin: 0; padding: 0;}

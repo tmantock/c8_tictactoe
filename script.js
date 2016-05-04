@@ -3,11 +3,12 @@
 
 var player1_name_value;
 var player2_name_value;
-var num_of_rows = 3;
-var num_of_cells_to_win = 3;
+var num_of_rows = 4;
+var num_of_cells_to_win = 4;
 var player_symbol = 'ex';
 var grid_array = [];
 var last_clicked;
+var game_won = false;
 //***************************** MICAH SECTION  *******************************//
 //TODO 1. players will enter name into input field + click submit, click function will hide the player's name and append a larger name with glowing animation to indicate player's turn.
 // CLICK HANDLER FOR PLAYER NAME SUBMIT BUTTON
@@ -17,7 +18,7 @@ $(document).ready(function(){
     $("#player1-name-submit").click(function(){
         //capture plyr name store as var
         player1_name_value = $('#player1-name-value').val();
-        console.log('var player1_name_value = ' + player1_name_value);
+            console.log('var player1_name_value = ' + player1_name_value);
         // hide player input fields, append player name
         $('#player1-name-value').hide();
         $('#player1-name-submit').hide();
@@ -31,7 +32,7 @@ $(document).ready(function(){
     $("#player2-name-submit").click(function(){
         //capture plyr nam store as var
         player2_name_value = $('#player2-name-value').val();
-        console.log('var player2_name_value = ' + player2_name_value);
+            console.log('var player2_name_value = ' + player2_name_value);
         $('#player2-name-value').hide();
         $('#player2-name-submit').hide();
         var local_player2_name_value = player2_name_value;
@@ -50,7 +51,18 @@ $(document).ready(function(){
             $('.player2').addClass('animate');
             $('.player1').removeClass('animate');
         }//end else
+    }//end of animate_name function
 
+    // GAME WON animation function
+    function animate_winner_name () {
+        if(player_symbol === 'ex') {
+            $('.player2').addClass('animate');
+            $('.player1').removeClass('animate');
+        }//end if
+        else {
+            $('.player1').addClass('animate');
+            $('.player2').removeClass('animate');
+        }//end else
     }//end of animate_name function
 
 
@@ -63,7 +75,10 @@ $(document).ready(function(){
                 console.log('var num_of_rows is now: '+num_of_rows);
             $('.row-number').hide();
             num_of_rows = parseInt(num_of_rows);
-            //call gameboard creation
+            //call game board creation
+            $(".game_board").empty();
+            grid_array = [];
+            create_grid_array();
             game_board_creation();
         });//end capture function
 
@@ -75,6 +90,10 @@ $(document).ready(function(){
                 console.log('num_of_cells_to_win = ' + num_of_cells_to_win);
             $('.matches-number').hide();
             num_of_cells_to_win = parseInt(num_of_cells_to_win);
+        $(".game_board").empty();
+            grid_array = [];
+            create_grid_array();
+            game_board_creation();
         });//end capture function
 
 // TODO 4. using jquery to dynamically create game board based on user input
@@ -84,49 +103,52 @@ $(document).ready(function(){
     /////dynamic creation of game board
     game_board_creation();
     function game_board_creation (){
-    for(var x = 0;x <= num_of_rows-1; x++){
-        for(var y = 0;y <= num_of_rows-1; y++) {
-            var new_obj =
-            {
-                row : x,
-                col : y,
-                html: $("<div class='cell'></div>"),
-                click_handler: function(){
-                    var symbol = toggle_and_get_current_symbol();
-                    grid_array[this.row][this.col]=symbol;
-                    if(!this.html.hasClass("clicked")) {
-                        this.html.addClass('clicked ' + symbol);
-                        console.log("last_clicked",last_clicked);
-                        console.log("grid array: ",grid_array);
-                        console.log("last clicked row: ",last_clicked.row );
-                        console.log("last clicked col: ",last_clicked.col );
-                        check_the_win (last_clicked.row , last_clicked.col);
+        for(var x = 0;x <= num_of_rows-1; x++){
+            for(var y = 0;y <= num_of_rows-1; y++) {
+                var new_obj =
+                {
+                    row : x,
+                    col : y,
+                    html: $("<div class='cell'></div>"),
+                    click_handler: function(){
+                        var symbol = toggle_and_get_current_symbol();
+                        grid_array[this.row][this.col]=symbol;
+                        if(!this.html.hasClass("clicked")) {
+                            this.html.addClass('clicked ' + symbol);
+                            console.log("last_clicked",last_clicked);
+                            console.log("grid array: ",grid_array);
+                            console.log("last clicked row: ",last_clicked.row );
+                            console.log("last clicked col: ",last_clicked.col );
+                            check_the_win (last_clicked.row , last_clicked.col);
 
-                    }///////if the div hasn't been clicked before
-                    else {
-                       toggle_and_get_current_symbol();
-                    }/// end of else
-                    animate_name ();
-                }//click handler
-            };///new obj
-            make_click(new_obj);
-            $(".game_board").append(new_obj.html);
-        }////y
-    }////x
+                        }///////if the div hasn't been clicked before
+                        else {
+                           toggle_and_get_current_symbol();
+                        }/// end of else
+                        animate_name ();
+                    }//click handler
+                };///new obj
+                make_click(new_obj);
+                $(".game_board").append(new_obj.html);
+            }////y
+        }////x
 
-    //TODO width and height of cell
-    var cell_width = 80/num_of_rows+'vh';
-
-    $('.cell').css({"width": cell_width,"height": cell_width});
-
+        // width and height of cell
+        var cell_width = 80/num_of_rows+'vh';
+        $('.cell').css({"width": cell_width,"height": cell_width});
     }//end function game_board_creation
-    function make_click(the_object){
-        the_object.html.click(function(){
-            console.log('object that was triggered',the_object);
-            last_clicked = the_object;
-            the_object.click_handler();
-        });
-    }
+
+    function make_click(the_object)
+    {
+            the_object.html.click(function(){
+                console.log('object that was triggered',the_object);
+                if (game_won === false) {
+                    last_clicked = the_object;
+                    the_object.click_handler();
+                }//end if
+                });//end .click function
+
+    }//end make_click
 
     function toggle_and_get_current_symbol(){
         if(player_symbol=='ex'){
@@ -136,35 +158,36 @@ $(document).ready(function(){
             player_symbol = 'ex';
         }
         return player_symbol;
-    }
+    } //end toggle_and_
 
 //TODO RESET BUTTON
-        $(".reset-button").click(function() {
-            console.log('Begin Reset');
-            player_symbol = 'ex';
-            grid_array = [];
-            console.log("grid_array is now: "+grid_array);
-            num_of_rows = 3;
-            num_of_cells_to_win = 3;
-            $(".cell").removeClass('clicked');
-            $(".cell").removeClass('ex');
-            $(".cell").removeClass('ow');
-            $('.row-number').show();
-            console.log('var num_of_rows is now: '+num_of_rows);
-            last_clicked;
-            $('.matches-number').show();
-            $(".game_board").show();
+    $(".reset-button").click(function() {
+        console.log('Begin Reset');
+        player_symbol = 'ex';
+        grid_array = [];
+        console.log("grid_array is now: "+grid_array);
+        num_of_rows = 3;
+        num_of_cells_to_win = 3;
+        $(".cell").removeClass('clicked');
+        $(".cell").removeClass('ex');
+        $(".cell").removeClass('ow');
+        $('.row-number').show();
+        console.log('var num_of_rows is now: '+num_of_rows);
+        last_clicked;
+        $('.matches-number').show();
+        $(".game_board").show();
 
-            //create_grid_array();
-            //game_board_creation();
-        });//end RESET
+        //create_grid_array();
+        //game_board_creation();
+    });//end RESET
 });//end document ready
 
-function game_won_modal()
-{
-    //display modal showing who won
-    $("#player-wins-modal").modal('show');
-}
+    function game_won_modal()
+    {
+        //display modal showing who won
+        $("#player-wins-modal").modal('show');
+    }
+
 
 //TODO ***************************** PEARL SECTION  *******************************//
 
@@ -187,29 +210,37 @@ function game_won_modal()
 function check_the_win (row, col) {
     var row_win = check_row(row);
     console.log("row win: ",row_win);
-    if (!row_win) {
-        var col_win = check_col(col);
+    if (!row_win) {  // if no match in the row
+        var col_win = check_col(col);   //check the col
         console.log("col win", col_win);
-    } else {
-        $(".game_board").hide();
+    } else {                            // ie. if row win
+        game_won = true;
+        animate_winner_name ();
+        game_won_modal();
     }
-    if(!row_win && !col_win) {
-        var left_right_win =diagonal_check_left_to_right(row,col);
+    if(!row_win && !col_win) {   // if no match in row or column
+        var left_right_win =diagonal_check_left_to_right(row,col);  //check diagonal left to right
         console.log("left to right win: ", left_right_win);
-    }else {
-        $(".game_board").hide();
+    }else {                      // if match in row or column
+        game_won = true;
+        animate_winner_name ();
+        game_won_modal();
     }
-    if (!row_win && !col_win && !left_right_win) {
-        var right_left_win = diagonal_check_right_to_left(row, col);
+    if (!row_win && !col_win && !left_right_win) {  //  if no row , column or left to right diagonal matches
+        var right_left_win = diagonal_check_right_to_left(row, col);  // check diagonal right to left
         console.log(" right to left win: ", right_left_win);
         /////////if there is a match in the last case
-        if (right_left_win) {
-            $(".game_board").hide();
+        if (right_left_win) {                   // if right to left match
+            game_won = true;
+            animate_winner_name ();
+            game_won_modal();
         }
     }else {
-        $(".game_board").hide();
-
+        game_won = true;
+        animate_winner_name ();
+        game_won_modal();
     }
+
 }//check the win
 //////////check if there is a match in row
 function check_row(row) {
