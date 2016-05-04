@@ -1,0 +1,271 @@
+
+
+body{
+    width:100%;
+    height:100vh;
+    margin: 0;
+    padding: 0;
+}
+
+
+.gameContainer {
+    width: 50%;
+    height: 100%;
+    float:right;
+    outline: 1px dashed orange;
+    justify-content:center;
+    align-items:center;
+    background-image: url("http://vignette3.wikia.nocookie.net/starwars/images/7/72/Hyperspace-SWPuzzle.jpg/revision/latest?cb=20101018151244");
+    background-repeat:no-repeat;
+    background-size:1000px 975px;
+}
+
+
+/* LEFT SIDE START */
+.game-area.left_side{
+    width:25%;
+    height:100%;
+    outline: 1px dashed deeppink;
+    margin:0;
+    padding:0;
+    display:inline-flex;
+    flex-direction:row;
+    background-image: url("http://lovelace-media.imgix.net/uploads/1113/63802010-87c9-0133-5442-0a08c4ec0f63.jpg?");
+    background-repeat:no-repeat;
+    background-size: 500px 975px;
+    position:absolute;
+}
+.turnLeft{
+    width: 20%;
+    height: 10%;
+    outline: 1px dashed orange;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    float:right;
+}
+.left_box{
+    width:100%;
+    height:50%;
+    outline: 1px dashed deeppink;
+    margin:0;
+    padding:0;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+.leftSword{
+    width:20%;
+    height:25%;
+    color:red;
+    outline: 10px dashed black;
+    box-shadow: 0 0 0 10px red;
+    margin:0;
+    padding:0;
+    align-content:center;
+    justify-content: center;
+    background-image: url("https://s-media-cache-ak0.pinimg.com/736x/42/1c/a3/421ca3ad9bad9180677a68a0740fb3b0.jpg");
+    background-repeat:no-repeat;
+    background-size: 100px 300px;
+    animation:  1s animate_borders ease infinite, fly_in_test2 5s;
+    position:absolute;
+}
+
+/* RIGHT SIDE START */
+.game-area.right_side{
+    width:25%;
+    height: 100%;
+    outline: 1px dashed red;
+    margin:0;
+    padding:0;
+    float:right;
+    display:inline-flex;
+    flex-direction:row;
+    background-image: url("https://cdn0.vox-cdn.com/thumbor/EX8M7ujZiWshhBifJkFQMeZc5Ow=/1468x0:3268x1200/1280x854/cdn0.vox-cdn.com/uploads/chorus_image/image/48393289/star_wars_the_force_awakens_rey-3840x1200.0.0.jpg");
+    background-repeat:no-repeat;
+    background-size: 500px 975px;
+}
+
+.turnRight{
+    width: 20%;
+    height: 10%;
+    outline: 1px dashed orange;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+.right_box{
+    width:100%;
+    height:50%;
+    outline: 1px dashed deeppink;
+    margin:0;
+    padding:0;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    }
+
+.rightSword{
+    width:5%;
+    height:25%;
+    color:blue;
+    outline: 10px dashed teal;
+    box-shadow: 0 0 0 10px blue;
+    margin:0;
+    padding:0;
+    background-image: url("http://cdn.appcrawlr.com/imageService/aHR0cHM6Ly9saDQuZ2dwaHQuY29tL2p6VDEwRXhmRWZISWZTS1pNS283WnAzTDJZQ2F2UkhhWUFsRkVtVkJhakZMeEluNk9VbGdDZFNNUG5PbTl6RmR4SWs9aDY0MA?w=340&h=280");
+    background-repeat:no-repeat;
+    background-size: 100px 300px;
+    animation:1s animate_borders_blue ease infinite,fly_in_test2 5s ;
+    position:absolute;
+}
+.top_bar{
+    width: 100%;
+    height: 20%;
+    outline: 1px dashed red;
+    display:flex;
+
+    justify-content:space-between;
+}
+.game-area{
+    justify-content:center;
+    align-items:center;
+    outline: 1px solid lightseagreen;
+    height:80%;
+    width:100%;
+
+}
+.xWing{
+    width: 10%;
+    height: 20%;
+    outline: 1px dashed red;
+    position:absolute;
+    background-image: url("http://screenrant.com/wp-content/uploads/Star-Wars-Original-Trilogy-X-Wing-Art.jpg");
+    background-repeat:no-repeat;
+    background-size: 200px 200px;
+    animation: fly_in_test3 5s;
+    animation-duration: 10s;
+}
+.lazerRight{
+    width: 10%;
+    height: 20%;
+    outline: 1px dashed red;
+    background-image: url("http://orig00.deviantart.net/c003/f/2011/153/9/d/red_blaster_bolt_by_drew47at-d3hvybs.jpg");
+    background-repeat:no-repeat;
+    background-size: 100px 50px;
+    position:absolute;
+    animation: fly_in_test4 5s;
+    animation-duration: 10s;
+}
+.tieFighter{
+    width: 10%;
+    height: 20%;
+    outline: 1px dashed red;
+    position:absolute;
+    background-image: url("http://www.jrbassett.com/images/TFg3d0.JPG");
+    background-repeat:no-repeat;
+    background-size: 150px 200px;
+    animation: fly_in_left 5s ;
+    animation-duration: 10s;
+}
+.leftLazer{
+    width: 10%;
+    height: 20%;
+    outline: 1px dashed red;
+    background-image: url("http://orig00.deviantart.net/c003/f/2011/153/9/d/red_blaster_bolt_by_drew47at-d3hvybs.jpg");
+    background-repeat:no-repeat;
+    background-size: 100px 50px;
+    position:absolute;
+    animation: fly_in_test5 5s;
+    animation-duration: 10s;
+}
+.explosionLeft{
+    width: 15%;
+    height: 100%;
+    outline: 1px dashed red;
+    background-repeat:no-repeat;
+    background-image: url("http://40.media.tumblr.com/19b28f23bd568d07f2d4473dbe98a8b6/tumblr_ml1nr8NdrB1s5jjtzo1_1280.png");
+    background-size: 150px 200px;
+    animation: explosion 4s;
+}
+.explosionRight{
+    width: 15%;
+    height: 100%;
+    outline: 1px dashed red;
+    background-repeat:no-repeat;
+    background-image: url("http://40.media.tumblr.com/19b28f23bd568d07f2d4473dbe98a8b6/tumblr_ml1nr8NdrB1s5jjtzo1_1280.png");
+    background-size: 150px 200px;
+    animation: explosion 4s;
+}
+@keyframes fly_in_left {
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+@keyframes fly_in_test2 {
+    from {
+        bottom:0;
+
+    }
+    to {
+       bottom:50%;
+    }
+}
+@keyframes fly_in_test3 {
+    from {
+        right:0;
+    }
+    to {
+        right:50%;
+    }
+}
+@keyframes fly_in_test4 {
+    from {
+        right: 5%;
+    }
+    to {
+        right: 90%;
+    }
+}
+@keyframes fly_in_test5 {
+     from {
+         left:5%;
+     }
+     to {
+         left:90%;
+     }
+ }
+
+@keyframes animate_borders{
+    to{
+        color: black;
+        outline: 10px dashed red;
+        box-shadow: 0 0 0 10px red;
+        animation: 1s animateBorderOne ease infinite;
+    }
+}
+@keyframes animate_borders_blue{
+    to{
+        color: blue;
+        outline: 10px dashed blue;
+        box-shadow: 0 0 0 10px teal;
+        animation: 1s animateBorderOne ease infinite;
+    }
+}
+@keyframes explosion{
+
+    from {
+        left:50%;
+    }
+    to {
+        left:55%;
+    }
+}
+
+
+
+
