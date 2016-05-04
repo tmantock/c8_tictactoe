@@ -24,6 +24,22 @@ $(function() {
     }
 });
 
+//////storing data
+function store_essencial_data () {
+    var data= {
+        game_board: $(".game_board").html(),
+        player1_name_value: player1_name_value,
+        player2_name_value: player2_name_value,
+        player_symbol: player_symbol,
+        num_of_rows: num_of_rows,
+        num_of_cells_to_win: num_of_cells_to_win,
+        grid_array: grid_array,
+        last_clicked: last_clicked,
+        game_won: game_won
+    };
+    return data;
+}
+
 
 
 //***************************** GLOBAL VARIABLES  *******************************//
@@ -36,6 +52,7 @@ var player_symbol = 'ex';
 var grid_array = [];
 var last_clicked;
 var game_won = false;
+var stored_data;
 //***************************** MICAH SECTION  *******************************//
 //TODO 1. players will enter name into input field + click submit, click function will hide the player's name and append a larger name with glowing animation to indicate player's turn.
 // CLICK HANDLER FOR PLAYER NAME SUBMIT BUTTON
@@ -147,6 +164,8 @@ $(document).ready(function(){
                             console.log("last clicked row: ",last_clicked.row );
                             console.log("last clicked col: ",last_clicked.col );
                             check_the_win (last_clicked.row , last_clicked.col);
+                            stored_data=store_essencial_data();
+                            console.log("data: ",stored_data );
 
                         }///////if the div hasn't been clicked before
                         else {
