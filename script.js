@@ -1,15 +1,15 @@
 var grid_array = [
     [0,"ex",0,0,"ow"],
-    [0,"ex",0,"ex","ex"],
-    [0,"oh","ex",0,"oh"],
-    [0,"ex","oh","ex","ow"],
-    [0,"oh",0,0,0]
+    [0,"ex",0,"ow","ex"],
+    [0,"ow","ow",0,"oh"],
+    [0,"ex","ow","ex","ow"],
+    [0,"ow",0,0,0]
 ];
 var num_of_rows = 5;
 var num_of_cells_to_win = 3;
 var last_click = {
-    col : 3,
-    row : 3
+    col : 2,
+    row : 2
 };
 
 console.log("row: ",last_click.row," col: ",last_click.col);
@@ -29,7 +29,8 @@ function check_the_win (row, col) {
         console.log("left to right win: ", left_right_win);
     }
     if (!row_win && !col_win && !left_right_win) {
-        
+        var right_left_win = diagonal_check_right_to_left(row, col);
+        console.log(" right to left win: ", right_left_win);
     }
 }//check the win
 //////////check if there is a match in row
