@@ -3,11 +3,10 @@
 
 var player1_name_value;
 var player2_name_value;
-var num_of_rows=3;
-var num_of_cells_to_win=3;
+var num_of_rows = 3;
+var num_of_cells_to_win = 3;
 var player_symbol = 'ex';
 var grid_array = [];
-var flag_to_move = true;// if player's turn to move, this flag must be true.
 var last_clicked;
 //***************************** MICAH SECTION  *******************************//
 //TODO 1. players will enter name into input field + click submit, click function will hide the player's name and append a larger name with glowing animation to indicate player's turn.
@@ -43,38 +42,48 @@ $(document).ready(function(){
 
     // Player name animation function
     function animate_name () {
-        if(flag_to_move === true) {
-        $('.player.appended').addClass('animate');
-        }
+        if(player_symbol === 'ex') {
+        $('.player1').addClass('animate');
+        $('.player2').removeClass('animate');
+        }//end if
+        else {
+            $('.player2').addClass('animate');
+            $('.player1').removeClass('animate');
+        }//end else
+
     }//end of animate_name function
 
 
 // TODO 2. using jquery to capture and store as variables the number of rows and columns for the board
 //     TODO disable inputs after select!! IMPORTANT , need RESET BUTTON
         // capture num_of_rows
-        function capture_number_of_rows_input(){
-            //capture num_of_rows store as var player2_name_value = $('#player2-name-value').val();
+    $("#number_of_rows-submit").click(function (){
+            //capture num_of_rows store as var num_of_rows
             num_of_rows = $('.number_of_rows').val();
-            console.log('num_of_rows = ' + num_of_rows);
+                console.log('num_of_rows = ' + num_of_rows);
             $('.row-number').hide();
             num_of_rows = parseInt(num_of_rows);
-        }//end capture function
+            //call gameboard creation
+            game_board_creation();
+        });//end capture function
 
 // TODO 3. using jquery to capture and store as variable the number of matches the player chooses, this will be the win condition parameter.
         // capture num_of_cells_to_win
-        function capture_num_of_cells_input(){
+    $("#number_of_matches-submit").click(function (){
             //capture num_of_cells_to_win store as var
             num_of_cells_to_win = $('.number_of_matches').val();
-            console.log('num_of_cells_to_win_input = ' + num_of_cells_to_win);
-            $('.number_of_matches').hide();
+                console.log('number_of_matches = ' + num_of_cells_to_win);
+            $('.matches-number').hide();
             num_of_cells_to_win = parseInt(num_of_cells_to_win);
-        }//end capture function
+        });//end capture function
 
 // TODO 4. using jquery to dynamically create game board based on user input
 //     //creating the array grid
     create_grid_array();
     console.log("grid array at first: ",grid_array);
     /////dynamic creation of game board
+    game_board_creation();
+    function game_board_creation (){
     for(var x = 0;x <= num_of_rows-1; x++){
         for(var y = 0;y <= num_of_rows-1; y++) {
             var new_obj =
@@ -92,10 +101,12 @@ $(document).ready(function(){
                         console.log("last clicked row: ",last_clicked.row );
                         console.log("last clicked col: ",last_clicked.col );
                         check_the_win (last_clicked.row , last_clicked.col);
+
                     }///////if the div hasn't been clicked before
                     else {
                        toggle_and_get_current_symbol();
-                    }
+                    }/// end of else
+                    animate_name ();
                 }//click handler
             };///new obj
             make_click(new_obj);
@@ -108,6 +119,7 @@ $(document).ready(function(){
 
     $('.cell').css({"width": cell_width,"height": cell_width});
 
+    }//end function game_board_creation
     function make_click(the_object){
         the_object.html.click(function(){
             console.log('object that was triggered',the_object);
@@ -126,7 +138,8 @@ $(document).ready(function(){
         return player_symbol;
     }
 });//end document ready
-
+//TODO RESET BUTTON
+//call game_board_creation();
 //TODO ***************************** PEARL SECTION  *******************************//
 
 // var grid_array = [
