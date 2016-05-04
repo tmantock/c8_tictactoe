@@ -5,22 +5,6 @@
 
 var matches_needed_for_win = 5;
 
-
-
-global_array = []; //temporary testing global array
-
-for (var i = 0; i < 10; i++){
-    var temp_arr = [];
-    for (var j = 0; j < 10; j++){
-        temp_arr.push({
-            class: 'x',
-            confirmed: true,
-            col: i,
-            row: j
-        })
-    }
-    global_array.push(temp_arr);
-}
 // console.log(global_array);
 //the length of global_array is the # of columns we have (width)
 var width = global_array.length;
