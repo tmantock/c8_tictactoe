@@ -121,7 +121,7 @@ $(document).ready(function () {
     local_to_global();
     console.log(global_array);
     board_from_local_storage();
-    // dynamicGameAssignment();
+    dynamicGameAssignment();
     console.log(global_array);
 });
 //function declared for dynamically creating tic tac rows and columns
@@ -150,14 +150,9 @@ function dynamicGameAssignment () {
                 'border': '1px solid white',
                 'box-sizing': 'border-box',
                 'height': '100%',
-                'width': '33.3%',
+                'width': '33.333333333333333%',
                 'display': 'inline-block',
                 'z-index':'+2'
-            });
-            //set gameRow variable to a new DOM element
-            gameRow = $('<div>').css({
-                'height': '33%',
-                'width': '100%'
             });
         }
 
@@ -176,10 +171,6 @@ function dynamicGameAssignment () {
                 'z-index':'+2'
             });
 
-            gameRow = $('<div>').css({
-                'height': '10%',
-                'width': '100%'
-            });
         }
 
         else if (userGameBoardInput == '15') {
@@ -197,10 +188,6 @@ function dynamicGameAssignment () {
                 'z-index':'+2'
             });
 
-            gameRow = $('<div>').css({
-                'height': '6.66%',
-                'width': '100%'
-            });
         }
 
         else if (userGameBoardInput == '20') {
@@ -218,25 +205,21 @@ function dynamicGameAssignment () {
                 'z-index':'+2'
             });
 
-            gameRow = $('<div>').css({
-                'height': '5%',
-                'width': '100%'
-            });
 
         }
         //Nested for loop for moving through the row
         for(e=0;e<userGameInputNumber;e++) {
             //append the gameTiles to the gameRow with attributes for getting the position
-            $(gameRow).append(gameTile.clone().attr({
+            $(gameRow).append(gameTile.attr({
                 'data-column': columnCounter,
                 'data-row': rowCounter}));
             //increment the columnCounter
             columnCounter++;
         }
-        //Append the newly created rown to the gameBoard
-        $(".gameArea").append(gameRow.clone());
-        //increment the rowCounter
-        rowCounter++;
+        // //Append the newly created rown to the gameBoard
+        // $(".gameArea").append(gameRow.clone());
+        // //increment the rowCounter
+        // rowCounter++;
 
         // console.log('I am i ' + i);
     }
