@@ -137,7 +137,7 @@ function dynamicGameAssignment () {
 
 /////////////Begin Click Handler//////////////
 
-var playerOneClick = null;
+var playerOneClick = true;
 //variable set to false by default. Assumed to be a false click until set to true by true click.
 var playerOneConfirmedClick = 'false';
 var playerTwoClick = false;
@@ -153,7 +153,7 @@ function ticTacBoardClick (element) {
 
 
 //Series of conditionals to determine what value to place in the divs
-    if (playerOneClick == null && playerOneConfirmedClick == 'true') {
+    if (playerOneClick == true && playerOneConfirmedClick == 'true') {
         //If it has a class of O and the confirmedAttribute is false then change the element
         if($(element).hasClass('classO') && confirmedAttribute == 'false') {
             $(element).attr({
@@ -163,9 +163,9 @@ function ticTacBoardClick (element) {
             console.log('Player One made the wise choice');
             console.log(confirmedAttribute);
             //disallow playerOnes turn
-            playerOneClick = true;
+            playerOneClick = false;
             //Allow player two to click
-            playerTwoClick = null;
+            playerTwoClick = true;
         }
         //If it has a class of O and the confirmedAttribute is true then don't change the element
         else if ($(element).hasClass('classO') && confirmedAttribute == 'true') {
@@ -175,8 +175,8 @@ function ticTacBoardClick (element) {
             console.log('Player one has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            playerOneClick = null;
-            playerTwoClick = true;
+            playerOneClick = true;
+            playerTwoClick = false;
         }
             //else change the class of the empty div
         else {
@@ -187,14 +187,14 @@ function ticTacBoardClick (element) {
             console.log('Player one has clicked ' + this);
             console.log(confirmedAttribute);
             //disallow playerOnes turn
-            playerOneClick = true;
+            playerOneClick = false;
             //Allow player two to click
-            playerTwoClick = null;
+            playerTwoClick = true;
         }
 
     }
 
-    else if (playerOneClick == null && playerOneConfirmedClick == 'false') {
+    else if (playerOneClick == true && playerOneConfirmedClick == 'false') {
         //Disallow playerOne from changing the class of the div
         if ($(element).hasClass('classO') && confirmedAttribute == 'false') {
             $(element).attr({
@@ -203,8 +203,8 @@ function ticTacBoardClick (element) {
             console.log('Player One made the wrong choice');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            playerOneClick = null;
-            playerTwoClick = true;
+            playerOneClick = true;
+            playerTwoClick = false;
             return;
         }
         else if ($(element).hasClass('classO') && confirmedAttribute == 'true') {
@@ -214,8 +214,8 @@ function ticTacBoardClick (element) {
             console.log('Player One made the wrong choice');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            playerOneClick = null;
-            playerTwoClick = true;
+            playerOneClick = true;
+            playerTwoClick = false;
         }
         else {
             //Allow the false 'X' to be placed
@@ -225,13 +225,13 @@ function ticTacBoardClick (element) {
             });
             console.log('Player one has clicked ' + this);
             console.log(confirmedAttribute);
-            playerOneClick = true;
-            playerTwoClick = null;
+            playerOneClick = false;
+            playerTwoClick = true;
         }
 
     }
 
-    else if (playerTwoClick == null && playerTwoConfirmedClick == 'true') {
+    else if (playerTwoClick == true && playerTwoConfirmedClick == 'true') {
         //If it has a class of X and the confirmedAttribute is false then change the element
         if($(element).hasClass('classX') && confirmedAttribute == 'false') {
             $(element).attr({
@@ -241,9 +241,9 @@ function ticTacBoardClick (element) {
             console.log('Player Two made the wise choice');
             console.log(confirmedAttribute);
             //allow playerOne's turn
-            playerOneClick = null;
+            playerOneClick = true;
             //disallow playerTwo
-            playerTwoClick = true;
+            playerTwoClick = false;
         }
         //If it has a class of O and the confirmedAttribute is true then don't change the element
         else if ($(element).hasClass('classX') && confirmedAttribute == 'true') {
@@ -253,8 +253,8 @@ function ticTacBoardClick (element) {
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            playerOneClick = true;
-            playerTwoClick = null;
+            playerOneClick = false;
+            playerTwoClick = true;
         }
             //else change the elements as necessary
         else {
@@ -265,15 +265,15 @@ function ticTacBoardClick (element) {
             console.log('Player two has clicked ' + this);
             console.log(confirmedAttribute);
             //allow playerOne's turn
-            playerOneClick = null;
+            playerOneClick = true;
             //disallow playerTwo
-            playerTwoClick = true;
+            playerTwoClick = false;
         }
 
     }
         //
 
-    else if (playerTwoClick == null && playerTwoConfirmedClick == 'false') {
+    else if (playerTwoClick == true && playerTwoConfirmedClick == 'false') {
         //Disallow PlayerTwo form changing the div's values
         if($(element).hasClass('classX') && confirmedAttribute == 'true') {
             $(element).attr({
@@ -282,8 +282,8 @@ function ticTacBoardClick (element) {
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            playerOneClick = true;
-            playerTwoClick = null;
+            playerOneClick = false;
+            playerTwoClick = true;
         }
 
         else if ($(element).hasClass('classX') && confirmedAttribute == 'false') {
@@ -293,8 +293,8 @@ function ticTacBoardClick (element) {
             console.log('Player two has made the wrong choice.');
             console.log(confirmedAttribute);
             chooseAgain = alert('Choose Again!');
-            playerOneClick = true;
-            playerTwoClick = null;
+            playerOneClick = false;
+            playerTwoClick = true;
         }
         else {
             $(element).attr({
@@ -302,8 +302,8 @@ function ticTacBoardClick (element) {
                 class: 'classO'
             });
             console.log('Player two has clicked ' + this);
-            playerOneClick = null;
-            playerTwoClick = true;
+            playerOneClick = true;
+            playerTwoClick = false;
         }
 
     }
