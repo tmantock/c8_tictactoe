@@ -98,15 +98,12 @@ function dynamicGameAssignment () {
             });
 
         }
-        console.log(gameTile);
         //Nested for loop for moving through the row
         for(e=0;e<userGameInputNumber;e++) {
-            console.log('I am e ' + e);
             //append the gameTiles to the gameRow with attributes for getting the position
             $(gameRow).append(gameTile.clone().attr({
                 'data-column': columnCounter,
                 'data-row': rowCounter}));
-            console.log(this+' I am tile.');
             //increment the columnCounter
             columnCounter++;
         }
@@ -126,9 +123,13 @@ var playerOneConfirmedClick = true;
 var playerTwoClick = false;
 var playerTwoConfirmedClick = true;
 
+//
+
 function ticTacBoardClick (element) {
 //variable to get the data-confirmed attribute of the element that has been clicked
     var confirmedAttribute = $(element).attr('data-confirmed');
+    //variable for grabbing class and attributes of the element
+    var elementInformation = $(element).attr('data-confirmed','data-column','data-row','class');
 //Series of conditionals to determine what value to place in the divs
     if (playerOneClick == null && playerOneConfirmedClick == true) {
         //If it has a class of O and the confirmedAttribute is false then change the element
@@ -214,4 +215,5 @@ function ticTacBoardClick (element) {
         playerOneClick = null;
         playerTwoClick = true;
     }
+    console.log(elementInformation);
 }
