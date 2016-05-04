@@ -21,7 +21,7 @@ for (var i = 0; i < 10; i++){
     }
     global_array.push(temp_arr);
 }
-console.log(global_array);
+// console.log(global_array);
 //the length of global_array is the # of columns we have (width)
 var width = global_array.length;
 //the length of global_array[0] is the # of rows we have (height)
@@ -35,9 +35,9 @@ function global_to_local(){
     for (var i = 0; i < width; i++){
         for (var j = 0; j < height; j++){
             var temp_key = '' + i + j;
-            console.log('tempkey: ' , temp_key);
+            // console.log('tempkey: ' , temp_key);
             object_to_store[temp_key] = global_array[i][j];
-            console.log('resulting object: ' , object_to_store[temp_key]);
+            // console.log('resulting object: ' , object_to_store[temp_key]);
         }
     }
     var stringified_object = JSON.stringify(object_to_store);
@@ -47,15 +47,15 @@ function global_to_local(){
 function local_to_global(){
     var temp_jawn = window.localStorage.getItem('globals');
     var object_from_local = $.parseJSON(temp_jawn);
-    console.log('object from local ' , object_from_local);
+    // console.log('object from local ' , object_from_local);
     for (var i = 0; i < width; i++) {
         for (var j = 0; j < height; j++) {
             var temp_key = '' + i + j;
             global_array[i][j] = object_from_local[temp_key];
-            console.log(global_array[i][j]);
+            // console.log(global_array[i][j]);
         }
     }
-    console.log('finished local to global transfer');
+    // console.log('finished local to global transfer');
 }
 local_to_global();
 console.log(global_array);
@@ -177,7 +177,7 @@ function win_check_downward_diagonal(current_col, current_row) {
             }
             else {
                 consecutive_objects++;
-                console.log(consecutive_objects);
+                // console.log(consecutive_objects);
                 if (consecutive_objects == matches_needed_for_win) {
                     return true;
                 }
@@ -191,4 +191,28 @@ function win_check_downward_diagonal(current_col, current_row) {
         current_row++;
     }
     return false;
+}
+
+function check_all_win_conditions(){
+    var result = false;
+    for (var j = 0; j < height; j++){
+        win_check_row(j);
+        if (result){
+            return result;
+        }
+    }
+    for (var i = 0; i < width; i++){
+        result = win_check_column(i);
+        if(result)
+            return result;
+        for (var j = 0; j < height; j++){
+            result = win_check_downward_diagonal(i, j);
+            if (result)
+                return result;
+            result = win_check_upward_diagonal(i, j);
+            if (result)
+                return result;
+        }
+    }
+    return result;
 }

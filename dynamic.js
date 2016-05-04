@@ -7,12 +7,13 @@ var userGameBoardInput = prompt('What size do you wish to have? 3,10,15,20?');
 var userGameInputNumber = parseInt(userGameBoardInput);
 
 $(document).ready(function () {
-    
+    //we will need something here to check whether or not there is saved data
+    //function to load in information from the global array is here and assign them to the appropriate
     dynamicGameAssignment();
-
 });
 //function declared for dynamically creating tic tac rows and columns
 function dynamicGameAssignment () {
+    console.log('wtf mate');
     //variable declared for counting the rows assigned to each tile
     var rowCounter = 0;
     //for loop started for moving through rows
@@ -129,7 +130,7 @@ function ticTacBoardClick (element) {
 //variable to get the data-confirmed attribute of the element that has been clicked
     var confirmedAttribute = $(element).attr('data-confirmed');
     //variable for grabbing class and attributes of the element
-    var elementInformation = $(element).attr('data-confirmed','data-column','data-row','class');
+
 //Series of conditionals to determine what value to place in the divs
     if (playerOneClick == null && playerOneConfirmedClick == true) {
         //If it has a class of O and the confirmedAttribute is false then change the element
@@ -215,5 +216,13 @@ function ticTacBoardClick (element) {
         playerOneClick = null;
         playerTwoClick = true;
     }
-    console.log(elementInformation);
+    var elementInformation = {};
+    // var elementInformation = $(element).attr('data-confirmed','data-column','data-row','class');
+    // elementInformation.class = $(element).attr('class');
+    // elementInformation.confirmed = $(element).attr('data-confirmed');
+    // elementInformation.col = $(element).attr('data-column');
+    // elementInformation.row = $(element).attr('data-row');
+    // console.log(elementInformation);
+    // console.log('ele info: ' , elementInformation);
+    // global_array[elementInformation.col][elementInformation.row] = elementInformation;
 }
