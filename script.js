@@ -7,12 +7,8 @@ var num_of_rows=3;
 var num_of_cells_to_win=3;
 var player_symbol = 'ex';
 var grid_array = [];
-<<<<<<< HEAD
 var flag_to_move = true;// if player's turn to move, this flag must be true.
-=======
 var last_clicked;
->>>>>>> 74c47cc898c48028a85c9c1cd7356e185a23d4b3
-
 //***************************** MICAH SECTION  *******************************//
 //TODO 1. players will enter name into input field + click submit, click function will hide the player's name and append a larger name with glowing animation to indicate player's turn.
 // CLICK HANDLER FOR PLAYER NAME SUBMIT BUTTON
