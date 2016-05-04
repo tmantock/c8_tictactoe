@@ -264,5 +264,13 @@ function boardPush () {
     console.log(gameArray);
 }
 
+function end_turn(){ //also needs to save to localstorage
+    var winner = check_all_win_conditions();
+    if (winner){
+        alert("you win! gj my friend");
+    }
+    global_to_local(); //puts everything in global_array into local storage as an object;
+}
+
 var gameArray = [];
 
