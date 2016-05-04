@@ -7,35 +7,69 @@ var matches_needed_for_win = 5;
 
 
 
-
 global_array = []; //temporary testing global array
+
 for (var i = 0; i < 10; i++){
     var temp_arr = [];
     for (var j = 0; j < 10; j++){
         temp_arr.push({
-            type: 'x'
+            class: 'x',
+            confirmed: true,
+            col: i,
+            row: j
         })
     }
     global_array.push(temp_arr);
 }
-
-console.log(global_array[0][1].type);
-global_array[1][2].type = null;
-console.log(win_check_downward_diagonal(0, 0)); //testing some functions
-
-
+console.log(global_array);
 //the length of global_array is the # of columns we have (width)
+var width = global_array.length;
 //the length of global_array[0] is the # of rows we have (height)
+var height = global_array[0].length;
+
+
+window.localStorage.setItem('globals', global_to_local());
+
+function global_to_local(){
+    var object_to_store = {};
+    for (var i = 0; i < width; i++){
+        for (var j = 0; j < height; j++){
+            var temp_key = '' + i + j;
+            console.log('tempkey: ' , temp_key);
+            object_to_store[temp_key] = global_array[i][j];
+            console.log('resulting object: ' , object_to_store[temp_key]);
+        }
+    }
+    var stringified_object = JSON.stringify(object_to_store);
+    return stringified_object;
+}
+
+function local_to_global(){
+    var temp_jawn = window.localStorage.getItem('globals');
+    var object_from_local = $.parseJSON(temp_jawn);
+    console.log('object from local ' , object_from_local);
+    for (var i = 0; i < width; i++) {
+        for (var j = 0; j < height; j++) {
+            var temp_key = '' + i + j;
+            global_array[i][j] = object_from_local[temp_key];
+            console.log(global_array[i][j]);
+        }
+    }
+    console.log('finished local to global transfer');
+}
+local_to_global();
+console.log(global_array);
+
 
 //function win_check_row: takes in the y position of the row we want to check and determines if there is a victory based on the elements in that row
 //It will return a boolean that says whether or not it found a victory
 function win_check_row(row_index){//checks to see if there is a match in the specified row
     // console.log('starting row check');
     var start = row_index; //just shortening the variable name
-    var temp_type = global_array[0][start].type; //store the type of the first element in that row
+    var temp_type = global_array[0][start].class; //store the type of the first element in that row
     var consecutive_objects = 1; //this number will increment every time there are two identical consecutive symbols
     for (var i = 1; i < global_array.length; i++){ //This loop will iterate once for each element in the row we're checking
-        if (temp_type == global_array[i][start].type){//checks to see if there is a match between the last object checked and the current object
+        if (temp_type == global_array[i][start].class){//checks to see if there is a match between the last object checked and the current object
             console.log('checking a loop: ', i , start);
             if(temp_type == null){
                 //this block ensures that we only increment the consecutive_matches variable if the tiles actually contain a players symbol
@@ -49,7 +83,7 @@ function win_check_row(row_index){//checks to see if there is a match in the spe
             }
         }
         else{//this else block executes when we encounter a mismatch
-            temp_type = global_array[i][y].type;
+            temp_type = global_array[i][y].class;
             consecutive_objects = 1;
         }
     }
@@ -61,12 +95,12 @@ function win_check_row(row_index){//checks to see if there is a match in the spe
 function win_check_column(col_index){
     console.log('starting col check');
     var start = col_index;
-    var temp_type = global_array[start][0].type;
+    var temp_type = global_array[start][0].class;
     var consecutive_objects = 1;
     console.log(global_array[start].length);
     for (var i = 0; i < global_array[start].length; i++){
-        console.log('looping', i , 'type is: ' , global_array[start][i].type);
-        if(temp_type == global_array[start][i].type){
+        console.log('looping', i , 'type is: ' , global_array[start][i].class);
+        if(temp_type == global_array[start][i].class){
             if (temp_type == null){
                 console.log('doing nothing');
                 //do nothing
@@ -81,22 +115,32 @@ function win_check_column(col_index){
         }
         else{
             console.log('mismatch');
-            temp_type = global_array[start][i].type;
+            temp_type = global_array[start][i].class;
             consecutive_objects = 1;
         }
     }
     return false;
 }
 
+function tile_in_range(column, row){
+    if (column < 0 || row < 0 || column > width || row > height){
+        return false;
+    }
+        return true;
+}
+
+
+
 function win_check_upward_diagonal(current_col, current_row) {
     console.log('upward diag');
-    var temp_type = global_array[current_col][current_row].type;
+    var temp_type = global_array[current_col][current_row].class;
     var consecutive_objects = 1;
     current_col++;
     current_row--;
-    while (current_col < global_array.length && current_row < global_array[0].length) {//makes sure we never exceed our bounds while checking for matches
-        console.log('looping at', current_col, current_row)
-        if (temp_type == global_array[current_col][current_row].type){
+    console.log("Tile in range: " , tile_in_range(0, -1));
+    for (var i = 0; tile_in_range(current_col, current_row); i) {//makes sure we never exceed our bounds while checking for matches
+        console.log('looping at', current_col, current_row);
+        if (temp_type == global_array[current_col][current_row].class){
             if (temp_type == null) {
                 //this block ensures that we only increment the consecutive_matches variable if the tiles actually contain a players symbol
             }
@@ -115,15 +159,19 @@ function win_check_upward_diagonal(current_col, current_row) {
         current_col++;
         current_row--;
     }
+    return false;
 }
 
 function win_check_downward_diagonal(current_col, current_row) {
-    var temp_type = global_array[current_col][current_row].type;
+    console.log('downward diag');
+    var temp_type = global_array[current_col][current_row].class;
     var consecutive_objects = 1;
     current_col++;
     current_row++;
-    while (current_col < global_array.length && current_row < global_array[0].length) {//makes sure we never exceed our bounds while checking for matches
-        if (temp_type == global_array[current_col][current_row].type){
+    console.log('width: ', width , 'height', height);
+    for (var i = 0; tile_in_range(current_col, current_row); i)  {//makes sure we never exceed our bounds while checking for matches
+        console.log('looping');
+        if (temp_type == global_array[current_col][current_row].class){
             if (temp_type == null) {
                 //this block ensures that we only increment the consecutive_matches variable if the tiles actually contain a players symbol
             }
