@@ -1,40 +1,18 @@
 /**  Created by Qzxtzrtz on 5/3/2016. */
 
-// $(function() {
-//     localStorage["storeKey"] = JSON.stringify($(".game_board").html());
-// });
-// //TODO on the page you want the contents displayed:
-//
-//     $(function() {
-//         if (localStorage["storeKey"] != null) {
-//             var contentsOfOldDiv = JSON.parse(localStorage["storeKey"]);
-//             $(".game_board").html(contentsOfOldDiv);
-//         }
-//     });
 //**************************  LOCAL STORAGE   *******************************/
-function local_storage_capture()
-{
-    $(function () {
-        localStorage["storeKey"] = JSON.stringify(stored_data);
-    });
-}//end local_storage_capture
 
 //TODO on the page you want the contents displayed:
 
 function local_storage_restore() {
-    $(function () {
-        if (localStorage["storeKey"] != null) {
-            contents_last_game = JSON.parse(localStorage["storeKey"]);
-            console.log('contents_last_game', contents_last_game);
-            $(".game_board").html(contents_last_game);
-        }
-    });
+    var contents_last_game = JSON.parse(localStorage.getItem("storeKey"));
+    return contents_last_game;
 }//end local_storage_restore
 
 
 //////storing data
 function store_essential_data () {
-    stored_data = {
+    var stored_data = {
         game_board: $(".game_board").html(),
         player1_name_value: player1_name_value,
         player2_name_value: player2_name_value,
@@ -45,8 +23,11 @@ function store_essential_data () {
         last_clicked: last_clicked,
         game_won: game_won
     };
-    local_storage_capture();
-    return stored_data;
+    var data = JSON.stringify(stored_data);
+    window.localStorage.setItem('storeKey',data);
+
+    //local_storage_capture();
+    //return stored_data;
 }
 
 //***************************** GLOBAL VARIABLES  *******************************//
@@ -59,8 +40,8 @@ var player_symbol = 'ex';
 var grid_array = [];
 var last_clicked;
 var game_won = false;
-var stored_data;
-var contents_last_game;
+//var stored_data;
+//var contents_last_game;
 //***************************** MICAH SECTION  *******************************//
 
 
@@ -235,7 +216,7 @@ $(document).ready(function(){
         });//end RESET
 
         //TODO LOCAL STORAGE RESTORE
-        //window.onload = local_storage_restore();
+        store_essential_data ();
 });//TODO **** end document ready
 
     function game_won_modal()
