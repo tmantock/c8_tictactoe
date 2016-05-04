@@ -253,6 +253,7 @@ function ticTacBoardClick (element) {
         }
 
     }
+        //
 
     else if (playerTwoClick == null && playerTwoConfirmedClick == false) {
         //Disallow PlayerTwo form changing the div's values
