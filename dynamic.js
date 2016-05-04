@@ -9,7 +9,7 @@ var userGameInputNumber = parseInt(userGameBoardInput);
 $(document).ready(function () {
     
     dynamicGameAssignment();
-    shipScroll();
+    shipCreator();
 
 });
 //function declared for dynamically creating tic tac rows and columns
@@ -132,10 +132,9 @@ var playerOneClick = null;
 //variable set to false by default. Assumed to be a false click until set to true by true click.
 var playerOneConfirmedClick = 'false';
 var playerTwoClick = false;
+//variable set to false by default. Assumed to be a false click until set to true by true click.
 var playerTwoConfirmedClick = 'false';
 var chooseAgain;
-var retrieveConfirmation;
-//
 
 function ticTacBoardClick (element) {
 //variable to get the data-confirmed attribute of the element that has been clicked
@@ -334,18 +333,53 @@ function falseClick () {
 
 function shipScroll () {
     var ele = $('.destroyer');
-    var n = ele.css('bottom');
-    if (n == '0px') {
         ele.animate({
             bottom: '+=600px'
-        },5000,function () {
+        },15000,function () {
             ele.animate({
                 bottom: '-=600px'
-            },5000);
+            },15000);
         });
-
-    }
     setTimeout(function () {
         shipScroll();
     },100);
 }
+
+function randomPosition(){
+
+    var h = $('.battleship').height() - 50;
+    var w = $('.battleship').width() - 50;
+
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+
+    return [nh,nw];
+
+}
+
+function shipCreator () {
+    for(i=0;i<userGameInputNumber;i++) {
+        var newPosition = randomPosition();
+        var ship = $('<div>').addClass('destroyer').css({
+            'position':'absolute',
+            'height':'5px',
+            'width':'5px',
+            'bottom': newPosition[0],
+            'right': newPosition[1],
+            'background':'black'
+        });
+        var shipContainer = $('<div>').addClass('traveler').css({
+            'position':'absolute',
+            'height':'6px',
+            'width':'6px',
+            'bottom': newPosition[0],
+            'right': newPosition[1],
+        });
+        $(shipContainer).append(ship.clone());
+        $('.battleship').append(shipContainer.clone());
+
+    }
+
+}
+//
+

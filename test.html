@@ -35,22 +35,50 @@
             top: 10%;
         }
 
+        .battleship {
+            width: 500px;
+            height: 500px;
+            position: relative;
+        }
+
         .destroyer {
-            height: 10px;
-            width: 10px;
-            background: black;
-            position: absolute;
-            bottom: 0;
-            right: 15vw;
+            animation: bounce;
+            animation-iteration-count: infinite;
+            animation-duration: 10.2s;
+        }
+
+        @keyframes bounce {
+            from, to  {
+                bottom: 0;
+                animation-timing-function: ease-out;
+            }
+            50% {
+                bottom: 420px;
+                animation-timing-function: ease-in;
+            }
+        }
+
+        .traveler {
+            animation: travel;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-duration: 4.8s;
+        }
+
+        @keyframes travel {
+            from { left: 0;     }
+            to   { left: 500px; }
         }
     </style>
 </head>
 <body>
 
-<div class = "gameBoard">
+    <div class = "gameBoard"></div>
 
-</div>
-<div class = "destroyer"></div>
-<div class = "testClick" onclick = "falseClick ()"></div>
+    <div class = "battleship">
+        <div class = "destroyer"></div>
+        <div class = "testClick" onclick = "falseClick ()"></div>
+    </div>
 </body>
 </html>
