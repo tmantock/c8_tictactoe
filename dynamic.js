@@ -9,6 +9,7 @@ var userGameInputNumber = parseInt(userGameBoardInput);
 $(document).ready(function () {
     
     dynamicGameAssignment();
+    shipScroll();
 
 });
 //function declared for dynamically creating tic tac rows and columns
@@ -326,4 +327,25 @@ var gameArray = [];
 //Begin Test for click change function of global variable
 function falseClick () {
     playerOneConfirmedClick = 'true';
+}
+
+//Begin shipScroll function animation
+
+
+function shipScroll () {
+    var ele = $('.destroyer');
+    var n = ele.css('bottom');
+    if (n == '0px') {
+        ele.animate({
+            bottom: '+=600px'
+        },5000,function () {
+            ele.animate({
+                bottom: '-=600px'
+            },5000);
+        });
+
+    }
+    setTimeout(function () {
+        shipScroll();
+    },100);
 }
