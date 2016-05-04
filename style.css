@@ -86,7 +86,8 @@ nav {
     }
 .player p {font-size: 1em;}
 /*******************BOARD*******************/
-.game_board { border: 1px solid yellow;
+.game_board {
+    /*border: 1px solid yellow;*/
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -99,7 +100,7 @@ nav {
 
 .cell{width: 2em; #background-color: lightgreen; border: 1px solid white;height: 2em; display: inline-block; margin: 0; padding: 0;
 }
-.ex {background-image: url(images/x.png);
-    background-size: cover;}
-.ow {background-image: url(images/o.png);
-    background-size: cover;}
+.ex {background: url("images/x.png") no-repeat;
+    background-size: contain;}
+.ow {background: url(images/o.png) no-repeat;
+    background-size: contain;}
