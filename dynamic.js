@@ -1,10 +1,28 @@
 /**
  * Created by Mantock on 5/3/16.
  */
+var userLoadPrompt = prompt('Would you like to load the saved state or start a nee game? Please enter either of the following: Load Save or New Game');
+var userLoadReady = userLoadPrompt.toUpperCase();
 var userGameBoardInput = prompt('What size do you wish to have? 3,10,15,20?');
+var userGameInputNumber = parseInt(userGameBoardInput);
+var userGameWinPrompt = prompt('How many matches should the game have?');
+var userGameWinNumber = parseInt(userGameWinPrompt);
+
+
+function reset () {
+    if (userLoadReady == 'LOAD SAVE') {
+        local_to_global();
+        console.log(global_array);
+        board_from_local_storage();
+    }
+
+    else if (userLoadReady == 'NEW GAME') {
+        dynamicGameAssignment();
+    }
+}
 
 //Change the Global variable for input to a number value
-var userGameInputNumber = parseInt(userGameBoardInput);
+
 
 var width = 0;
 var height = 0;
@@ -53,16 +71,13 @@ function board_from_local_storage(){
                 }).css({
                     'border': '1px solid white',
                     'box-sizing': 'border-box',
-                    'height': '100%',
+                    'height': '10%',
                     'width': '10%',
                     'display': 'inline-block',
-                    'z-index':'+2'
+                    'z-index':'+2',
+                    'position': 'flex'
                 });
 
-                gameRow = $('<div>').css({
-                    'height': '10%',
-                    'width': '100%'
-                });
             }
 
             else if (board_size == 15) {
@@ -74,16 +89,12 @@ function board_from_local_storage(){
                 }).css({
                     'border': '1px solid white',
                     'box-sizing': 'border-box',
-                    'height': '100%',
+                    'height': '6.66%',
                     'width': '6.66%',
                     'display': 'inline-block',
                     'z-index':'+2'
                 });
 
-                gameRow = $('<div>').css({
-                    'height': '6.66%',
-                    'width': '100%'
-                });
             }
 
             else if (board_size == 20) {
@@ -95,16 +106,12 @@ function board_from_local_storage(){
                 }).css({
                     'border': '1px solid white',
                     'box-sizing': 'border-box',
-                    'height': '100%',
+                    'height': '5%',
                     'width': '5%',
                     'display': 'inline-block',
                     'z-index':'+2'
                 });
 
-                gameRow = $('<div>').css({
-                    'height': '5%',
-                    'width': '100%'
-                });
             }
             //Append the newly created rown to the gameBoard
             //increment the rowCounter
@@ -118,110 +125,112 @@ $(document).ready(function () {
     boardPush();
     //we will need something here to check whether or not there is saved data
     //function to load in information from the global array is here and assign them to the appropriate
-    local_to_global();
-    console.log(global_array);
-    board_from_local_storage();
-    dynamicGameAssignment();
+
+    reset();
     console.log(global_array);
 });
 //function declared for dynamically creating tic tac rows and columns
 function dynamicGameAssignment () {
+
     // global_array = [];
     console.log('wtf mate');
     //variable declared for counting the rows assigned to each tile
     var rowCounter = 0;
     //for loop started for moving through rows
     for(i=0;i<userGameInputNumber;i++) {
-        //local variable for game tiles declared
-        var gameTile;
-        //local variable for game rows declared
-        var gameRow;
-        //local variable for column counter declared for getting the position of an element
-        var columnCounter = 0;
-        //Series of declarations for determining which size to use for the rows and the columns
-        if (userGameBoardInput == '3') {
-            //set gameTile variable to a new DOM element
-            gameTile = $('<div>').attr({
-                onclick: 'ticTacBoardClick(this)',
-                data: 'null',
-                class: 'null',
-                data_confirmed: null
-            }).css({
-                'border': '1px solid white',
-                'box-sizing': 'border-box',
-                'height': '100%',
-                'width': '33.333333333333333%',
-                'display': 'inline-block',
-                'z-index':'+2'
-            });
+        for (var j = 0; j < userGameInputNumber; j++) {
+            //local variable for game tiles declared
+            var gameTile;
+            //local variable for game rows declared
+            var gameRow;
+            //local variable for column counter declared for getting the position of an element
+            var columnCounter = 0;
+            //Series of declarations for determining which size to use for the rows and the columns
+            if (userGameInputNumber == 3) {
+                //set gameTile variable to a new DOM element
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '33.33333333333333%',
+                    'width': '33.333333333333333%',
+                    'display': 'inline-block',
+                    'z-index': '+2'
+                });
+            }
+
+            else if (userGameInputNumber == 10) {
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '10%',
+                    'width': '10%',
+                    'display': 'inline-flex',
+                    'z-index': '+2'
+                });
+
+            }
+
+            else if (userGameInputNumber == 15) {
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '6.66%',
+                    'width': '6.66%',
+                    'display': 'inline-block',
+                    'z-index': '+2'
+                });
+
+            }
+
+            else if (userGameInputNumber == 20) {
+                gameTile = $('<div>').attr({
+                    onclick: 'ticTacBoardClick(this)',
+                    data: 'null',
+                    class: 'null',
+                    data_confirmed: null
+                }).css({
+                    'border': '1px solid white',
+                    'box-sizing': 'border-box',
+                    'height': '5%',
+                    'width': '5%',
+                    'display': 'inline-block',
+                    'z-index': '+2'
+                });
+
+
+            }
+            //Nested for loop for moving through the row
+            for (e = 0; e < userGameInputNumber * userGameInputNumber; e++) {
+                //append the gameTiles to the gameRow with attributes for getting the position
+                $('.gameArea').append(gameTile.attr({
+                    'data-column': columnCounter,
+                    'data-row': rowCounter
+                }));
+                //increment the columnCounter
+                columnCounter++;
+            }
+            // //Append the newly created rown to the gameBoard
+            // $(".gameArea").append(gameRow.clone());
+            // //increment the rowCounter
+            // rowCounter++;
+
+            // console.log('I am i ' + i);
         }
-
-        else if (userGameBoardInput == '10') {
-            gameTile = $('<div>').attr({
-                onclick: 'ticTacBoardClick(this)',
-                data: 'null',
-                class: 'null',
-                data_confirmed: null
-            }).css({
-                'border': '1px solid white',
-                'box-sizing': 'border-box',
-                'height': '100%',
-                'width': '10%',
-                'display': 'inline-block',
-                'z-index':'+2'
-            });
-
-        }
-
-        else if (userGameBoardInput == '15') {
-            gameTile = $('<div>').attr({
-                onclick: 'ticTacBoardClick(this)',
-                data: 'null',
-                class: 'null',
-                data_confirmed: null
-            }).css({
-                'border': '1px solid white',
-                'box-sizing': 'border-box',
-                'height': '100%',
-                'width': '6.66%',
-                'display': 'inline-block',
-                'z-index':'+2'
-            });
-
-        }
-
-        else if (userGameBoardInput == '20') {
-            gameTile = $('<div>').attr({
-                onclick: 'ticTacBoardClick(this)',
-                data: 'null',
-                class: 'null',
-                data_confirmed: null
-            }).css({
-                'border': '1px solid white',
-                'box-sizing': 'border-box',
-                'height': '100%',
-                'width': '5%',
-                'display': 'inline-block',
-                'z-index':'+2'
-            });
-
-
-        }
-        //Nested for loop for moving through the row
-        for(e=0;e<userGameInputNumber;e++) {
-            //append the gameTiles to the gameRow with attributes for getting the position
-            $(gameRow).append(gameTile.attr({
-                'data-column': columnCounter,
-                'data-row': rowCounter}));
-            //increment the columnCounter
-            columnCounter++;
-        }
-        // //Append the newly created rown to the gameBoard
-        // $(".gameArea").append(gameRow.clone());
-        // //increment the rowCounter
-        // rowCounter++;
-
-        // console.log('I am i ' + i);
     }
 
     boardPush();
@@ -510,7 +519,7 @@ function shipCreator () {
 
 }
 
-var matches_needed_for_win = userGameInputNumber;
+var matches_needed_for_win = userGameWinNumber;
 
 //the length of global_array is the # of columns we have (width)
 // var width = global_array.length;
