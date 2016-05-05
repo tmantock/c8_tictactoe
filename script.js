@@ -236,12 +236,12 @@ function restore_last_game_board (last_data) {
 function animate_winner_name () {
     if(player_symbol == 'ex') {
         $(".player2").removeClass("player");
-        $('.player2').addClass('animate, winner player2-wins');
+        $('.player2').addClass('animate, winner, player2-wins');
         $('.player1').removeClass('animate');
     }//end if
     else {
         $(".player1").removeClass("player");
-        $('.player1').addClass('animate, winner player1-wins');
+        $('.player1').addClass('animate, winner, player1-wins');
         $('.player2').removeClass('animate');
 
     }//end else
