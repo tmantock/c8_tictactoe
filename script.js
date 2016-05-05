@@ -120,7 +120,9 @@ $(document).ready(function(){
     // restore_last_game_board(last_data);
 
     //TODO RESTORE BUTTON
-    $('.restore-button').click(restore_last_game_board(last_data));
+    $('.restore-button').click(function () {
+    restore_last_game_board(last_data);
+    });
 });//TODO **** end document ready
 function store_essential_data () {
     var stored_data = {
