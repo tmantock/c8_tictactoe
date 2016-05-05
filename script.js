@@ -191,7 +191,7 @@ $(document).ready(function(){
         return player_symbol;
     } //end toggle_and_
 
-    //TODO RESET BUTTON
+    //TODO RESET BUTTON - remove classes from player2 wins
     $(".reset-button").click(function() {
         console.log('Begin Reset');
         num_of_rows = 3;                            //reset global variables
@@ -199,6 +199,10 @@ $(document).ready(function(){
         player_symbol = 'ex';
         last_clicked = null;
         game_won = false;
+        $('.player2').removeClass('winner2');
+        $('.player1').removeClass('winner');
+        $('.player2').addClass('player');
+        $('.player1').addClass('player');
         $('.matches-number').show();                //show user inputs
         $('.row-number').show();
         grid_array = [];                            //reset the grid
@@ -236,12 +240,13 @@ function restore_last_game_board (last_data) {
 function animate_winner_name () {
     if(player_symbol == 'ex') {
         $(".player2").removeClass("player");
-        $('.player2').addClass('animate, winner, player2-wins');
+        //$('#player1-name-value').addClass('animate, winner, player2-wins');
+        $('.player2').addClass('animate, winner2');//, player2-wins');
         $('.player1').removeClass('animate');
     }//end if
     else {
         $(".player1").removeClass("player");
-        $('.player1').addClass('animate, winner, player1-wins');
+        $('.player1').addClass('animate, winner');//, player1-wins');
         $('.player2').removeClass('animate');
 
     }//end else
@@ -402,7 +407,7 @@ function diagonal_check_right_to_left(row,col) {
         return false;
     }
 
-}////end
+}////end of diagonal_check_right to left
 /////click handler needs to specify the last click
 
 //TODO ***************************** GRID ARRAY SECTION  *******************************//

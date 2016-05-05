@@ -122,16 +122,24 @@ h4 {
 }
 .winner {
     z-index: 5;
-    font-size: 2em;
+    #font-size: 2em;
     position: fixed;
     top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
     /****add style*/
+    font-size: 8em; #color: red; animation: glowing 1000ms infinite;
 }
-.player2-wins {font-size: 4em; color: blue;}
-.player1-wins {font-size: 4em; color: blue;}
-
+.winner2 {
+    z-index: 5;
+    #font-size: 2em;
+    position: fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    /****add style*/
+    font-size: 8em; #color: red; animation: glowing2 1000ms infinite;
+}
 div.players > div.vs > span:nth-child(2) {color: lawngreen;}
 div.players > div.vs > span:nth-child(1) {color: red;}
 div.player.player1.appended {font-size: 3em; color: lawngreen;}
@@ -139,6 +147,11 @@ div.player.player1.appended > span {font-size: .5em; color: lawngreen;}
 div.player.player2.appended {font-size: 3em; color: red;}
 div.player.player2.appended > span {font-size: .5em; color: red;}
 @keyframes glowing {
+    0% {text-shadow: 0 0 20px lawngreen;}
+    50% {text-shadow: 0 0 20px green;}
+    100% {text-shadow: 0 0 20px yellow;}
+}
+@keyframes glowing2 {
     0% {text-shadow: 0 0 20px yellow;}
     50% {text-shadow: 0 0 20px orange;}
     100% {text-shadow: 0 0 20px red;}
