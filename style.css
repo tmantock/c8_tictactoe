@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: "Permanent Marker";
+    font-family: "Gochi Hand";
 }
 
 
@@ -158,7 +158,8 @@ div.player.player2.appended > span {font-size: .5em; color: red;}
 }
 .animate {
     animation: glowing 1000ms infinite;}
-
+/***********SOUND*********/
+audio {position: absolute; bottom: 2vh; left: 2vw;}
 /*******************BOARD*******************/
 .game_board {
     /*border: 1px solid yellow;*/
