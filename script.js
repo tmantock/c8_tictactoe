@@ -28,6 +28,8 @@ function restore_last_game_board (last_data) {
                 }////end of if
             }////end of for j
         }////end of for i
+        click_player1_name();
+        click_player2_name();
     }
 }
 
@@ -78,8 +80,12 @@ function animate_name () {
 
 function click_player1_name(){
     //capture plyr name store as var
-    player1_name_value = $('#player1-name-value').val();
-    console.log('var player1_name_value = ' + player1_name_value);
+    //if typeof player name value = undefined, then proceed to below,
+    if (typeof player1_name_value === 'undefined')
+        {
+        player1_name_value = $('#player1-name-value').val();
+        console.log('var player1_name_value = ' + player1_name_value);
+        }//end of if
     // hide player input fields, append player name
     var local_player1_name_value = player1_name_value;
     $('#player1-name-value').hide();
@@ -91,8 +97,11 @@ function click_player1_name(){
 
 function click_player2_name(){
     //capture plyr nam store as var
-    player2_name_value = $('#player2-name-value').val();
-    console.log('var player2_name_value = ' + player2_name_value);
+    if (typeof player2_name_value === 'undefined')
+        {
+        player2_name_value = $('#player2-name-value').val();
+        console.log('var player2_name_value = ' + player2_name_value);
+        }//end of if
     var local_player2_name_value = player2_name_value;
     $('#player2-name-value').hide();
     $('#player2-name-submit').hide();

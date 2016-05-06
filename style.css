@@ -2,8 +2,6 @@
     box-sizing: border-box;
     font-family: "Gochi Hand";
 }
-
-
 .wrapper {
     font-size: initial;
     position: relative;
@@ -127,8 +125,8 @@ h4 {
     top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
-    /****add style*/
-    font-size: 8em; #color: red; animation: glowing 1000ms infinite;
+    font-size: 8em;
+    animation: glowing 1000ms infinite;
 }
 .winner2 {
     z-index: 5;
@@ -137,15 +135,32 @@ h4 {
     top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
-    /****add style*/
-    font-size: 8em; #color: red; animation: glowing2 1000ms infinite;
+    font-size: 8em;
+    animation: glowing2 1000ms infinite;
 }
-div.players > div.vs > span:nth-child(2) {color: lawngreen;}
-div.players > div.vs > span:nth-child(1) {color: red;}
-div.player.player1.appended {font-size: 3em; color: lawngreen;}
-div.player.player1.appended > span {font-size: .5em; color: lawngreen;}
-div.player.player2.appended {font-size: 3em; color: red;}
-div.player.player2.appended > span {font-size: .5em; color: red;}
+div.players > div.vs > span:nth-child(2) {
+    color: lawngreen;
+}
+div.players > div.vs > span:nth-child(1) {
+    color: red;
+}
+div.player.player1.appended {
+    font-size: 3em;
+    color: lawngreen;
+}
+div.player.player1.appended > span {
+    font-size: .5em;
+    color: lawngreen;
+}
+div.player.player2.appended {
+    font-size: 3em;
+    color: red;
+}
+div.player.player2.appended > span {
+    font-size: .5em;
+    color: red;
+}
+
 @keyframes glowing {
     0% {text-shadow: 0 0 20px lawngreen;}
     50% {text-shadow: 0 0 20px green;}
@@ -157,9 +172,14 @@ div.player.player2.appended > span {font-size: .5em; color: red;}
     100% {text-shadow: 0 0 20px red;}
 }
 .animate {
-    animation: glowing 1000ms infinite;}
+    animation: glowing 1000ms infinite;
+}
 /***********SOUND*********/
-audio {position: absolute; bottom: 2vh; left: 2vw;}
+audio {
+    position: absolute;
+    bottom: 2vh;
+    left: 2vw;
+}
 /*******************BOARD*******************/
 .game_board {
     /*border: 1px solid yellow;*/
@@ -174,10 +194,20 @@ audio {position: absolute; bottom: 2vh; left: 2vw;}
     #transition-duration: 5s;
 }
 
-.cell{width: 2em; #background-color: lightgreen; border: 1px solid white;height: 2em; display: inline-block; margin: 0; padding: 0;}
-.ex {background: url("images/x.png") no-repeat;
-    background-size: contain;}
-.ow {background: url(images/o.png) no-repeat;
-    background-size: contain;}
+.cell{width: 2em;
+    border: 1px solid white;
+    height: 2em;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.ex {
+    background: url("images/x.png") no-repeat;
+    background-size: contain;
+}
+.ow {
+    background: url(images/o.png) no-repeat;
+    background-size: contain;
+}
 
 
