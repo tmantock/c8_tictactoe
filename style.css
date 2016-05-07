@@ -237,13 +237,23 @@ audio {
     margin: 0;
     padding: 0;
 }
+/*.ex {*/
+    /*background: url("images/x.png") no-repeat;*/
+    /*background-size: contain;*/
+/*}*/
 .ex {
-    background: url("images/x.png") no-repeat;
+    background-image: url("images/x.png");
+    background-repeat: no-repeat;
     background-size: contain;
 }
 .ow {
-    background: url(images/o.png) no-repeat;
+    background-image: url(images/o.png);
+    background-repeat: no-repeat;
     background-size: contain;
 }
+/*.ow {*/
+    /*background: url(images/o.png) no-repeat;*/
+    /*background-size: contain;*/
+/*}*/
 
 

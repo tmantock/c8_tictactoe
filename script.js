@@ -146,17 +146,88 @@ function theme_value_capture(){
     console.log('theme picked = theme_value, is : ' + theme_value);
     $('.theme_picker').hide();
     theme_background_sound_play(theme_value);
+    $(".game_board").empty();
+    grid_array = [];
+    create_grid_array();
+    game_board_creation();
+    theme_background_changer(theme_value);
+    theme_ex_changer(theme_value);
+    theme_ow_changer(theme_value);
 
 }//end capture function
 
-function theme_picker(theme_value){  //take input value and changes background image, background sound, click sound, font
-        //change background
-        //change background sound
-        //theme_background_sound_controls(theme_value);
-        //theme_click_sound_controls (theme_value);
-        //change click sound
-        //change font
+function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+    //change background
+    switch(theme_value) {
+        case "class_room":
+            $('.wrapper').css("background-image", "url(images/background/chalkboard_background.jpg)");
+            break;
+        case "star_wars":
+            $('.wrapper').css("background-image", "url(images/background/starwars_background.jpg)");
+            break;
+        case "desert_warfare":
+            $('.wrapper').css("background-image", "url(images/background/desert_background.jpg)");
+            break;
+        case "big_toe":
+            $('.wrapper').css("background-image", "url(images/background/beach_background.jpg)");
+            break;
+        case "girl_fight":
+            $('.wrapper').css("background-image", "url(images/background/girlfight_background.jpg)");
+            break;
+        default: return;
+    }//end switch
 }//end theme_picker function
+
+function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
+    switch(theme_value) {
+        case "class_room":
+            $('.ex').css("background-image", "url(images/x/classroom_x.png)");
+            break;
+        case "star_wars":
+            $('.ex').css("background-image", "url(images/x/starwars_x.png)");
+            break;
+        case "desert_warfare":
+            $('.ex').css("background-image", "url(images/x/desert_x.png)");
+            break;
+        case "big_toe":
+            $('.ex').css("background-image", "url(images/x/beach_x.png)");
+            break;
+        case "girl_fight":
+            $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
+            break;
+        default: return; //why staying at background not work, had to switch background-image
+    }//end switch
+}//end theme_ex_changer function
+
+function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+    //change background
+    switch(theme_value) {
+        case "class_room":
+            $('.ow').css("background-image", "url(images/o/classroom_o.png)");
+            break;
+        case "star_wars":
+            $('.ow').css("background-image", " url(images/o/starwars_o.png)");
+            break;
+        case "desert_warfare":
+            $('.ow').css("background-image", " url(images/o/desert_o.png)");
+            break;
+        case "big_toe":
+            $('.ow').css("background-image", " url(images/o/beach_o.png)");
+            break;
+        case "girl_fight":
+            $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
+            break;
+        default: return;
+    }//end switch
+}//end theme_picker function
+
+
+
+//change background sound
+//theme_background_sound_controls(theme_value);
+//theme_click_sound_controls (theme_value);
+//change click sound
+//change font
 //TODO ***************************** SOUND CONTROL *******************************//
 
 function theme_background_sound_play (theme_value){
@@ -281,7 +352,7 @@ var num_of_cells_to_win = 3;
 var theme_value = "class_room";
 var background_value = "chalkboard_background";
 var player_symbol = 'ex';
-var grid_array = [];git 
+var grid_array = [];
 var last_clicked;
 var game_won = false;
 var last_data;
@@ -311,6 +382,8 @@ function game_board_creation () {
                     }/// end of else
                     animate_name();         //glow current player's name if it is his turn
                     theme_click_sound_controls(theme_value);
+                    theme_ex_changer(theme_value);
+                    theme_ow_changer(theme_value);
                 }//click handler
             };///new obj
             make_click(new_obj);
@@ -371,6 +444,7 @@ $(document).ready(function(){
 
     // TODO 3.7 disable background sound button theme_background_sound_pause
     $(".pause-background-sound-button").click(theme_background_sound_pause_initiator);
+    
     // TODO 4. using jquery to dynamically create game board based on user input
     //creating the array grid
     create_grid_array();
