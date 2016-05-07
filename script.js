@@ -281,7 +281,7 @@ var num_of_cells_to_win = 3;
 var theme_value = "class_room";
 var background_value = "chalkboard_background";
 var player_symbol = 'ex';
-var grid_array = [];
+var grid_array = [];git 
 var last_clicked;
 var game_won = false;
 var last_data;
