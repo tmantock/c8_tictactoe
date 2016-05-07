@@ -24,16 +24,7 @@ h3 {
     margin: 0 auto;
 }
 h3 span {color: red}
-.reset-button {
-    color: yellow;
-    font-size: 1.5em;
-    display: block;
-    text-align: center;
-    position: absolute;
-    background-color: transparent;
-    top: 1em;
-    right: 2em;
-}
+.reset-button,
 .restore-button {
     color: yellow;
     font-size: 1.5em;
@@ -41,25 +32,61 @@ h3 span {color: red}
     text-align: center;
     position: absolute;
     background-color: transparent;
-    top: 1em;
+    top: 1.3em;
+    right: 2em;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+}
+.restore-button {
     left: 2em;
+}
+.pause-background-sound-button {
+    position: absolute;
+    top: 2.6em;
+    right: 10em;
+    width: 2em;
+    height: 2em;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+}
+.shutup-barney-button {
+    color: yellow;
+    font-size: 1.5em;
+    display: block;
+    text-align: center;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+    left: 3vw;
+    top: 60vh;
 }
 .row-number {
     display: block;
-    #padding: .3em;
     position: absolute;
-    left: 3em;
+    left: 3vw;
+    top: 10vh;
     color: white;
     font-size: 1.3em;
 }
 .matches-number {
     display: block;
-    #padding: .3em;
     position: absolute;
-    right: 3em;
+    left: 3vw;
+    top: 25vh;
     color: white;
     font-size: 1.4em;
 }
+
+.theme_picker {
+    display: block;
+    position: absolute;
+    left: 3vw;
+    top: 40vh;
+    color: white;
+    font-size: 1.4em;
+}
+
 input {
     color: white;
     border-radius: 2px;
@@ -71,6 +98,15 @@ input[type="submit"] {
     color: black;
     box-shadow: 2px 2px 8px black;
     background-color: 	white;
+}
+input[type="submit"]:hover,
+.restore-button:hover,
+.reset-button:hover,
+.shutup-barney-button:hover
+{
+    color: white;
+    box-shadow: 2px 2px 8px red;
+    background-color: 	orange;
 }
 select {
     color: black;

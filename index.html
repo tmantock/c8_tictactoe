@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
@@ -15,25 +17,26 @@
 <div class="wrapper">
     <nav>
         <h3>TIC TAC TOE   <span> DEATH MATCH</span> !!!</h3>
+        <button class="pause-background-sound-button"><i class="fa fa-volume-off" aria-hidden="true"></i></button>
         <button class="reset-button">Reset</button>
-        <button class="restore-button">Restore</button>
+        <button class="restore-button">Restore Last Game</button>
     </nav><!--close nav-->
     <div class="players">
         <div class="player player1">
-            <span>O: Jedi:</span>
-            <input id="player1-name-value" class="input-text" type="text" name="first-name" placeholder=" Player 1">
+            <!--<span>O: Jedi:</span>-->
+            <input id="player1-name-value" class="input-text" type="text" name="first-name" placeholder=" Player 1's Name Here">
             <input id="player1-name-submit" type="submit" value="Submit">
         </div><!--Closing player1-->
         <div class="vs"><span>V</span><span>S</span></div>
         <div class="player player2">
-            <span>X: Sith:</span>
-            <input id="player2-name-value" class="input-text" type="text" name="first-name" placeholder="Player 2">
+            <!--<span>X: Sith:</span>-->
+            <input id="player2-name-value" class="input-text" type="text" name="first-name" placeholder="Player 2's Name Here">
             <input id="player2-name-submit" type="submit" value="Submit">
         </div><!--Closing player2-->
     </div> <!--Closing players-->
     <div class="settings">
         <div class="row-number">
-            <h4>Pick number of rows:</h4>
+            <h4>Pick number of rows for your board:</h4>
             <select class="number_of_rows" name="number_of_rows">
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -140,11 +143,61 @@
             </select>
             <input id="number_of_matches-submit" type="submit" value="Submit">
         </div>
+        <div class="theme_picker">
+            <h4>Pick a battle ground:</h4>
+            <select class="theme_picker_select" name="battle_ground">
+                <option value="class_room">Class Room</option>
+                <option value="star_wars">Star Wars</option>
+                <option value="desert_warfare">Desert Warfare</option>
+                <option value="big_toe">Big Toe</option>
+                <option value="girl_fight">Girl Fight!!!</option>
+            </select>
+            <input id="theme_picker-submit" type="submit" value="Submit">
+        </div>
+        <button class="shutup-barney-button" value="barney_intro_music">Shut Up, Barney</button>
     </div><!--close settings-->
-    <audio controls autoplay loop>
-        <source src="audio/background_sound.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <div class="sound-control">
+        <audio id="classroom-background-sound">
+            <source src="audio/background_sound_classroom.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="starwars-background-sound">
+            <source src="audio/background_sound_starwars.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="desert-background-sound">
+            <source src="audio/background_sound_desert.mp3
+            " type="audio/mpeg">
+        </audio>
+        <audio id="beach-background-sound">
+            <source src="audio/background_sound_beach.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="girlfight-background-sound">
+            <source src="audio/background_sound_girlfight.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="click-sound-classroom">
+            <source src="audio/click_sound_chalk.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="click-sound-beach">
+            <source src="audio/click_sound_beach.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="click-sound-desert">
+            <source src="audio/click_sound_desert.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="click-sound-starwars">
+            <source src="audio/click_sound_starwars.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="click-sound-girlfight">
+            <source src="audio/click_sound_girlfight.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="game-won-sound">
+            <source src="audio/game_won_clapping.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="button-click-sound">
+            <source src="audio/button_click_sound.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="intro-sound">
+            <source src="audio/intro_song_barney.mp3" type="audio/mpeg">
+        </audio>
+    </div><!--closing audio div-->
     <div class="game_board"></div><!--Closing board-->
     <div class="game won"></div>
 </div><!--Closing wrapper-->

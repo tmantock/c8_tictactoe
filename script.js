@@ -127,13 +127,150 @@ function num_of_cells_capture(){
     //capture num_of_cells_to_win store as var
     num_of_cells_to_win = $('.number_of_matches').val();
     console.log('num_of_cells_to_win = ' + num_of_cells_to_win);
-    $('.matches-number').hide();
     num_of_cells_to_win = parseInt(num_of_cells_to_win);
-    $(".game_board").empty();
-    grid_array = [];
-    create_grid_array();
-    game_board_creation();
+    if(num_of_cells_to_win <= num_of_rows) {
+        $('.matches-number').hide();
+        $(".game_board").empty();
+        grid_array = [];
+        create_grid_array();
+        game_board_creation();
+    }
+    else {
+        alert("Number of matches must be > or = number of rows, Duh!!");
+    }
 }//end capture function
+
+function theme_value_capture(){
+    //capture theme, store as var
+    theme_value = $(".theme_picker_select").val();
+    console.log('theme picked = theme_value, is : ' + theme_value);
+    $('.theme_picker').hide();
+    theme_background_sound_play(theme_value);
+
+}//end capture function
+
+function theme_picker(theme_value){  //take input value and changes background image, background sound, click sound, font
+        //change background
+        //change background sound
+        //theme_background_sound_controls(theme_value);
+        //theme_click_sound_controls (theme_value);
+        //change click sound
+        //change font
+}//end theme_picker function
+//TODO ***************************** SOUND CONTROL *******************************//
+
+function theme_background_sound_play (theme_value){
+    var starwars_background_sound = document.getElementById('starwars-background-sound');
+    var desert_background_sound = document.getElementById('desert-background-sound');
+    var beach_background_sound = document.getElementById('beach-background-sound');
+    var girlfight_background_sound = document.getElementById('girlfight-background-sound');
+    var classroom_background_sound = document.getElementById('classroom-background-sound');
+    switch(theme_value){
+        case "class_room":
+            classroom_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "star_wars":
+            starwars_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "desert_warfare":
+            desert_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "big_toe":
+            beach_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "girl_fight":
+            girlfight_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        default: return;
+    }//end switch
+}//end theme_background_sound_play function
+
+function theme_background_sound_pause (theme_value){
+    var starwars_background_sound = document.getElementById('starwars-background-sound');
+    var desert_background_sound = document.getElementById('desert-background-sound');
+    var beach_background_sound = document.getElementById('beach-background-sound');
+    var girlfight_background_sound = document.getElementById('girlfight-background-sound');
+    var classroom_background_sound = document.getElementById('classroom-background-sound');
+    switch(theme_value){
+        case "class_room":
+            classroom_background_sound.pause();
+            break;
+        case "star_wars":
+            starwars_background_sound.pause();
+            break;
+        case "desert_warfare":
+            desert_background_sound.pause();
+            break;
+        case "big_toe":
+            beach_background_sound.pause();
+            break;
+        case "girl_fight":
+            girlfight_background_sound.pause();
+            break;
+        default: return;
+    }//end switch
+}//end theme_background_sound_pause function
+
+function theme_background_sound_pause_initiator(){
+    theme_background_sound_pause (theme_value);
+}// needed to call theme background sound pause from doc.ready
+
+function theme_click_sound_controls (theme_value){
+    switch(theme_value){
+        case "class_room":
+            cell_click_sound_control("click-sound-classroom");
+            break;
+        case "star_wars":
+            cell_click_sound_control("click-sound-starwars");
+            break;
+        case "desert_warfare":
+            cell_click_sound_control("click-sound-desert");
+            break;
+        case "big_toe":
+            cell_click_sound_control("click-sound-beach");
+            break;
+        case "girl_fight":
+            cell_click_sound_control("click-sound-girlfight");
+            break;
+        default: return;
+    }//end switch
+}//end theme_click_sound_controls function
+
+function cell_click_sound_control(click_sound_id){
+    var clicksound = document.getElementById(click_sound_id);
+    clicksound.play();
+}//end cell_click_sound function
+
+function intro_sound_play(){
+    var intro_sound = document.getElementById("intro-sound");
+    intro_sound.play();
+    intro_sound.loop = true;
+}//end intro_sound_control function
+
+function intro_sound_pause(){
+    var intro_sound = document.getElementById("intro-sound");
+    intro_sound.pause();
+    $(".shutup-barney-button").hide();
+}//end intro_sound_control function
+
+function applause_winner(){
+    var applause_winner_sound = document.getElementById("game-won-sound");
+    applause_winner_sound.play();
+}//end applause winner fnction
+
+function button_click_sound(){
+    var button_click_sound = document.getElementById('button-click-sound');
+    button_click_sound.play();
+}
+
+//TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CONTROL*************//
+
+
 
 //TODO ***************************** GLOBAL VARIABLES  *******************************//
 
@@ -141,18 +278,18 @@ var player1_name_value;
 var player2_name_value;
 var num_of_rows = 3;
 var num_of_cells_to_win = 3;
+var theme_value = "class_room";
+var background_value = "chalkboard_background";
 var player_symbol = 'ex';
 var grid_array = [];
 var last_clicked;
 var game_won = false;
 var last_data;
 var game_board_grid=[];
-//var stored_data;
-//var contents_last_game;
 
 //TODO ***************************** BOARD CREATION  SECTION  *******************************//
 
-function game_board_creation (){
+function game_board_creation () {
     for(var x = 0;x <= num_of_rows-1; x++){
         var inside_array=[];
         for(var y = 0;y <= num_of_rows-1; y++) {
@@ -173,6 +310,7 @@ function game_board_creation (){
                         toggle_and_get_current_symbol();
                     }/// end of else
                     animate_name();         //glow current player's name if it is his turn
+                    theme_click_sound_controls(theme_value);
                 }//click handler
             };///new obj
             make_click(new_obj);
@@ -186,8 +324,7 @@ function game_board_creation (){
     $('.cell').css({"width": cell_width,"height": cell_width});
 }//end function game_board_creation
 
-function make_click(the_object)
-{
+function make_click(the_object){
     the_object.html.click(function(){
         console.log('object that was triggered',the_object);
         if (game_won === false) {                               //if game is not won
@@ -209,6 +346,8 @@ function toggle_and_get_current_symbol(){
 
 //TODO **** begin document ready
 $(document).ready(function(){
+    //TODO 0.9 click sound for all button clicks
+    $("button, input").click(button_click_sound);
     //TODO 1. players will enter name into input field + click submit, click function will
     //Player1-name-value capture
     $("#player1-name-submit").click(click_player1_name);
@@ -221,6 +360,17 @@ $(document).ready(function(){
     // TODO 3. capture num_of_cells_to_win
     $("#number_of_matches-submit").click(num_of_cells_capture);
 
+    // TODO 3.5 capture theme value and create themes
+    $("#theme_picker-submit").click(theme_value_capture);
+
+    // TODO 3.6 load intro sound
+    intro_sound_play();
+
+    // TODO 3.65 "shut up barney button"
+    $(".shutup-barney-button").click(intro_sound_pause);
+
+    // TODO 3.7 disable background sound button theme_background_sound_pause
+    $(".pause-background-sound-button").click(theme_background_sound_pause_initiator);
     // TODO 4. using jquery to dynamically create game board based on user input
     //creating the array grid
     create_grid_array();
@@ -254,6 +404,8 @@ function reset() {
     $('.player1').addClass('player');
     $('.matches-number').show();                //show user inputs
     $('.row-number').show();
+    $('.theme_picker').show();
+    theme_background_sound_pause_initiator();   //pause current theme background sound to prevent overlapping of theme sounds when user chooses new one.
     grid_array = [];                            //reset the grid
     create_grid_array();                        //recreate array
     console.log("grid_array is now: "+grid_array);
@@ -273,6 +425,7 @@ function check_the_win (row, col) {
     } else {                            // ie. if row win
         game_won = true;
         animate_winner_name ();
+        applause_winner();
 
     }
     if(!row_win && !col_win) {   // if no match in row or column
@@ -281,6 +434,7 @@ function check_the_win (row, col) {
     }else {                      // if match in row or column
         game_won = true;
         animate_winner_name ();
+        applause_winner();
     }
     if (!row_win && !col_win && !left_right_win) {  //  if no row , column or left to right diagonal matches
         var right_left_win = diagonal_check_right_to_left(row, col);  // check diagonal right to left
@@ -289,10 +443,12 @@ function check_the_win (row, col) {
         if (right_left_win) {                   // if right to left match
             game_won = true;
             animate_winner_name ();
+            applause_winner();
         }
     }else {
         game_won = true;
         animate_winner_name ();
+        applause_winner();
     }
 
 }//check the win
