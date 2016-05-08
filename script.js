@@ -153,81 +153,10 @@ function theme_value_capture(){
     theme_background_changer(theme_value);
     theme_ex_changer(theme_value);
     theme_ow_changer(theme_value);
+    theme_font_changer(theme_value);
 
 }//end capture function
 
-function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
-    //change background
-    switch(theme_value) {
-        case "class_room":
-            $('.wrapper').css("background-image", "url(images/background/chalkboard_background.jpg)");
-            break;
-        case "star_wars":
-            $('.wrapper').css("background-image", "url(images/background/starwars_background.jpg)");
-            break;
-        case "desert_warfare":
-            $('.wrapper').css("background-image", "url(images/background/desert_background.jpg)");
-            break;
-        case "big_toe":
-            $('.wrapper').css("background-image", "url(images/background/beach_background.jpg)");
-            break;
-        case "girl_fight":
-            $('.wrapper').css("background-image", "url(images/background/girlfight_background.jpg)");
-            break;
-        default: return;
-    }//end switch
-}//end theme_picker function
-
-function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
-    switch(theme_value) {
-        case "class_room":
-            $('.ex').css("background-image", "url(images/x/classroom_x.png)");
-            break;
-        case "star_wars":
-            $('.ex').css("background-image", "url(images/x/starwars_x.png)");
-            break;
-        case "desert_warfare":
-            $('.ex').css("background-image", "url(images/x/desert_x.png)");
-            break;
-        case "big_toe":
-            $('.ex').css("background-image", "url(images/x/beach_x.png)");
-            break;
-        case "girl_fight":
-            $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
-            break;
-        default: return; //why staying at background not work, had to switch background-image
-    }//end switch
-}//end theme_ex_changer function
-
-function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
-    //change background
-    switch(theme_value) {
-        case "class_room":
-            $('.ow').css("background-image", "url(images/o/classroom_o.png)");
-            break;
-        case "star_wars":
-            $('.ow').css("background-image", " url(images/o/starwars_o.png)");
-            break;
-        case "desert_warfare":
-            $('.ow').css("background-image", " url(images/o/desert_o.png)");
-            break;
-        case "big_toe":
-            $('.ow').css("background-image", " url(images/o/beach_o.png)");
-            break;
-        case "girl_fight":
-            $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
-            break;
-        default: return;
-    }//end switch
-}//end theme_picker function
-
-
-
-//change background sound
-//theme_background_sound_controls(theme_value);
-//theme_click_sound_controls (theme_value);
-//change click sound
-//change font
 //TODO ***************************** SOUND CONTROL *******************************//
 
 function theme_background_sound_play (theme_value){
@@ -332,16 +261,100 @@ function intro_sound_pause(){
 function applause_winner(){
     var applause_winner_sound = document.getElementById("game-won-sound");
     applause_winner_sound.play();
-}//end applause winner fnction
+}//end applause winner function
 
 function button_click_sound(){
     var button_click_sound = document.getElementById('button-click-sound');
     button_click_sound.play();
-}
+}//end button click sound function
 
-//TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CONTROL*************//
+//TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CHANGER*************//
 
+function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+    //change background
+    switch(theme_value) {
+        case "class_room":
+            $('.wrapper').css("background-image", "url(images/background/chalkboard_background.jpg)");
+            break;
+        case "star_wars":
+            $('.wrapper').css("background-image", "url(images/background/starwars_background.jpg)");
+            break;
+        case "desert_warfare":
+            $('.wrapper').css("background-image", "url(images/background/desert_background.jpg)");
+            break;
+        case "big_toe":
+            $('.wrapper').css("background-image", "url(images/background/beach_background.jpg)");
+            break;
+        case "girl_fight":
+            $('.wrapper').css("background-image", "url(images/background/girlfight_background.jpg)");
+            break;
+        default: return;
+    }//end switch
+}//end theme_picker function
 
+function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
+    switch(theme_value) {
+        case "class_room":
+            $('.ex').css("background-image", "url(images/x/classroom_x.png)");
+            break;
+        case "star_wars":
+            $('.ex').css("background-image", "url(images/x/starwars_x.png)");
+            break;
+        case "desert_warfare":
+            $('.ex').css("background-image", "url(images/x/desert_x.png)");
+            break;
+        case "big_toe":
+            $('.ex').css("background-image", "url(images/x/beach_x.png)");
+            break;
+        case "girl_fight":
+            $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
+            break;
+        default: return; //why staying at background not work, had to switch background-image
+    }//end switch
+}//end theme_ex_changer function
+
+function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+    //change background
+    switch(theme_value) {
+        case "class_room":
+            $('.ow').css("background-image", "url(images/o/classroom_o.png)");
+            break;
+        case "star_wars":
+            $('.ow').css("background-image", " url(images/o/starwars_o.png)");
+            break;
+        case "desert_warfare":
+            $('.ow').css("background-image", " url(images/o/desert_o.png)");
+            break;
+        case "big_toe":
+            $('.ow').css("background-image", " url(images/o/beach_o.png)");
+            break;
+        case "girl_fight":
+            $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
+            break;
+        default: return;
+    }//end switch
+}//end theme_picker function
+
+function theme_font_changer(theme_value){
+    switch(theme_value) {
+        case "class_room":
+            $('*').css("font-family", "");
+            break;
+        case "star_wars":
+            $('*').css("font-family", "");
+            break;
+        case "desert_warfare":
+            $('*').css("font-family", "Noto Serif");
+            break;
+        case "big_toe":
+            $('*').css("font-family", "Open Sans");
+            break;
+        case "girl_fight":
+            $('*').css("font-family", "GFS Didot, serif");
+            break;
+        default: return; //why staying at background not work, had to switch background-image
+    }//end switch
+}//end theme font changer function
 
 //TODO ***************************** GLOBAL VARIABLES  *******************************//
 
@@ -384,6 +397,7 @@ function game_board_creation () {
                     theme_click_sound_controls(theme_value);
                     theme_ex_changer(theme_value);
                     theme_ow_changer(theme_value);
+                    this.html.addClass('shakes');
                 }//click handler
             };///new obj
             make_click(new_obj);
