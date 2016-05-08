@@ -56,11 +56,13 @@ function animate_winner_name () {
         $('.player2').addClass('animate, winner2');//, player2-wins');
         $('.player2').append("<p class='wins'> WhooHoo!</p>");
         $('.player2').append("<p class='wins'> Alright!</p>");
+        $('.player1').append("<p class='wins'> Hire Me!</p>");
         $('.player2').append("<p class='wins'> Yeah...Boy!</p>");
         $('.player2').append("<p class='wins'> Great Job!</p>");
         $('.player2').append("<p class='wins'> Steve Jobs!</p>");
         $('.player2').append("<p class='wins'> Take that!</p>");
         $('.player2').append("<p class='wins'> Wins!</p>");
+        $('.player1').append("<p class='wins'> Promise me you won't let go, Jack!</p>");
         $('.player1').removeClass('animate');
         //$(".animate.winner").append("congratulations");
     }//end if
@@ -68,9 +70,10 @@ function animate_winner_name () {
         $(".player1").removeClass("player");
         $('.player1').addClass('animate, winner');//, player1-wins');
         $('.player1').append("<p class='wins'> Yeehhawww!</p>");
-        $('.player1').append("<p class='wins'> Dan was slapped, ouch!</p>");
-        $('.player1').append("<p class='wins'> Alirght!</p>");
+        $('.player1').append("<p class='wins'> Dan was slapped, take that!</p>");
+        $('.player1').append("<p class='wins'> Alright!</p>");
         $('.player1').append("<p class='wins'> OMG LUCKY!</p>");
+        $('.player1').append("<p class='wins'> Hire Me!</p>");
         $('.player1').append("<p class='wins'> Great Job!</p>");
         $('.player1').append("<p class='wins'> Wins!</p>");
         $('.player1').append("<p class='wins'> It's about time!</p>");
