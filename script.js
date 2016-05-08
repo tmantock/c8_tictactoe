@@ -54,16 +54,34 @@ function animate_winner_name () {
     if(player_symbol == 'ex') {
         $(".player2").removeClass("player");
         $('.player2').addClass('animate, winner2');//, player2-wins');
-        $('.winner2').append(" Wins!");
+        $('.player2').append("<p class='wins'> WhooHoo!</p>");
+        $('.player2').append("<p class='wins'> Alright!</p>");
+        $('.player2').append("<p class='wins'> Yeah...Boy!</p>");
+        $('.player2').append("<p class='wins'> Great Job!</p>");
+        $('.player2').append("<p class='wins'> Steve Jobs!</p>");
+        $('.player2').append("<p class='wins'> Take that!</p>");
+        $('.player2').append("<p class='wins'> Wins!</p>");
         $('.player1').removeClass('animate');
         //$(".animate.winner").append("congratulations");
     }//end if
     else {
         $(".player1").removeClass("player");
         $('.player1').addClass('animate, winner');//, player1-wins');
-        $('.winner').append(" Wins!");
+        $('.player1').append("<p class='wins'> Yeehhawww!</p>");
+        $('.player1').append("<p class='wins'> Dan was slapped, ouch!</p>");
+        $('.player1').append("<p class='wins'> Alirght!</p>");
+        $('.player1').append("<p class='wins'> OMG LUCKY!</p>");
+        $('.player1').append("<p class='wins'> Great Job!</p>");
+        $('.player1').append("<p class='wins'> Wins!</p>");
+        $('.player1').append("<p class='wins'> It's about time!</p>");
+        $('.player1').append("<p class='wins'> Nice Win!</p>");
+
         $('.player2').removeClass('animate');
     }//end else
+    setTimeout(function(){
+        $('.wins').remove();
+    },10000);
+    //$(' Wins').remove();
 }//end of animate_name function $(".appended.animate.winner").html(<h3>Congratulations</h3>);
 
 // Player name animation function
@@ -138,7 +156,7 @@ function num_of_cells_capture(){
         game_board_creation();
     }
     else {
-        alert("Number of matches must be > or = number of rows, Duh!!");
+        alert("Number of matches must be > or = number of rows currently on the board, Duh!!");
     }
 }//end capture function
 

@@ -145,14 +145,16 @@ h4 {
 .player2 {
     position: absolute;
     padding: 0;
+    margin: 0;
     left: 50%;
     transform: translateX(70%);
-    transition-duration: 3s;
+    transition-duration: 5s;
     font-size: 1em;
 }
 .player1 {
-    transition-duration: 3s;
+    transition-duration: 5s;
     font-size: 1em;
+    margin: 0;
 }
 .winner {
     z-index: 5;
@@ -162,6 +164,9 @@ h4 {
     transform: translate(-50%,-50%);
     font-size: 8em;
     animation: glowing 1000ms infinite;
+    margin: 0;
+    padding: 0;
+    line-height:.7em;
 }
 .winner2 {
     z-index: 5;
@@ -171,6 +176,9 @@ h4 {
     transform: translate(-50%,-50%);
     font-size: 8em;
     animation: glowing2 1000ms infinite;
+    margin: 0;
+    padding: 0;
+    line-height:.7em;
 }
 div.players > div.vs > span:nth-child(2) {
     color: lawngreen;
