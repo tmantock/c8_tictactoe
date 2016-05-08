@@ -154,7 +154,6 @@ function theme_value_capture(){
     theme_ex_changer(theme_value);
     theme_ow_changer(theme_value);
     theme_font_changer(theme_value);
-
 }//end capture function
 
 //TODO ***************************** SOUND CONTROL *******************************//
@@ -338,19 +337,27 @@ function theme_ow_changer(theme_value){  //take input: theme_value and changes b
 function theme_font_changer(theme_value){
     switch(theme_value) {
         case "class_room":
-            $('*').css("font-family", "");
+            //$('*').css("font-family", "");
             break;
         case "star_wars":
-            $('*').css("font-family", "");
+            $('*').css("font-family", "Arial");
+            $(".game_title").html("STAR TREK  <span> RULES</span> !!!");
+            $(".game_title").css("color", "black");
+            $("h4").css("font-size",".8em");
             break;
         case "desert_warfare":
             $('*').css("font-family", "Noto Serif");
+            $(".game_title").html("Draw me wearing this, wearing <span> only this</span>");
+            $("h4").css("font-size",".8em");
             break;
         case "big_toe":
             $('*').css("font-family", "Open Sans");
+            $(".game_title").html("BIG TOE  <span> DEATH MATCH</span> !!!");
             break;
         case "girl_fight":
             $('*').css("font-family", "GFS Didot, serif");
+            $(".game_title").html("YOU, ARE <span> NOT </span> PREPARED !!!");
+            $("h3 span").css("font-size", "2em");
             break;
         default: return; //why staying at background not work, had to switch background-image
     }//end switch
@@ -493,6 +500,7 @@ function reset() {
     $('.matches-number').show();                //show user inputs
     $('.row-number').show();
     $('.theme_picker').show();
+
     theme_background_sound_pause_initiator();   //pause current theme background sound to prevent overlapping of theme sounds when user chooses new one.
     grid_array = [];                            //reset the grid
     create_grid_array();                        //recreate array
