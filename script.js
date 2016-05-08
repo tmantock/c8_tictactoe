@@ -53,16 +53,18 @@ function store_essential_data () {
 function animate_winner_name () {
     if(player_symbol == 'ex') {
         $(".player2").removeClass("player");
-
         $('.player2').addClass('animate, winner2');//, player2-wins');
+        $('.winner2').append(" Wins!");
         $('.player1').removeClass('animate');
+        //$(".animate.winner").append("congratulations");
     }//end if
     else {
         $(".player1").removeClass("player");
         $('.player1').addClass('animate, winner');//, player1-wins');
+        $('.winner').append(" Wins!");
         $('.player2').removeClass('animate');
     }//end else
-}//end of animate_name function
+}//end of animate_name function $(".appended.animate.winner").html(<h3>Congratulations</h3>);
 
 // Player name animation function
 function animate_name () {

@@ -156,7 +156,6 @@ h4 {
 }
 .winner {
     z-index: 5;
-    #font-size: 2em;
     position: fixed;
     top: 50%;
     left:50%;
@@ -166,7 +165,6 @@ h4 {
 }
 .winner2 {
     z-index: 5;
-    #font-size: 2em;
     position: fixed;
     top: 50%;
     left:50%;
@@ -227,7 +225,6 @@ audio {
     height: 80vh;
     margin: 0 auto;
     font-size: 0;
-    #transition-duration: 5s;
 }
 
 .cell{width: 2em;
