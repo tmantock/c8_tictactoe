@@ -279,7 +279,7 @@
     /*}*/
 /*}*/
 
-/*my part*/
+/****************************my part***************************************/
 .wraper {
     width: 100vw;
     height: 100vh;
@@ -298,10 +298,18 @@
     transform: translateX(-50%);
     /*box-shadow: 5px 5px 10px rgba(102,102,0,.9);*/
 }
+.player_names {
+    position: absolute;
+    top: -10%;
+    width: 80%;
+    height: 10%;
+    left:0;
+    background-color: blue;
+}
 #eraser {
     position: absolute;
     top:3vh;
-    left: 2vh;
+    left: 3vw;
     color: #fff;
     width:20vh;
     height:20vh;
@@ -332,6 +340,20 @@
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
+.btn-group {
+    position: absolute;
+    font-size: 1.5em;
+    width: 10vw;
+    height: 5vw;
+    top:8vh;
+    right: 5vw;
+    color: rgba(102,102,0,1);
+}
+.btn-group button {
+    padding: 2%;
+    border-radius: 10px;
+    background-color: transparent;
+}
 .cell{
     width: 2em;
     border: 40px solid transparent;
@@ -354,3 +376,5 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+/*in portrate I have to change the size of game board based on % or vw + change btn group size*/
