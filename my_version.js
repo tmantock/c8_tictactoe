@@ -437,7 +437,7 @@ function game_board_creation () {
         game_board_grid.push(inside_array);
     }////x
     // width and height of cell
-    var cell_width = 80/num_of_rows+'vh';
+    var cell_width = 80/num_of_rows+'%';
     $('.cell').css({"width": cell_width,"height": cell_width});
 }//end function game_board_creation
 

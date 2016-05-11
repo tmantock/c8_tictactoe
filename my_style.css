@@ -284,7 +284,7 @@
     width: 100vw;
     height: 100vh;
     background: url(images/back1.jpg) no-repeat;
-    background-size: cover;
+    background-size:cover;
     padding: 5%;
 }
 .game_board {
@@ -319,7 +319,7 @@
     outline: none;
 }
 .modal label, .modal h4, .modal input, .modal-content, .form-control,
-.modal select option{
+.modal select option, .modal button{
     font-family: 'Roboto', sans-serif;
     line-height: 2.5em;
 }
