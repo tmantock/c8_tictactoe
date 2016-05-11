@@ -50,54 +50,54 @@ function store_essential_data () {
 
 //TODO ***************************** ANIMATION  *******************************//
 
-function animate_winner_name () {
-    if(player_symbol == 'ex') {
-        $(".player2").removeClass("player");
-        $('.player2').addClass('animate, winner2');//, player2-wins');
-        $('.player2').append("<p class='wins'> WhooHoo!</p>");
-        $('.player2').append("<p class='wins'> Alright!</p>");
-        $('.player1').append("<p class='wins'> Hire Me!</p>");
-        $('.player2').append("<p class='wins'> Yeah...Boy!</p>");
-        $('.player2').append("<p class='wins'> Great Job!</p>");
-        $('.player2').append("<p class='wins'> Steve Jobs!</p>");
-        $('.player2').append("<p class='wins'> Take that!</p>");
-        $('.player2').append("<p class='wins'> Wins!</p>");
-        $('.player1').append("<p class='wins'> Promise me you won't let go, Jack!</p>");
-        $('.player1').removeClass('animate');
-        //$(".animate.winner").append("congratulations");
-    }//end if
-    else {
-        $(".player1").removeClass("player");
-        $('.player1').addClass('animate, winner');//, player1-wins');
-        $('.player1').append("<p class='wins'> Yeehhawww!</p>");
-        $('.player1').append("<p class='wins'> Dan was slapped, take that!</p>");
-        $('.player1').append("<p class='wins'> Alright!</p>");
-        $('.player1').append("<p class='wins'> OMG LUCKY!</p>");
-        $('.player1').append("<p class='wins'> Hire Me!</p>");
-        $('.player1').append("<p class='wins'> Great Job!</p>");
-        $('.player1').append("<p class='wins'> Wins!</p>");
-        $('.player1').append("<p class='wins'> It's about time!</p>");
-        $('.player1').append("<p class='wins'> Nice Win!</p>");
-
-        $('.player2').removeClass('animate');
-    }//end else
-    setTimeout(function(){
-        $('.wins').remove();
-    },10000);
-    //$(' Wins').remove();
-}//end of animate_name function $(".appended.animate.winner").html(<h3>Congratulations</h3>);
-
-// Player name animation function
-function animate_name () {
-    if(player_symbol === 'ex') {             //if current player is ex, animate
-        $('.player1').addClass('animate');
-        $('.player2').removeClass('animate');
-    }//end if
-    else {                                   //else, animate other player
-        $('.player2').addClass('animate');
-        $('.player1').removeClass('animate');
-    }//end else
-}//end of animate_name function
+// function animate_winner_name () {
+//     if(player_symbol == 'ex') {
+//         $(".player2").removeClass("player");
+//         $('.player2').addClass('animate, winner2');//, player2-wins');
+//         $('.player2').append("<p class='wins'> WhooHoo!</p>");
+//         $('.player2').append("<p class='wins'> Alright!</p>");
+//         $('.player1').append("<p class='wins'> Hire Me!</p>");
+//         $('.player2').append("<p class='wins'> Yeah...Boy!</p>");
+//         $('.player2').append("<p class='wins'> Great Job!</p>");
+//         $('.player2').append("<p class='wins'> Steve Jobs!</p>");
+//         $('.player2').append("<p class='wins'> Take that!</p>");
+//         $('.player2').append("<p class='wins'> Wins!</p>");
+//         $('.player1').append("<p class='wins'> Promise me you won't let go, Jack!</p>");
+//         $('.player1').removeClass('animate');
+//         //$(".animate.winner").append("congratulations");
+//     }//end if
+//     else {
+//         $(".player1").removeClass("player");
+//         $('.player1').addClass('animate, winner');//, player1-wins');
+//         $('.player1').append("<p class='wins'> Yeehhawww!</p>");
+//         $('.player1').append("<p class='wins'> Dan was slapped, take that!</p>");
+//         $('.player1').append("<p class='wins'> Alright!</p>");
+//         $('.player1').append("<p class='wins'> OMG LUCKY!</p>");
+//         $('.player1').append("<p class='wins'> Hire Me!</p>");
+//         $('.player1').append("<p class='wins'> Great Job!</p>");
+//         $('.player1').append("<p class='wins'> Wins!</p>");
+//         $('.player1').append("<p class='wins'> It's about time!</p>");
+//         $('.player1').append("<p class='wins'> Nice Win!</p>");
+//
+//         $('.player2').removeClass('animate');
+//     }//end else
+//     setTimeout(function(){
+//         $('.wins').remove();
+//     },10000);
+//     //$(' Wins').remove();
+// }//end of animate_name function $(".appended.animate.winner").html(<h3>Congratulations</h3>);
+//
+// // Player name animation function
+// function animate_name () {
+//     if(player_symbol === 'ex') {             //if current player is ex, animate
+//         $('.player1').addClass('animate');
+//         $('.player2').removeClass('animate');
+//     }//end if
+//     else {                                   //else, animate other player
+//         $('.player2').addClass('animate');
+//         $('.player1').removeClass('animate');
+//     }//end else
+// }//end of animate_name function
 
 //TODO ***************************** INPUT CAPTURES  *******************************//
 
@@ -180,211 +180,211 @@ function theme_value_capture(){
 }//end capture function
 
 //TODO ***************************** SOUND CONTROL *******************************//
-
-function theme_background_sound_play (theme_value){
-    var starwars_background_sound = document.getElementById('starwars-background-sound');
-    var desert_background_sound = document.getElementById('desert-background-sound');
-    var beach_background_sound = document.getElementById('beach-background-sound');
-    var girlfight_background_sound = document.getElementById('girlfight-background-sound');
-    var classroom_background_sound = document.getElementById('classroom-background-sound');
-    switch(theme_value){
-        case "class_room":
-            classroom_background_sound.play();
-            classroom_background_sound.loop = true;
-            break;
-        case "star_wars":
-            starwars_background_sound.play();
-            classroom_background_sound.loop = true;
-            break;
-        case "desert_warfare":
-            desert_background_sound.play();
-            classroom_background_sound.loop = true;
-            break;
-        case "big_toe":
-            beach_background_sound.play();
-            classroom_background_sound.loop = true;
-            break;
-        case "girl_fight":
-            girlfight_background_sound.play();
-            classroom_background_sound.loop = true;
-            break;
-        default: return;
-    }//end switch
-}//end theme_background_sound_play function
-
-function theme_background_sound_pause (theme_value){
-    var starwars_background_sound = document.getElementById('starwars-background-sound');
-    var desert_background_sound = document.getElementById('desert-background-sound');
-    var beach_background_sound = document.getElementById('beach-background-sound');
-    var girlfight_background_sound = document.getElementById('girlfight-background-sound');
-    var classroom_background_sound = document.getElementById('classroom-background-sound');
-    switch(theme_value){
-        case "class_room":
-            classroom_background_sound.pause();
-            break;
-        case "star_wars":
-            starwars_background_sound.pause();
-            break;
-        case "desert_warfare":
-            desert_background_sound.pause();
-            break;
-        case "big_toe":
-            beach_background_sound.pause();
-            break;
-        case "girl_fight":
-            girlfight_background_sound.pause();
-            break;
-        default: return;
-    }//end switch
-}//end theme_background_sound_pause function
-
-function theme_background_sound_pause_initiator(){
-    theme_background_sound_pause (theme_value);
-}// needed to call theme background sound pause from doc.ready
-
-function theme_click_sound_controls (theme_value){
-    switch(theme_value){
-        case "class_room":
-            cell_click_sound_control("click-sound-classroom");
-            break;
-        case "star_wars":
-            cell_click_sound_control("click-sound-starwars");
-            break;
-        case "desert_warfare":
-            cell_click_sound_control("click-sound-desert");
-            break;
-        case "big_toe":
-            cell_click_sound_control("click-sound-beach");
-            break;
-        case "girl_fight":
-            cell_click_sound_control("click-sound-girlfight");
-            break;
-        default: return;
-    }//end switch
-}//end theme_click_sound_controls function
-
-function cell_click_sound_control(click_sound_id){
-    var clicksound = document.getElementById(click_sound_id);
-    clicksound.play();
-}//end cell_click_sound function
-
-function intro_sound_play(){
-    var intro_sound = document.getElementById("intro-sound");
-    intro_sound.play();
-    intro_sound.loop = true;
-}//end intro_sound_control function
-
-function intro_sound_pause(){
-    var intro_sound = document.getElementById("intro-sound");
-    intro_sound.pause();
-    $(".shutup-barney-button").hide();
-}//end intro_sound_control function
-
-function applause_winner(){
-    var applause_winner_sound = document.getElementById("game-won-sound");
-    applause_winner_sound.play();
-}//end applause winner function
-
-function button_click_sound(){
-    var button_click_sound = document.getElementById('button-click-sound');
-    button_click_sound.play();
-}//end button click sound function
+//
+// function theme_background_sound_play (theme_value){
+//     var starwars_background_sound = document.getElementById('starwars-background-sound');
+//     var desert_background_sound = document.getElementById('desert-background-sound');
+//     var beach_background_sound = document.getElementById('beach-background-sound');
+//     var girlfight_background_sound = document.getElementById('girlfight-background-sound');
+//     var classroom_background_sound = document.getElementById('classroom-background-sound');
+//     switch(theme_value){
+//         case "class_room":
+//             classroom_background_sound.play();
+//             classroom_background_sound.loop = true;
+//             break;
+//         case "star_wars":
+//             starwars_background_sound.play();
+//             classroom_background_sound.loop = true;
+//             break;
+//         case "desert_warfare":
+//             desert_background_sound.play();
+//             classroom_background_sound.loop = true;
+//             break;
+//         case "big_toe":
+//             beach_background_sound.play();
+//             classroom_background_sound.loop = true;
+//             break;
+//         case "girl_fight":
+//             girlfight_background_sound.play();
+//             classroom_background_sound.loop = true;
+//             break;
+//         default: return;
+//     }//end switch
+// }//end theme_background_sound_play function
+//
+// function theme_background_sound_pause (theme_value){
+//     var starwars_background_sound = document.getElementById('starwars-background-sound');
+//     var desert_background_sound = document.getElementById('desert-background-sound');
+//     var beach_background_sound = document.getElementById('beach-background-sound');
+//     var girlfight_background_sound = document.getElementById('girlfight-background-sound');
+//     var classroom_background_sound = document.getElementById('classroom-background-sound');
+//     switch(theme_value){
+//         case "class_room":
+//             classroom_background_sound.pause();
+//             break;
+//         case "star_wars":
+//             starwars_background_sound.pause();
+//             break;
+//         case "desert_warfare":
+//             desert_background_sound.pause();
+//             break;
+//         case "big_toe":
+//             beach_background_sound.pause();
+//             break;
+//         case "girl_fight":
+//             girlfight_background_sound.pause();
+//             break;
+//         default: return;
+//     }//end switch
+// }//end theme_background_sound_pause function
+//
+// function theme_background_sound_pause_initiator(){
+//     theme_background_sound_pause (theme_value);
+// }// needed to call theme background sound pause from doc.ready
+//
+// function theme_click_sound_controls (theme_value){
+//     switch(theme_value){
+//         case "class_room":
+//             cell_click_sound_control("click-sound-classroom");
+//             break;
+//         case "star_wars":
+//             cell_click_sound_control("click-sound-starwars");
+//             break;
+//         case "desert_warfare":
+//             cell_click_sound_control("click-sound-desert");
+//             break;
+//         case "big_toe":
+//             cell_click_sound_control("click-sound-beach");
+//             break;
+//         case "girl_fight":
+//             cell_click_sound_control("click-sound-girlfight");
+//             break;
+//         default: return;
+//     }//end switch
+// }//end theme_click_sound_controls function
+//
+// function cell_click_sound_control(click_sound_id){
+//     var clicksound = document.getElementById(click_sound_id);
+//     clicksound.play();
+// }//end cell_click_sound function
+//
+// function intro_sound_play(){
+//     var intro_sound = document.getElementById("intro-sound");
+//     intro_sound.play();
+//     intro_sound.loop = true;
+// }//end intro_sound_control function
+//
+// function intro_sound_pause(){
+//     var intro_sound = document.getElementById("intro-sound");
+//     intro_sound.pause();
+//     $(".shutup-barney-button").hide();
+// }//end intro_sound_control function
+//
+// function applause_winner(){
+//     var applause_winner_sound = document.getElementById("game-won-sound");
+//     applause_winner_sound.play();
+// }//end applause winner function
+//
+// function button_click_sound(){
+//     var button_click_sound = document.getElementById('button-click-sound');
+//     button_click_sound.play();
+// }//end button click sound function
 
 //TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CHANGER*************//
-
-function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
-    //change background
-    switch(theme_value) {
-        case "class_room":
-            $('.wrapper').css("background-image", "url(images/background/chalkboard_background.jpg)");
-            break;
-        case "star_wars":
-            $('.wrapper').css("background-image", "url(images/background/starwars_background.jpg)");
-            break;
-        case "desert_warfare":
-            $('.wrapper').css("background-image", "url(images/background/desert_background.jpg)");
-            break;
-        case "big_toe":
-            $('.wrapper').css("background-image", "url(images/background/beach_background.jpg)");
-            break;
-        case "girl_fight":
-            $('.wrapper').css("background-image", "url(images/background/girlfight_background.jpg)");
-            break;
-        default: return;
-    }//end switch
-}//end theme_picker function
-
-function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
-    switch(theme_value) {
-        case "class_room":
-            $('.ex').css("background-image", "url(images/x/classroom_x.png)");
-            break;
-        case "star_wars":
-            $('.ex').css("background-image", "url(images/x/starwars_x.png)");
-            break;
-        case "desert_warfare":
-            $('.ex').css("background-image", "url(images/x/desert_x.png)");
-            break;
-        case "big_toe":
-            $('.ex').css("background-image", "url(images/x/beach_x.png)");
-            break;
-        case "girl_fight":
-            $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
-            break;
-        default: return; //why staying at background not work, had to switch background-image
-    }//end switch
-}//end theme_ex_changer function
-
-function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
-    //change background
-    switch(theme_value) {
-        case "class_room":
-            $('.ow').css("background-image", "url(images/o/classroom_o.png)");
-            break;
-        case "star_wars":
-            $('.ow').css("background-image", " url(images/o/starwars_o.png)");
-            break;
-        case "desert_warfare":
-            $('.ow').css("background-image", " url(images/o/desert_o.png)");
-            break;
-        case "big_toe":
-            $('.ow').css("background-image", " url(images/o/beach_o.png)");
-            break;
-        case "girl_fight":
-            $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
-            break;
-        default: return;
-    }//end switch
-}//end theme_picker function
-
-function theme_font_changer(theme_value){
-    switch(theme_value) {
-        case "class_room":
-            //$('*').css("font-family", "");
-            break;
-        case "star_wars":
-            $('*').css("font-family", "Arial");
-            $(".game_title").html("STAR TREK  <span> RULES</span> !!!");
-            $(".game_title").css("color", "black");
-            $("h4").css("font-size",".8em");
-            break;
-        case "desert_warfare":
-            $('*').css("font-family", "Noto Serif");
-            $(".game_title").html("Draw me wearing this, wearing <span> only this</span>");
-            $("h4").css("font-size",".8em");
-            break;
-        case "big_toe":
-            $('*').css("font-family", "Open Sans");
-            $(".game_title").html("BIG TOE  <span> DEATH MATCH</span> !!!");
-            break;
-        case "girl_fight":
-            $('*').css("font-family", "GFS Didot, serif");
-            $(".game_title").html("YOU, ARE <span> NOT </span> PREPARED !!!");
-            $("h3 span").css("font-size", "2em");
-            break;
-        default: return; //why staying at background not work, had to switch background-image
-    }//end switch
-}//end theme font changer function
+//
+// function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+//     //change background
+//     switch(theme_value) {
+//         case "class_room":
+//             $('.wrapper').css("background-image", "url(images/background/chalkboard_background.jpg)");
+//             break;
+//         case "star_wars":
+//             $('.wrapper').css("background-image", "url(images/background/starwars_background.jpg)");
+//             break;
+//         case "desert_warfare":
+//             $('.wrapper').css("background-image", "url(images/background/desert_background.jpg)");
+//             break;
+//         case "big_toe":
+//             $('.wrapper').css("background-image", "url(images/background/beach_background.jpg)");
+//             break;
+//         case "girl_fight":
+//             $('.wrapper').css("background-image", "url(images/background/girlfight_background.jpg)");
+//             break;
+//         default: return;
+//     }//end switch
+// }//end theme_picker function
+//
+// function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
+//     switch(theme_value) {
+//         case "class_room":
+//             $('.ex').css("background-image", "url(images/x/classroom_x.png)");
+//             break;
+//         case "star_wars":
+//             $('.ex').css("background-image", "url(images/x/starwars_x.png)");
+//             break;
+//         case "desert_warfare":
+//             $('.ex').css("background-image", "url(images/x/desert_x.png)");
+//             break;
+//         case "big_toe":
+//             $('.ex').css("background-image", "url(images/x/beach_x.png)");
+//             break;
+//         case "girl_fight":
+//             $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
+//             break;
+//         default: return; //why staying at background not work, had to switch background-image
+//     }//end switch
+// }//end theme_ex_changer function
+//
+// function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+//     //change background
+//     switch(theme_value) {
+//         case "class_room":
+//             $('.ow').css("background-image", "url(images/o/classroom_o.png)");
+//             break;
+//         case "star_wars":
+//             $('.ow').css("background-image", " url(images/o/starwars_o.png)");
+//             break;
+//         case "desert_warfare":
+//             $('.ow').css("background-image", " url(images/o/desert_o.png)");
+//             break;
+//         case "big_toe":
+//             $('.ow').css("background-image", " url(images/o/beach_o.png)");
+//             break;
+//         case "girl_fight":
+//             $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
+//             break;
+//         default: return;
+//     }//end switch
+// }//end theme_picker function
+//
+// function theme_font_changer(theme_value){
+//     switch(theme_value) {
+//         case "class_room":
+//             //$('*').css("font-family", "");
+//             break;
+//         case "star_wars":
+//             $('*').css("font-family", "Arial");
+//             $(".game_title").html("STAR TREK  <span> RULES</span> !!!");
+//             $(".game_title").css("color", "black");
+//             $("h4").css("font-size",".8em");
+//             break;
+//         case "desert_warfare":
+//             $('*').css("font-family", "Noto Serif");
+//             $(".game_title").html("Draw me wearing this, wearing <span> only this</span>");
+//             $("h4").css("font-size",".8em");
+//             break;
+//         case "big_toe":
+//             $('*').css("font-family", "Open Sans");
+//             $(".game_title").html("BIG TOE  <span> DEATH MATCH</span> !!!");
+//             break;
+//         case "girl_fight":
+//             $('*').css("font-family", "GFS Didot, serif");
+//             $(".game_title").html("YOU, ARE <span> NOT </span> PREPARED !!!");
+//             $("h3 span").css("font-size", "2em");
+//             break;
+//         default: return; //why staying at background not work, had to switch background-image
+//     }//end switch
+// }//end theme font changer function
 
 //TODO ***************************** GLOBAL VARIABLES  *******************************//
 
@@ -463,49 +463,49 @@ function toggle_and_get_current_symbol(){
 
 //TODO **** begin document ready
 $(document).ready(function(){
-    //TODO 0.9 click sound for all button clicks
-    $("button, input").click(button_click_sound);
-    //TODO 1. players will enter name into input field + click submit, click function will
-    //Player1-name-value capture
-    $("#player1-name-submit").click(click_player1_name);
-    //Player2-name-value capture
-    $("#player2-name-submit").click(click_player2_name);
-
-    // TODO 2. capture num_of_rows and create game board when submit button is clicked
-    $("#number_of_rows-submit").click(num_of_row_capture);
-
-    // TODO 3. capture num_of_cells_to_win
-    $("#number_of_matches-submit").click(num_of_cells_capture);
-
-    // TODO 3.5 capture theme value and create themes
-    $("#theme_picker-submit").click(theme_value_capture);
-
-    // TODO 3.6 load intro sound
-    intro_sound_play();
-
-    // TODO 3.65 "shut up barney button"
-    $(".shutup-barney-button").click(intro_sound_pause);
-
-    // TODO 3.7 disable background sound button theme_background_sound_pause
-    $(".pause-background-sound-button").click(theme_background_sound_pause_initiator);
-
-    // TODO 4. using jquery to dynamically create game board based on user input
-    //creating the array grid
+    // //TODO 0.9 click sound for all button clicks
+    // $("button, input").click(button_click_sound);
+    // //TODO 1. players will enter name into input field + click submit, click function will
+    // //Player1-name-value capture
+    // $("#player1-name-submit").click(click_player1_name);
+    // //Player2-name-value capture
+    // $("#player2-name-submit").click(click_player2_name);
+    //
+    // // TODO 2. capture num_of_rows and create game board when submit button is clicked
+    // $("#number_of_rows-submit").click(num_of_row_capture);
+    //
+    // // TODO 3. capture num_of_cells_to_win
+    // $("#number_of_matches-submit").click(num_of_cells_capture);
+    //
+    // // TODO 3.5 capture theme value and create themes
+    // $("#theme_picker-submit").click(theme_value_capture);
+    //
+    // // TODO 3.6 load intro sound
+    // intro_sound_play();
+    //
+    // // TODO 3.65 "shut up barney button"
+    // $(".shutup-barney-button").click(intro_sound_pause);
+    //
+    // // TODO 3.7 disable background sound button theme_background_sound_pause
+    // $(".pause-background-sound-button").click(theme_background_sound_pause_initiator);
+    //
+    // // TODO 4. using jquery to dynamically create game board based on user input
+    // //creating the array grid
     create_grid_array();
     /////dynamic creation of game board
     game_board_creation();
 
-    //TODO RESET BUTTON
-    $(".reset-button").click(reset);//end RESET
-
-    //TODO LOCAL STORAGE RESTORE
-    last_data = local_storage_restore();
-    // restore_last_game_board(last_data);
-
-    //TODO RESTORE BUTTON
-    $('.restore-button').click(function () {
-        restore_last_game_board(last_data);
-    });
+    // //TODO RESET BUTTON
+    // $(".reset-button").click(reset);//end RESET
+    //
+    // //TODO LOCAL STORAGE RESTORE
+    // last_data = local_storage_restore();
+    // // restore_last_game_board(last_data);
+    //
+    // //TODO RESTORE BUTTON
+    // $('.restore-button').click(function () {
+    //     restore_last_game_board(last_data);
+    // });
 });//TODO **** end document ready
 
 //TODO ***************************** RESET SECTION  *******************************//

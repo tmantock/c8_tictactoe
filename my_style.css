@@ -73,10 +73,12 @@ h3 span {color: red}
 .theme_picker {
     top: 40vh;
 }
-input[type="submit"] {
+/*change: added select here and added border radius*/
+input[type="submit"], select {
     color: black;
     box-shadow: 2px 2px 8px black;
     background-color: 	white;
+    border-radius: 2px;
     font-size: 1em;
 }
 input {
@@ -86,7 +88,11 @@ input {
     box-shadow: 2px 2px 8px black inset;
     background-color: #404040;
 }
-
+/*change: added this part*/
+input[type="text"] {
+    font-size: .8em;
+    padding: .3em;
+}
 input[type="submit"]:hover,
 .restore-button:hover,
 .reset-button:hover,
@@ -104,11 +110,13 @@ h4 {
     -webkit-margin-after: 0;
 }
 /******************* PLAYERS SECTION *******************/
+/*change: added font size*/
 .players {
     position: relative;
     height: 5vh;
     width: auto;
     margin: 0 auto;
+    font-size: 1.4em;
 }
 .player {
     height: auto;
@@ -271,3 +279,28 @@ audio {
     }
 }
 
+/*my part*/
+.container-fluid {
+    background: url(images/chalkboard.jpg) no-repeat;
+    background-size: cover;
+    padding: 5%;
+}
+.game_board {
+    /*border: 1px solid yellow;*/
+    position: absolute;
+    bottom:50%;
+    left: 50%;
+    width: 80vh;
+    height: 80vh;
+    margin: 0 auto;
+    font-size: 0;
+    transform: translate(-50%,50%);
+}
+#eraser {
+    position: absolute;
+    top: 10%;
+    left: 70%;
+    width: 25%;
+    height: 25%;
+    background: url("images/chalkboard-eraser-small.png") no-repeat;
+}
