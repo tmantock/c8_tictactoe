@@ -705,3 +705,8 @@ var create_grid_array = function () {
     }
     console.log(grid_array);
 };//////////end of create grid array
+
+//TODO ***************************** NEW ANIMATION  *******************************//
+
+
+//TODO ***************************** MODAL RELATED FUNCTIONALITY  *******************************//

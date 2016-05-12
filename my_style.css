@@ -289,7 +289,7 @@
 }
 .game_board {
     position: absolute;
-    bottom:0%;
+    bottom:-10%;
     left:50%;
     width: 80vh;
     height: 80vh;
@@ -300,9 +300,9 @@
 }
 .player_names {
     position: absolute;
-    top: -10%;
+    top: -15%;
     width: 80%;
-    height: 10%;
+    height: 13%;
     left:0;
     background-color: blue;
 }
@@ -323,7 +323,7 @@
 #eraser:hover {
     transform: scale(1.1);
 }
-#eraser:focus {
+#eraser:focus, .button-group button:focus {
     outline: none;
 }
 .modal label, .modal h4, .modal input, .modal-content, .form-control,
@@ -340,20 +340,29 @@
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
-.btn-group {
+.button-group {
     position: absolute;
     font-size: 1.5em;
-    width: 10vw;
+    width: 15vw;
     height: 5vw;
     top:8vh;
-    right: 5vw;
-    color: rgba(102,102,0,1);
+    right: 1vw;
+    color: rgba(255,255,255,1);
 }
-.btn-group button {
+.button-group button {
+    border: 0;
+    display: inline-block;
     padding: 2%;
     border-radius: 10px;
     background-color: transparent;
+    box-shadow: 5px 5px 10px black;
 }
+.button-group button:hover {
+    background-color: rgba(255,255,255,.2);
+}
+/*.button-group button:focus {*/
+    /*box-shadow: 5px 5px 10px black inset;*/
+/*}*/
 .cell{
     width: 2em;
     border: 40px solid transparent;
@@ -361,7 +370,7 @@
     display: inline-block;
     margin: 0;
     background-color: rgba(102,102,0,.2);
-
+    box-shadow: 5px 5px 10px black;
 }
 .cell:hover {
     background-color: rgba(102,102,0,.4);
