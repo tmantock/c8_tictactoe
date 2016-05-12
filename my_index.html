@@ -27,8 +27,8 @@
       <div class="game_board">
           <div class="player_names">
               <span class="col-sm-5 xs-hidden" id="player_one"></span>
-              <span class="col-sm-2 xs-hidden"></span>
-              <span id="player_two xs-hidden" class="col-sm-5"></span>
+              <span class="col-sm-2 xs-hidden" id="vs"></span>
+              <span id="player_two" class="col-sm-5 xs-hidden"></span>
           </div>
       </div><!--end of game board-->
 
@@ -162,7 +162,17 @@
                          <option value="50">50</option>
                      </select>
                      </div>
-                 <button id="setting_submit" type="submit" class="btn btn-default">Submit</button>
+                 <div class="theme_piching">
+                     <h4>Pick your favorite theme:</h4>
+                     <select class="theme_picker_select form-control" name="battle_ground">
+                         <option value="auto_shop">Auto Shop</option>
+                         <option value="star_wars">Star Wars</option>
+                         <option value="desert_warfare">Desert Warfare</option>
+                         <option value="big_toe">Big Toe</option>
+                         <option value="girl_fight">Girl Fight!!!</option>
+                     </select>
+                 </div>
+                 <button id="setting_submit" type="submit" class="btn btn-info">Submit</button>
              <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
              </div>

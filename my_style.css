@@ -199,19 +199,19 @@
     /*color: red;*/
 /*}*/
 
-/*@keyframes glowing {*/
-    /*0% {text-shadow: 0 0 20px lawngreen;}*/
-    /*50% {text-shadow: 0 0 20px green;}*/
-    /*100% {text-shadow: 0 0 20px yellow;}*/
-/*}*/
+@keyframes glowing {
+    0% {text-shadow: 0 0 20px lawngreen;}
+    50% {text-shadow: 0 0 20px green;}
+    100% {text-shadow: 0 0 20px yellow;}
+}
 /*@keyframes glowing2 {*/
     /*0% {text-shadow: 0 0 20px yellow;}*/
     /*50% {text-shadow: 0 0 20px orange;}*/
     /*100% {text-shadow: 0 0 20px red;}*/
 /*}*/
-/*.animate {*/
-    /*animation: glowing 1000ms infinite;*/
-/*}*/
+.animate {
+    animation: glowing 1000ms infinite;
+}
 /*!***********SOUND*********!*/
 /*audio {*/
     /*position: absolute;*/
@@ -252,32 +252,32 @@
     /*background-repeat: no-repeat;*/
     /*background-size: contain;*/
 /*}*/
-/*.winning-cell {*/
-    /*background-color: red;*/
-/*}*/
+.winning-cell {
+    background-color: red;
+}
 
-/*.ex.shakes,*/
-/*.ow.shakes{*/
-    /*animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;*/
-/*}*/
+.ex.shakes,
+.ow.shakes{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
 
-/*@keyframes shake {*/
-    /*10%, 90% {*/
-        /*transform: translate3d(-1px, 0, 0);*/
-    /*}*/
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
 
-    /*20%, 80% {*/
-        /*transform: translate3d(4px, 0, 0);*/
-    /*}*/
+    20%, 80% {
+        transform: translate3d(4px, 0, 0);
+    }
 
-    /*30%, 50%, 70% {*/
-        /*transform: translate3d(-8px, 0, 0);*/
-    /*}*/
+    30%, 50%, 70% {
+        transform: translate3d(-8px, 0, 0);
+    }
 
-    /*40%, 60% {*/
-        /*transform: translate3d(8px, 0, 0);*/
-    /*}*/
-/*}*/
+    40%, 60% {
+        transform: translate3d(8px, 0, 0);
+    }
+}
 
 /****************************my part***************************************/
 .wraper {
@@ -289,7 +289,7 @@
 }
 .game_board {
     position: absolute;
-    bottom:-10%;
+    bottom:0%;
     left:50%;
     width: 80vh;
     height: 80vh;
@@ -304,7 +304,6 @@
     width: 80%;
     height: 13%;
     left:0;
-    background-color: blue;
 }
 #eraser {
     position: absolute;
@@ -330,6 +329,10 @@
 .modal select option, .modal button{
     font-family: 'Roboto', sans-serif;
     line-height: 2.5em;
+}
+.modal button {
+    margin: 2% auto;
+    padding:-1em ;
 }
 .modal-content {
     background: url("images/modal back.jpg") no-repeat;
@@ -360,12 +363,22 @@
 .button-group button:hover {
     background-color: rgba(255,255,255,.2);
 }
-/*.button-group button:focus {*/
-    /*box-shadow: 5px 5px 10px black inset;*/
-/*}*/
+#player_one, #player_two, #vs {
+    align-content: center;
+    text-align: center;
+    padding: 5%;
+    font-size: 1.5vw;
+    transition-duration: 3s;
+    height:100%;
+    color: #000;
+    transform: scale(1);
+}
+#vs {
+    color: #404040;
+    font-size: large;
+}
 .cell{
     width: 2em;
-    border: 40px solid transparent;
     height: 2em;
     display: inline-block;
     margin: 0;
@@ -378,12 +391,14 @@
 .ex {
     background-image: url("images/newX.png");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 80%;
+    background-position: center;
 }
 .ow {
     background-image: url(images/Tire.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 80%;
+    background-position: center;
 }
 
 /*in portrate I have to change the size of game board based on % or vw + change btn group size*/

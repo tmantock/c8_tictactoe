@@ -88,71 +88,45 @@ function store_essential_data () {
 // }//end of animate_name function $(".appended.animate.winner").html(<h3>Congratulations</h3>);
 //
 // // Player name animation function
-// function animate_name () {
-//     if(player_symbol === 'ex') {             //if current player is ex, animate
-//         $('.player1').addClass('animate');
-//         $('.player2').removeClass('animate');
-//     }//end if
-//     else {                                   //else, animate other player
-//         $('.player2').addClass('animate');
-//         $('.player1').removeClass('animate');
-//     }//end else
-// }//end of animate_name function
+function animate_name () {
+    if(player_symbol === 'ex') {             //if current player is ex, animate
+        $('#player_one').addClass('animate');
+        $('#player_two').removeClass('animate');
+    }//end if
+    else {                                   //else, animate other player
+        $('#player_two').addClass('animate');
+        $('#player_one').removeClass('animate');
+    }//end else
+}//end of animate_name function
 
 //TODO ***************************** INPUT CAPTURES  *******************************//
 
-function click_player1_name(){
-    //capture plyr name store as var
-    //if typeof player name value = undefined, then proceed to below,
-    if (typeof player1_name_value === 'undefined')
-    {
-        player1_name_value = $('#player1-name-value').val();
-        console.log('var player1_name_value = ' + player1_name_value);
-    }//end of if
-    // hide player input fields, append player name
-    var local_player1_name_value = player1_name_value;
-    $('#player1-name-value').hide();
-    $('#player1-name-submit').hide();
-    $('.player.player1').addClass('appended');
-    $('.player.player1.appended').append(local_player1_name_value);
+
+
+function modalSubmition() {
+    //////getting players names
+    player1_name_value = $("#player1").val();
+    player2_name_value = $("#player2").val();
+    $("#player_one").text(player1_name_value);
+    $("#player_two").text(player2_name_value);
+    $("#vs").text("vs");
     animate_name();
-}//end click
-
-function click_player2_name(){
-    //capture plyr nam store as var
-    if (typeof player2_name_value === 'undefined')
-    {
-        player2_name_value = $('#player2-name-value').val();
-        console.log('var player2_name_value = ' + player2_name_value);
-    }//end of if
-    var local_player2_name_value = player2_name_value;
-    $('#player2-name-value').hide();
-    $('#player2-name-submit').hide();
-    $('.player.player2').addClass('appended');
-    $('.player.player2.appended').append(local_player2_name_value);
-    animate_name();
-}//end click
-
-function num_of_row_capture(){
-    //capture num_of_rows store as var num_of_rows
-    num_of_rows = $('.number_of_rows').val();               //captures the input value and stores it
-    console.log('var num_of_rows is now: '+num_of_rows);
-    $('.row-number').hide();                                //hides input form
-    num_of_rows = parseInt(num_of_rows);                    //converts value to number and store
-    //call game board creation
-    $(".game_board").empty();                         //empty game board, else, new board created will have old game
-    grid_array = [];                                  //clear grid
-    create_grid_array();                              //recreate grid
-    game_board_creation();                            //create game board
-}//end capture function
-
-function num_of_cells_capture(){
-    //capture num_of_cells_to_win store as var
+    ///////getting num of rows
+    var row_num = $('.number_of_rows').val();
+    if (row_num != "") {
+        num_of_rows = $('.number_of_rows').val();
+        num_of_rows = parseInt(num_of_rows);                    //converts value to number and store
+        //call game board creation
+        $(".game_board").empty();                         //empty game board, else, new board created will have old game
+        grid_array = [];                                  //clear grid
+        create_grid_array();                              //recreate grid
+        game_board_creation();                            //create game board
+    }//////////end of if to check if the user has new num of row
+    ///////////////////getting num of cells to win
     num_of_cells_to_win = $('.number_of_matches').val();
     console.log('num_of_cells_to_win = ' + num_of_cells_to_win);
     num_of_cells_to_win = parseInt(num_of_cells_to_win);
     if(num_of_cells_to_win <= num_of_rows) {
-        $('.matches-number').hide();
         $(".game_board").empty();
         grid_array = [];
         create_grid_array();
@@ -161,14 +135,11 @@ function num_of_cells_capture(){
     else {
         alert("Number of matches must be > or = number of rows currently on the board, Duh!!");
     }
-}//end capture function
-
-function theme_value_capture(){
+    /////////////getting theme
     //capture theme, store as var
     theme_value = $(".theme_picker_select").val();
     console.log('theme picked = theme_value, is : ' + theme_value);
-    $('.theme_picker').hide();
-    theme_background_sound_play(theme_value);
+    // theme_background_sound_play(theme_value);
     $(".game_board").empty();
     grid_array = [];
     create_grid_array();
@@ -177,9 +148,9 @@ function theme_value_capture(){
     theme_ex_changer(theme_value);
     theme_ow_changer(theme_value);
     theme_font_changer(theme_value);
-}//end capture function
+}///////////end of modal submition
 
-//TODO ***************************** SOUND CONTROL *******************************//
+// TODO ***************************** SOUND CONTROL *******************************//
 //
 // function theme_background_sound_play (theme_value){
 //     var starwars_background_sound = document.getElementById('starwars-background-sound');
@@ -289,102 +260,102 @@ function theme_value_capture(){
 //     var button_click_sound = document.getElementById('button-click-sound');
 //     button_click_sound.play();
 // }//end button click sound function
+//
+// TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CHANGER*************//
 
-//TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CHANGER*************//
-//
-// function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
-//     //change background
-//     switch(theme_value) {
-//         case "class_room":
-//             $('.wrapper').css("background-image", "url(images/background/chalkboard_background.jpg)");
-//             break;
-//         case "star_wars":
-//             $('.wrapper').css("background-image", "url(images/background/starwars_background.jpg)");
-//             break;
-//         case "desert_warfare":
-//             $('.wrapper').css("background-image", "url(images/background/desert_background.jpg)");
-//             break;
-//         case "big_toe":
-//             $('.wrapper').css("background-image", "url(images/background/beach_background.jpg)");
-//             break;
-//         case "girl_fight":
-//             $('.wrapper').css("background-image", "url(images/background/girlfight_background.jpg)");
-//             break;
-//         default: return;
-//     }//end switch
-// }//end theme_picker function
-//
-// function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
-//     switch(theme_value) {
-//         case "class_room":
-//             $('.ex').css("background-image", "url(images/x/classroom_x.png)");
-//             break;
-//         case "star_wars":
-//             $('.ex').css("background-image", "url(images/x/starwars_x.png)");
-//             break;
-//         case "desert_warfare":
-//             $('.ex').css("background-image", "url(images/x/desert_x.png)");
-//             break;
-//         case "big_toe":
-//             $('.ex').css("background-image", "url(images/x/beach_x.png)");
-//             break;
-//         case "girl_fight":
-//             $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
-//             break;
-//         default: return; //why staying at background not work, had to switch background-image
-//     }//end switch
-// }//end theme_ex_changer function
-//
-// function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
-//     //change background
-//     switch(theme_value) {
-//         case "class_room":
-//             $('.ow').css("background-image", "url(images/o/classroom_o.png)");
-//             break;
-//         case "star_wars":
-//             $('.ow').css("background-image", " url(images/o/starwars_o.png)");
-//             break;
-//         case "desert_warfare":
-//             $('.ow').css("background-image", " url(images/o/desert_o.png)");
-//             break;
-//         case "big_toe":
-//             $('.ow').css("background-image", " url(images/o/beach_o.png)");
-//             break;
-//         case "girl_fight":
-//             $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
-//             break;
-//         default: return;
-//     }//end switch
-// }//end theme_picker function
-//
-// function theme_font_changer(theme_value){
-//     switch(theme_value) {
-//         case "class_room":
-//             //$('*').css("font-family", "");
-//             break;
-//         case "star_wars":
-//             $('*').css("font-family", "Arial");
-//             $(".game_title").html("STAR TREK  <span> RULES</span> !!!");
-//             $(".game_title").css("color", "black");
-//             $("h4").css("font-size",".8em");
-//             break;
-//         case "desert_warfare":
-//             $('*').css("font-family", "Noto Serif");
-//             $(".game_title").html("Draw me wearing this, wearing <span> only this</span>");
-//             $("h4").css("font-size",".8em");
-//             break;
-//         case "big_toe":
-//             $('*').css("font-family", "Open Sans");
-//             $(".game_title").html("BIG TOE  <span> DEATH MATCH</span> !!!");
-//             break;
-//         case "girl_fight":
-//             $('*').css("font-family", "GFS Didot, serif");
-//             $(".game_title").html("YOU, ARE <span> NOT </span> PREPARED !!!");
-//             $("h3 span").css("font-size", "2em");
-//             break;
-//         default: return; //why staying at background not work, had to switch background-image
-//     }//end switch
-// }//end theme font changer function
+function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+    //change background
+    switch(theme_value) {
+        case "auto_shop":
+            $('.wraper').css("background-image", "url(images/back1.jpg)");
+            break;
+        case "star_wars":
+            $('.wraper').css("background-image", "url(images/background/starwars_background.jpg)");
+            break;
+        case "desert_warfare":
+            $('.wraper').css("background-image", "url(images/background/desert_background.jpg)");
+            break;
+        case "big_toe":
+            $('.wraper').css("background-image", "url(images/background/beach_background.jpg)");
+            break;
+        case "girl_fight":
+            $('.wraper').css("background-image", "url(images/background/girlfight_background.jpg)");
+            break;
+        default: return;
+    }//end switch
+}//end theme_picker function
+
+function theme_ex_changer(theme_value){ //take input: theme_value and changes ex images
+    switch(theme_value) {
+        case "auto_shop":
+            $('.ex').css("background-image", "url(images/newX.png)");
+            break;
+        case "star_wars":
+            $('.ex').css("background-image", "url(images/x/starwars_x.png)");
+            break;
+        case "desert_warfare":
+            $('.ex').css("background-image", "url(images/x/desert_x.png)");
+            break;
+        case "big_toe":
+            $('.ex').css("background-image", "url(images/x/beach_x.png)");
+            break;
+        case "girl_fight":
+            $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
+            break;
+        default: return; //why staying at background not work, had to switch background-image
+    }//end switch
+}//end theme_ex_changer function
+
+function theme_ow_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
+    //change background
+    switch(theme_value) {
+        case "auto_shop":
+            $('.ow').css("background-image", "url(images/Tire.png)");
+            break;
+        case "star_wars":
+            $('.ow').css("background-image", " url(images/o/starwars_o.png)");
+            break;
+        case "desert_warfare":
+            $('.ow').css("background-image", " url(images/o/desert_o.png)");
+            break;
+        case "big_toe":
+            $('.ow').css("background-image", " url(images/o/beach_o.png)");
+            break;
+        case "girl_fight":
+            $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
+            break;
+        default: return;
+    }//end switch
+}//end theme_picker function
+
+function theme_font_changer(theme_value){
+    switch(theme_value) {
+        case "class_room":
+            //$('*').css("font-family", "");
+            break;
+        case "star_wars":
+            $('*').css("font-family", "Arial");
+            $(".game_title").html("STAR TREK  <span> RULES</span> !!!");
+            $(".game_title").css("color", "black");
+            $("h4").css("font-size",".8em");
+            break;
+        case "desert_warfare":
+            $('*').css("font-family", "Noto Serif");
+            $(".game_title").html("Draw me wearing this, wearing <span> only this</span>");
+            $("h4").css("font-size",".8em");
+            break;
+        case "big_toe":
+            $('*').css("font-family", "Open Sans");
+            $(".game_title").html("BIG TOE  <span> DEATH MATCH</span> !!!");
+            break;
+        case "girl_fight":
+            $('*').css("font-family", "GFS Didot, serif");
+            $(".game_title").html("YOU, ARE <span> NOT </span> PREPARED !!!");
+            $("h3 span").css("font-size", "2em");
+            break;
+        default: return; //why staying at background not work, had to switch background-image
+    }//end switch
+}//end theme font changer function
 
 //TODO ***************************** GLOBAL VARIABLES  *******************************//
 
@@ -424,9 +395,11 @@ function game_board_creation () {
                         toggle_and_get_current_symbol();
                     }/// end of else
                     animate_name();         //glow current player's name if it is his turn
-                    theme_click_sound_controls(theme_value);
+                    /////******************here**************************************
+                    // theme_click_sound_controls(theme_value);
                     theme_ex_changer(theme_value);
                     theme_ow_changer(theme_value);
+                    /************************Uto the end of here***********************/
                     this.html.addClass('shakes');
                 }//click handler
             };///new obj
@@ -437,7 +410,7 @@ function game_board_creation () {
         game_board_grid.push(inside_array);
     }////x
     // width and height of cell
-    var cell_width = 80/num_of_rows+'%';
+    var cell_width = 80/num_of_rows+'vh';
     $('.cell').css({"width": cell_width,"height": cell_width});
 }//end function game_board_creation
 
@@ -494,7 +467,7 @@ $(document).ready(function(){
     create_grid_array();
     /////dynamic creation of game board
     game_board_creation();
-
+     $("#setting_submit").click(modalSubmition);
     // //TODO RESET BUTTON
     // $(".reset-button").click(reset);//end RESET
     //
@@ -516,10 +489,10 @@ function reset() {
     player_symbol = 'ex';
     last_clicked = null;
     game_won = false;
-    $('.player2').removeClass('winner2');      //remove and add classes to restore name styling
-    $('.player1').removeClass('winner');
-    $('.player2').addClass('player');
-    $('.player1').addClass('player');
+    $('#player_two').removeClass('winner2');      //remove and add classes to restore name styling
+    $('#player_one').removeClass('winner');
+    $('#player_two').addClass('player');
+    $('#player_one').addClass('player');
     $('.matches-number').show();                //show user inputs
     $('.row-number').show();
     $('.theme_picker').show();
@@ -706,7 +679,6 @@ var create_grid_array = function () {
     console.log(grid_array);
 };//////////end of create grid array
 
-//TODO ***************************** NEW ANIMATION  *******************************//
 
 
-//TODO ***************************** MODAL RELATED FUNCTIONALITY  *******************************//
+
