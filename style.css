@@ -12,10 +12,9 @@ body{
     width: 50%;
     height: 100%;
     float:right;
-    outline: 1px dashed orange;
     justify-content:center;
     align-items:center;
-    background-image: url("http://vignette3.wikia.nocookie.net/starwars/images/7/72/Hyperspace-SWPuzzle.jpg/revision/latest?cb=20101018151244");
+    background-image: url("http://i.imgur.com/WdJLMuJ.jpg");
     background-repeat:no-repeat;
     background-size:1000px 975px;
 }
@@ -25,7 +24,6 @@ body{
 .game-area.left_side{
     width:25%;
     height:100%;
-    outline: 1px dashed deeppink;
     margin:0;
     padding:0;
     display:inline-flex;
@@ -38,7 +36,6 @@ body{
 .turnLeft{
     width: 20%;
     height: 10%;
-    outline: 1px dashed orange;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -47,7 +44,6 @@ body{
 .left_box{
     width:100%;
     height:50%;
-    outline: 1px dashed deeppink;
     margin:0;
     padding:0;
     display:flex;
@@ -67,7 +63,7 @@ body{
     background-image: url("https://s-media-cache-ak0.pinimg.com/736x/42/1c/a3/421ca3ad9bad9180677a68a0740fb3b0.jpg");
     background-repeat:no-repeat;
     background-size: 100px 300px;
-    animation:  1s animate_borders ease infinite, fly_in_test2 5s;
+    animation:  1s animate_borders ease infinite, swordUp 45s;
     position:absolute;
 }
 
@@ -75,7 +71,6 @@ body{
 .game-area.right_side{
     width:25%;
     height: 100%;
-    outline: 1px dashed red;
     margin:0;
     padding:0;
     float:right;
@@ -89,7 +84,6 @@ body{
 .turnRight{
     width: 20%;
     height: 10%;
-    outline: 1px dashed orange;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -98,7 +92,6 @@ body{
 .right_box{
     width:100%;
     height:50%;
-    outline: 1px dashed deeppink;
     margin:0;
     padding:0;
     display:flex;
@@ -117,13 +110,12 @@ body{
     background-image: url("http://cdn.appcrawlr.com/imageService/aHR0cHM6Ly9saDQuZ2dwaHQuY29tL2p6VDEwRXhmRWZISWZTS1pNS283WnAzTDJZQ2F2UkhhWUFsRkVtVkJhakZMeEluNk9VbGdDZFNNUG5PbTl6RmR4SWs9aDY0MA?w=340&h=280");
     background-repeat:no-repeat;
     background-size: 100px 300px;
-    animation:1s animate_borders_blue ease infinite,fly_in_test2 5s ;
+    animation:1s animate_borders_blue ease infinite,swordUp 45s ;
     position:absolute;
 }
 .top_bar{
     width: 100%;
     height: 20%;
-    outline: 1px dashed red;
     display:flex;
 
     justify-content:space-between;
@@ -131,7 +123,6 @@ body{
 .gameArea{
     justify-content:center;
     align-items:center;
-    outline: 1px solid lightseagreen;
     height:80%;
     width:100%;
     z-index: +1;
@@ -151,74 +142,57 @@ body{
 .xWing{
     width: 10%;
     height: 20%;
-    outline: 1px dashed red;
     position:absolute;
     background-image: url("http://screenrant.com/wp-content/uploads/Star-Wars-Original-Trilogy-X-Wing-Art.jpg");
     background-repeat:no-repeat;
     background-size: 200px 200px;
-    animation: fly_in_test3 5s;
-    animation-duration: 10s;
+    animation: fly_in_test3 5s  infinite;
+    animation-duration: 3s;
 }
 .lazerRight{
     width: 10%;
     height: 20%;
-    outline: 1px dashed red;
     background-image: url("http://orig00.deviantart.net/c003/f/2011/153/9/d/red_blaster_bolt_by_drew47at-d3hvybs.jpg");
     background-repeat:no-repeat;
     background-size: 100px 50px;
     position:absolute;
-    animation: fly_in_test4 5s;
-    animation-duration: 10s;
+    animation: fly_in_test4 5s infinite;
+    animation-duration: 1s;
 }
 .tieFighter{
     width: 10%;
     height: 20%;
-    outline: 1px dashed red;
     position:absolute;
     background-image: url("http://www.jrbassett.com/images/TFg3d0.JPG");
     background-repeat:no-repeat;
     background-size: 150px 200px;
-    animation: fly_in_left 5s ;
-    animation-duration: 10s;
+    animation: fly_in_left 5s  infinite ;
+    animation-duration: 3s;
 }
 .leftLazer{
     width: 10%;
     height: 20%;
-    outline: 1px dashed red;
     background-image: url("http://orig00.deviantart.net/c003/f/2011/153/9/d/red_blaster_bolt_by_drew47at-d3hvybs.jpg");
     background-repeat:no-repeat;
     background-size: 100px 50px;
     position:absolute;
-    animation: fly_in_test5 5s;
-    animation-duration: 10s;
-}
-.explosionLeft{
-    width: 15%;
-    height: 100%;
-    outline: 1px dashed red;
-    background-repeat:no-repeat;
-    background-image: url("http://40.media.tumblr.com/19b28f23bd568d07f2d4473dbe98a8b6/tumblr_ml1nr8NdrB1s5jjtzo1_1280.png");
-    background-size: 150px 200px;
-    animation: explosion 4s;
-}
-.explosionRight{
-    width: 15%;
-    height: 100%;
-    outline: 1px dashed red;
-    background-repeat:no-repeat;
-    background-image: url("http://40.media.tumblr.com/19b28f23bd568d07f2d4473dbe98a8b6/tumblr_ml1nr8NdrB1s5jjtzo1_1280.png");
-    background-size: 150px 200px;
-    animation: explosion 4s;
+    animation: fly_in_test5 5s infinite;
+    animation-duration: 1s;
+
 }
 @keyframes fly_in_left {
     from {
         left: 0;
     }
     to {
-        left: 50%;
+        left: 90%;
+
+    }
+    to{
+        right:90%;
     }
 }
-@keyframes fly_in_test2 {
+@keyframes swordUp {
     from {
         bottom:0;
 
@@ -229,10 +203,10 @@ body{
 }
 @keyframes fly_in_test3 {
     from {
-        right:0;
+        right: 1%;
     }
     to {
-        right:50%;
+        right: 90%
     }
 }
 @keyframes fly_in_test4 {
@@ -266,15 +240,6 @@ body{
         outline: 10px dashed blue;
         box-shadow: 0 0 0 10px teal;
         animation: 1s animateBorderOne ease infinite;
-    }
-}
-@keyframes explosion{
-
-    from {
-        left:50%;
-    }
-    to {
-        left:55%;
     }
 }
 
