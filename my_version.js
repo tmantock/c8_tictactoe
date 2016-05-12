@@ -516,8 +516,8 @@ function check_the_win (row, col) {
         console.log("col win", col_win);
     } else {                            // ie. if row win
         game_won = true;
-        animate_winner_name ();
-        applause_winner();
+        // animate_winner_name ();
+        // applause_winner();
 
     }
     if(!row_win && !col_win) {   // if no match in row or column
@@ -525,8 +525,8 @@ function check_the_win (row, col) {
         console.log("left to right win: ", left_right_win);
     }else {                      // if match in row or column
         game_won = true;
-        animate_winner_name ();
-        applause_winner();
+        // animate_winner_name ();
+        // applause_winner();
     }
     if (!row_win && !col_win && !left_right_win) {  //  if no row , column or left to right diagonal matches
         var right_left_win = diagonal_check_right_to_left(row, col);  // check diagonal right to left
@@ -534,13 +534,13 @@ function check_the_win (row, col) {
         /////////if there is a match in the last case
         if (right_left_win) {                   // if right to left match
             game_won = true;
-            animate_winner_name ();
-            applause_winner();
+            // animate_winner_name ();
+            // applause_winner();
         }
     }else {
         game_won = true;
-        animate_winner_name ();
-        applause_winner();
+        // animate_winner_name ();
+        // applause_winner();
     }
 
 }//check the win
@@ -679,6 +679,6 @@ var create_grid_array = function () {
     console.log(grid_array);
 };//////////end of create grid array
 
-
+//////////////////////in winning animation at the end we need to remove winner class and add player because of reset and restore
 
 
