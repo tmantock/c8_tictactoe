@@ -19,17 +19,17 @@
 <body>
 <div class="container-fluid">
     <div class="wraper">
-      <button id="eraser" type="button" class="btn btn-default" data-toggle="modal" data-target="#mySetting"></button>
+      <button id="eraser" type="button" class="btn btn-default" data-toggle="modal" data-target="#mySetting" onclick="modalSubmition()"></button>
       <div class="button-group">
           <button id="reset" >Reset</button>
           <button id="restore">Restore Last Game</button>
       </div>
+      <div class="player_names">
+            <span class="col-sm-5 xs-hidden" id="player_one"></span>
+            <span class="col-sm-2 xs-hidden" id="vs"></span>
+            <span id="player_two" class="col-sm-5 xs-hidden"></span>
+      </div>
       <div class="game_board">
-          <div class="player_names">
-              <span class="col-sm-5 xs-hidden" id="player_one"></span>
-              <span class="col-sm-2 xs-hidden" id="vs"></span>
-              <span id="player_two" class="col-sm-5 xs-hidden"></span>
-          </div>
       </div><!--end of game board-->
 
 
@@ -170,8 +170,51 @@
                          <option value="desert_warfare">Desert Warfare</option>
                          <option value="big_toe">Big Toe</option>
                          <option value="girl_fight">Girl Fight!!!</option>
+                         <option value="class_room">Class Room</option>
                      </select>
                  </div>
+                 <div class="sound-control">
+                     <audio loop id="classroom-background-sound">
+                         <source src="audio/background_sound_classroom.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio loop id="starwars-background-sound">
+                         <source src="audio/background_sound_starwars.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio loop id="desert-background-sound">
+                         <source src="audio/background_sound_desert.mp3
+            " type="audio/mpeg">
+                     </audio>
+                     <audio loop id="beach-background-sound">
+                         <source src="audio/background_sound_beach.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio loop id="girlfight-background-sound">
+                         <source src="audio/background_sound_girlfight.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="click-sound-classroom">
+                         <source src="audio/click_sound_chalk.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="click-sound-beach">
+                         <source src="audio/click_sound_beach.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="click-sound-desert">
+                         <source src="audio/click_sound_desert.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="click-sound-starwars">
+                         <source src="audio/click_sound_starwars.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="click-sound-girlfight">
+                         <source src="audio/click_sound_girlfight.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="game-won-sound">
+                         <source src="audio/game_won_clapping.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio id="button-click-sound">
+                         <source src="audio/button_click_sound.mp3" type="audio/mpeg">
+                     </audio>
+                     <audio loop id="intro-sound">
+                         <source src="audio/intro_song_barney.mp3" type="audio/mpeg">
+                     </audio>
+                 </div><!--closing audio div-->
                  <button id="setting_submit" type="submit" class="btn btn-info">Submit</button>
              <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

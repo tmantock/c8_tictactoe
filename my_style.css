@@ -299,11 +299,14 @@
     /*box-shadow: 5px 5px 10px rgba(102,102,0,.9);*/
 }
 .player_names {
+    color: white;
+    font-size: 1em;
     position: absolute;
-    top: -15%;
-    width: 80%;
+    top: 5%;
+    width: 80vh;
     height: 13%;
-    left:0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 #eraser {
     position: absolute;
@@ -370,13 +373,20 @@
     font-size: 1.5vw;
     transition-duration: 3s;
     height:100%;
-    color: #000;
-    transform: scale(1);
+    color: #fff;
+    transform: scale(1.3);
 }
 #vs {
-    color: #404040;
-    font-size: large;
+    /*color: #404040;*/
+    font-size: 2em;
 }
+#player_one {
+    /*color: #003300;*/
+}
+#player_one {
+    /*color: #202020;*/
+}
+
 .cell{
     width: 2em;
     height: 2em;

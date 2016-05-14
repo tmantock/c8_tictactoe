@@ -1,5 +1,21 @@
 /**  Created by Qzxtzrtz on 5/3/2016. */
 
+//TODO ***************************** GLOBAL VARIABLES  *******************************//
+
+var player1_name_value;
+var player2_name_value;
+var num_of_rows = 3;
+var num_of_cells_to_win = 3;
+var theme_value = "star_wars";
+var background_value = "chalkboard_background";
+var player_symbol = 'ex';
+var grid_array = [];
+var last_clicked;
+var game_won = false;
+var last_data;
+var game_board_grid=[];
+
+
 //TODO **************************  LOCAL STORAGE   *******************************/
 
 function local_storage_restore() {
@@ -105,6 +121,7 @@ function animate_name () {
 
 function modalSubmition() {
     //////getting players names
+    theme_background_sound_pause(theme_value);
     player1_name_value = $("#player1").val();
     player2_name_value = $("#player2").val();
     $("#player_one").text(player1_name_value);
@@ -139,7 +156,9 @@ function modalSubmition() {
     //capture theme, store as var
     theme_value = $(".theme_picker_select").val();
     console.log('theme picked = theme_value, is : ' + theme_value);
-    // theme_background_sound_play(theme_value);
+
+    theme_background_sound_pause_initiator();
+
     $(".game_board").empty();
     grid_array = [];
     create_grid_array();
@@ -148,119 +167,122 @@ function modalSubmition() {
     theme_ex_changer(theme_value);
     theme_ow_changer(theme_value);
     theme_font_changer(theme_value);
+
+    theme_background_sound_play (theme_value);
+
 }///////////end of modal submition
 
-// TODO ***************************** SOUND CONTROL *******************************//
-//
-// function theme_background_sound_play (theme_value){
-//     var starwars_background_sound = document.getElementById('starwars-background-sound');
-//     var desert_background_sound = document.getElementById('desert-background-sound');
-//     var beach_background_sound = document.getElementById('beach-background-sound');
-//     var girlfight_background_sound = document.getElementById('girlfight-background-sound');
-//     var classroom_background_sound = document.getElementById('classroom-background-sound');
-//     switch(theme_value){
-//         case "class_room":
-//             classroom_background_sound.play();
-//             classroom_background_sound.loop = true;
-//             break;
-//         case "star_wars":
-//             starwars_background_sound.play();
-//             classroom_background_sound.loop = true;
-//             break;
-//         case "desert_warfare":
-//             desert_background_sound.play();
-//             classroom_background_sound.loop = true;
-//             break;
-//         case "big_toe":
-//             beach_background_sound.play();
-//             classroom_background_sound.loop = true;
-//             break;
-//         case "girl_fight":
-//             girlfight_background_sound.play();
-//             classroom_background_sound.loop = true;
-//             break;
-//         default: return;
-//     }//end switch
-// }//end theme_background_sound_play function
-//
-// function theme_background_sound_pause (theme_value){
-//     var starwars_background_sound = document.getElementById('starwars-background-sound');
-//     var desert_background_sound = document.getElementById('desert-background-sound');
-//     var beach_background_sound = document.getElementById('beach-background-sound');
-//     var girlfight_background_sound = document.getElementById('girlfight-background-sound');
-//     var classroom_background_sound = document.getElementById('classroom-background-sound');
-//     switch(theme_value){
-//         case "class_room":
-//             classroom_background_sound.pause();
-//             break;
-//         case "star_wars":
-//             starwars_background_sound.pause();
-//             break;
-//         case "desert_warfare":
-//             desert_background_sound.pause();
-//             break;
-//         case "big_toe":
-//             beach_background_sound.pause();
-//             break;
-//         case "girl_fight":
-//             girlfight_background_sound.pause();
-//             break;
-//         default: return;
-//     }//end switch
-// }//end theme_background_sound_pause function
-//
-// function theme_background_sound_pause_initiator(){
-//     theme_background_sound_pause (theme_value);
-// }// needed to call theme background sound pause from doc.ready
-//
-// function theme_click_sound_controls (theme_value){
-//     switch(theme_value){
-//         case "class_room":
-//             cell_click_sound_control("click-sound-classroom");
-//             break;
-//         case "star_wars":
-//             cell_click_sound_control("click-sound-starwars");
-//             break;
-//         case "desert_warfare":
-//             cell_click_sound_control("click-sound-desert");
-//             break;
-//         case "big_toe":
-//             cell_click_sound_control("click-sound-beach");
-//             break;
-//         case "girl_fight":
-//             cell_click_sound_control("click-sound-girlfight");
-//             break;
-//         default: return;
-//     }//end switch
-// }//end theme_click_sound_controls function
-//
-// function cell_click_sound_control(click_sound_id){
-//     var clicksound = document.getElementById(click_sound_id);
-//     clicksound.play();
-// }//end cell_click_sound function
-//
-// function intro_sound_play(){
-//     var intro_sound = document.getElementById("intro-sound");
-//     intro_sound.play();
-//     intro_sound.loop = true;
-// }//end intro_sound_control function
-//
-// function intro_sound_pause(){
-//     var intro_sound = document.getElementById("intro-sound");
-//     intro_sound.pause();
-//     $(".shutup-barney-button").hide();
-// }//end intro_sound_control function
-//
-// function applause_winner(){
-//     var applause_winner_sound = document.getElementById("game-won-sound");
-//     applause_winner_sound.play();
-// }//end applause winner function
-//
-// function button_click_sound(){
-//     var button_click_sound = document.getElementById('button-click-sound');
-//     button_click_sound.play();
-// }//end button click sound function
-//
+//TODO ***************************** SOUND CONTROL *******************************
+
+function theme_background_sound_play (theme_value){
+    var starwars_background_sound = document.getElementById('starwars-background-sound');
+    var desert_background_sound = document.getElementById('desert-background-sound');
+    var beach_background_sound = document.getElementById('beach-background-sound');
+    var girlfight_background_sound = document.getElementById('girlfight-background-sound');
+    var classroom_background_sound = document.getElementById('classroom-background-sound');
+    switch(theme_value){
+        case "auto_shop":
+            classroom_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "star_wars":
+            starwars_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "desert_warfare":
+            desert_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "big_toe":
+            beach_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        case "girl_fight":
+            girlfight_background_sound.play();
+            classroom_background_sound.loop = true;
+            break;
+        default: return;
+    }//end switch
+}//end theme_background_sound_play function
+
+function theme_background_sound_pause (theme_value){
+    var starwars_background_sound = document.getElementById('starwars-background-sound');
+    var desert_background_sound = document.getElementById('desert-background-sound');
+    var beach_background_sound = document.getElementById('beach-background-sound');
+    var girlfight_background_sound = document.getElementById('girlfight-background-sound');
+    var classroom_background_sound = document.getElementById('classroom-background-sound');
+    switch(theme_value){
+        case "auto_shop":
+            classroom_background_sound.pause();
+            break;
+        case "star_wars":
+            starwars_background_sound.pause();
+            break;
+        case "desert_warfare":
+            desert_background_sound.pause();
+            break;
+        case "big_toe":
+            beach_background_sound.pause();
+            break;
+        case "girl_fight":
+            girlfight_background_sound.pause();
+            break;
+        default: return;
+    }//end switch
+}//end theme_background_sound_pause function
+
+function theme_background_sound_pause_initiator(){
+    theme_background_sound_pause (theme_value);
+}// needed to call theme background sound pause from doc.ready
+
+function theme_click_sound_controls (theme_value){
+    switch(theme_value){
+        case "class_room":
+            cell_click_sound_control("click-sound-classroom");
+            break;
+        case "star_wars":
+            cell_click_sound_control("click-sound-starwars");
+            break;
+        case "desert_warfare":
+            cell_click_sound_control("click-sound-desert");
+            break;
+        case "big_toe":
+            cell_click_sound_control("click-sound-beach");
+            break;
+        case "girl_fight":
+            cell_click_sound_control("click-sound-girlfight");
+            break;
+        default: return;
+    }//end switch
+}//end theme_click_sound_controls function
+
+function cell_click_sound_control(click_sound_id){
+    var clicksound = document.getElementById(click_sound_id);
+    clicksound.play();
+}//end cell_click_sound function
+
+function intro_sound_play(){
+    var intro_sound = document.getElementById("intro-sound");
+    intro_sound.play();
+    intro_sound.loop = true;
+}//end intro_sound_control function
+
+function intro_sound_pause(){
+    var intro_sound = document.getElementById("intro-sound");
+    intro_sound.pause();
+    $(".shutup-barney-button").hide();
+}//end intro_sound_control function
+
+function applause_winner(){
+    var applause_winner_sound = document.getElementById("game-won-sound");
+    applause_winner_sound.play();
+}//end applause winner function
+
+function button_click_sound(){
+    var button_click_sound = document.getElementById('button-click-sound');
+    button_click_sound.play();
+}//end button click sound function
+
 // TODO ******************** THEME BACKGROUND AND CLICK APPEARANCE CHANGER*************//
 
 function theme_background_changer(theme_value){  //take input: theme_value and changes background image & ex+ow images
@@ -280,6 +302,9 @@ function theme_background_changer(theme_value){  //take input: theme_value and c
             break;
         case "girl_fight":
             $('.wraper').css("background-image", "url(images/background/girlfight_background.jpg)");
+            break;
+        case "class_room":
+            $('.wraper').css("background-image", "url(images/chalkboard.jpg)");
             break;
         default: return;
     }//end switch
@@ -302,6 +327,9 @@ function theme_ex_changer(theme_value){ //take input: theme_value and changes ex
         case "girl_fight":
             $('.ex').css("background-image", "url(images/x/girlfight_x.png)");
             break;
+        case "class_room":
+            $('.ex').css("background-image", "url(images/x.png)");
+            break;
         default: return; //why staying at background not work, had to switch background-image
     }//end switch
 }//end theme_ex_changer function
@@ -323,6 +351,9 @@ function theme_ow_changer(theme_value){  //take input: theme_value and changes b
             break;
         case "girl_fight":
             $('.ow').css("background-image", " url(images/o/girlfight_o.png)");
+            break;
+        case "class_room":
+            $('.ow').css("background-image", " url(images/o.png)");
             break;
         default: return;
     }//end switch
@@ -357,20 +388,6 @@ function theme_font_changer(theme_value){
     }//end switch
 }//end theme font changer function
 
-//TODO ***************************** GLOBAL VARIABLES  *******************************//
-
-var player1_name_value;
-var player2_name_value;
-var num_of_rows = 3;
-var num_of_cells_to_win = 3;
-var theme_value = "class_room";
-var background_value = "chalkboard_background";
-var player_symbol = 'ex';
-var grid_array = [];
-var last_clicked;
-var game_won = false;
-var last_data;
-var game_board_grid=[];
 
 //TODO ***************************** BOARD CREATION  SECTION  *******************************//
 
@@ -396,7 +413,7 @@ function game_board_creation () {
                     }/// end of else
                     animate_name();         //glow current player's name if it is his turn
                     /////******************here**************************************
-                    // theme_click_sound_controls(theme_value);
+                    theme_click_sound_controls(theme_value);
                     theme_ex_changer(theme_value);
                     theme_ow_changer(theme_value);
                     /************************Uto the end of here***********************/
@@ -469,7 +486,7 @@ $(document).ready(function(){
     game_board_creation();
      $("#setting_submit").click(modalSubmition);
     // //TODO RESET BUTTON
-    // $(".reset-button").click(reset);//end RESET
+    $("#reset").click(reset);//end RESET
     //
     // //TODO LOCAL STORAGE RESTORE
     // last_data = local_storage_restore();
@@ -489,15 +506,15 @@ function reset() {
     player_symbol = 'ex';
     last_clicked = null;
     game_won = false;
-    $('#player_two').removeClass('winner2');      //remove and add classes to restore name styling
-    $('#player_one').removeClass('winner');
-    $('#player_two').addClass('player');
-    $('#player_one').addClass('player');
-    $('.matches-number').show();                //show user inputs
-    $('.row-number').show();
-    $('.theme_picker').show();
+                // $('#player_two').removeClass('winner2');      //remove and add classes to restore name styling
+                // $('#player_one').removeClass('winner');
+                // $('#player_two').addClass('player');
+                // $('#player_one').addClass('player');
+                // $('.matches-number').show();                //show user inputs
+                // $('.row-number').show();
+                // $('.theme_picker').show();
 
-    theme_background_sound_pause_initiator();   //pause current theme background sound to prevent overlapping of theme sounds when user chooses new one.
+    // theme_background_sound_pause_initiator();   //pause current theme background sound to prevent overlapping of theme sounds when user chooses new one.
     grid_array = [];                            //reset the grid
     create_grid_array();                        //recreate array
     console.log("grid_array is now: "+grid_array);
