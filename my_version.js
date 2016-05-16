@@ -6,7 +6,7 @@ var player1_name_value;
 var player2_name_value;
 var num_of_rows = 3;
 var num_of_cells_to_win = 3;
-var theme_value = "star_wars";
+var theme_value = "auto_shop";
 var background_value = "chalkboard_background";
 var player_symbol = 'ex';
 var grid_array = [];
@@ -37,20 +37,26 @@ function restore_last_game_board (last_data) {
         $(".game_board").empty();
         game_board_grid=[];
         game_board_creation();
+        theme_value = last_data.theme_value;
+        theme_click_sound_controls(theme_value);
+        theme_background_changer(theme_value);
         for (var i=0;i<num_of_rows;i++) {
             for (var j=0;j<num_of_rows;j++) {
                 if (grid_array[i][j]!=0) {
                     game_board_grid[i][j].html.addClass(grid_array[i][j]+" clicked");
+                    theme_ex_changer(theme_value);
+                    theme_ow_changer(theme_value);
                 }////end of if
             }////end of for j
         }////end of for i
-        click_player1_name();
-        click_player2_name();
+        // click_player1_name();
+        // click_player2_name();
     }
 }
 
 function store_essential_data () {
     var stored_data = {
+        theme_value: theme_value,
         player1_name_value: player1_name_value,
         player2_name_value: player2_name_value,
         player_symbol: player_symbol,
@@ -120,6 +126,7 @@ function animate_name () {
 
 
 function modalSubmition() {
+    game_won= false;
     //////getting players names
     theme_background_sound_pause(theme_value);
     player1_name_value = $("#player1").val();
@@ -293,7 +300,7 @@ function theme_background_changer(theme_value){  //take input: theme_value and c
             break;
         case "star_wars":
             $('.wraper').css("background-image", "url(images/background/starwars_background.jpg)");
-            break;
+              break;
         case "desert_warfare":
             $('.wraper').css("background-image", "url(images/background/desert_background.jpg)");
             break;
@@ -489,13 +496,13 @@ $(document).ready(function(){
     $("#reset").click(reset);//end RESET
     //
     // //TODO LOCAL STORAGE RESTORE
-    // last_data = local_storage_restore();
-    // // restore_last_game_board(last_data);
+
     //
     // //TODO RESTORE BUTTON
-    // $('.restore-button').click(function () {
-    //     restore_last_game_board(last_data);
-    // });
+    $('#restore').click(function () {
+        last_data = local_storage_restore();
+        restore_last_game_board(last_data);
+    });
 });//TODO **** end document ready
 
 //TODO ***************************** RESET SECTION  *******************************//
@@ -506,13 +513,6 @@ function reset() {
     player_symbol = 'ex';
     last_clicked = null;
     game_won = false;
-                // $('#player_two').removeClass('winner2');      //remove and add classes to restore name styling
-                // $('#player_one').removeClass('winner');
-                // $('#player_two').addClass('player');
-                // $('#player_one').addClass('player');
-                // $('.matches-number').show();                //show user inputs
-                // $('.row-number').show();
-                // $('.theme_picker').show();
 
     // theme_background_sound_pause_initiator();   //pause current theme background sound to prevent overlapping of theme sounds when user chooses new one.
     grid_array = [];                            //reset the grid
