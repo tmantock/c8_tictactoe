@@ -6,7 +6,7 @@ var player1_name_value;
 var player2_name_value;
 var num_of_rows = 3;
 var num_of_cells_to_win = 3;
-var theme_value = "star_wars";
+var theme_value = "auto_shop";
 var background_value = "chalkboard_background";
 var player_symbol = 'ex';
 var grid_array = [];
@@ -120,6 +120,7 @@ function animate_name () {
 
 
 function modalSubmition() {
+    game_won= false;
     //////getting players names
     theme_background_sound_pause(theme_value);
     player1_name_value = $("#player1").val();
